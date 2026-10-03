@@ -1,0 +1,114 @@
+:root {
+  font-family: "DM Sans", sans-serif;
+  color: var(--ink);
+  background: var(--page);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+}
+button,
+input {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+svg {
+  display: block;
+  width: 1.25em;
+  height: 1.25em;
+}
+::selection {
+  background: #efc96c;
+  color: #16362a;
+}
+:focus-visible {
+  outline: 3px solid #d39b31;
+  outline-offset: 3px;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.skip-link {
+  position: absolute;
+  top: -60px;
+  left: 16px;
+  z-index: 30;
+  background: #fff;
+  padding: 12px;
+}
+.skip-link:focus {
+  top: 12px;
+}
+
+.section-wrap {
+  width: min(100% - 76px, 1276px);
+  margin-inline: auto;
+}
+.eyebrow {
+  font-size: 11px;
+  line-height: 1.4;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+}
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 30px;
+  margin-bottom: 35px;
+}
+.section-heading h2,
+.about-layout h2,
+.contact-layout h2 {
+  font-size: clamp(38px, 4.3vw, 62px);
+  line-height: 1.06;
+  letter-spacing: -0.04em;
+  margin: 12px 0 15px;
+}
+.section-heading h2 em,
+.about-layout h2 em,
+.journey-layout h2 em {
+  font-family: Kalam, cursive;
+  color: var(--link);
+  font-style: normal;
+  font-weight: 700;
+}
+.section-heading p {
+  max-width: 640px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
+}
+.hand-annotation {
+  font:
+    21px Kalam,
+    cursive;
+  color: var(--accent);
+  transform: rotate(-5deg);
+  white-space: nowrap;
+  padding-bottom: 12px;
+}
