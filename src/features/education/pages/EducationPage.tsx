@@ -1,3 +1,6 @@
+import { localizeLesson } from "../../../i18n/content/lessons";
+import { localizeCategory } from "../../../i18n/content/categories";
+import { useLocale } from "../../../i18n/LocaleProvider";
 import { useEffect } from "react";
 import type { Program } from "../../catalog/types";
 import { useCatalog } from "../../catalog/CatalogProvider";
@@ -19,17 +22,32 @@ export function EducationPage({
   categorySlug?: string;
   lessonId?: string;
 }) {
+  const { locale, t } = useLocale();
   const { lessons, status, retry } = useCatalog();
-  const category = categorySlug
+  const sourceCategory = categorySlug
     ? findCategory(program, categorySlug)
     : undefined;
-  const categoryLessons = category ? lessonsInCategory(lessons, category) : [];
+  const category = sourceCategory
+    ? localizeCategory(sourceCategory, locale)
+    : undefined;
+  const categoryLessons = category
+    ? lessonsInCategory(lessons, category).map((item) =>
+        localizeLesson(item, locale),
+      )
+    : [];
   const lesson = lessonId
     ? categoryLessons.find((item) => item.id === lessonId)
     : undefined;
+  const invalidRoute = Boolean(
+    (categorySlug && !category) || (status === "ready" && lessonId && !lesson),
+  );
   useEffect(() => {
-    document.title = `${lesson?.title ?? category?.title ?? `${program} eğitimleri`} — Profesör Nazif`;
-  }, [lesson?.title, category?.title, program]);
+    if (invalidRoute) {
+      document.title = `${t("notFoundTitle")} — ${t("brand")}`;
+      return;
+    }
+    document.title = `${lesson?.title ?? category?.title ?? t("programCourses", { program })} — ${t("brand")}`;
+  }, [lesson?.title, category?.title, program, t, invalidRoute]);
   if (categorySlug && !category) return <NotFoundPage />;
   if (status === "ready" && lessonId && !lesson) return <NotFoundPage />;
   return (
@@ -43,8 +61,8 @@ export function EducationPage({
           status={status}
         />
         <div className="education-main">
-          <nav className="education-breadcrumbs" aria-label="Sayfa yolu">
-            <a href="/#kategoriler">Eğitimler</a>
+          <nav className="education-breadcrumbs" aria-label={t("breadcrumb")}>
+            <a href="/#kategoriler">{t("courses")}</a>
             <span aria-hidden="true">/</span>
             <a href={educationPath(program)}>{program}</a>
             {category && (
@@ -62,7 +80,9 @@ export function EducationPage({
               <>
                 <span aria-hidden="true">/</span>
                 <span aria-current="page">
-                  Ders {categoryLessons.indexOf(lesson) + 1}
+                  {t("lessonNumber", {
+                    number: categoryLessons.indexOf(lesson) + 1,
+                  })}
                 </span>
               </>
             )}

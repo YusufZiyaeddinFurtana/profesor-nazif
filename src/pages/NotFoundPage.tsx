@@ -1,15 +1,17 @@
+import { useLocale } from "../i18n/LocaleProvider";
 import { useEffect } from "react";
 
 export function NotFoundPage() {
+  const { t } = useLocale();
   useEffect(() => {
-    document.title = "Sayfa bulunamadı — Profesör Nazif";
-  }, []);
+    document.title = `${t("notFoundTitle")} — ${t("brand")}`;
+  }, [t]);
   return (
     <section className="section-wrap route-status">
-      <h1>Bu sayfa ders defterinde yok.</h1>
-      <p>Adres değişmiş olabilir. Eğitimleri ana sayfadan bulabilirsin.</p>
+      <h1>{t("notFoundHeading")}</h1>
+      <p>{t("notFoundDescription")}</p>
       <a className="primary-button" href="/#kategoriler">
-        Eğitimlere dön
+        {t("backCourses")}
       </a>
     </section>
   );

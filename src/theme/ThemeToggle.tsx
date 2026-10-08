@@ -1,8 +1,10 @@
+import { useLocale } from "../i18n/LocaleProvider";
 import { useTheme } from "./ThemeProvider";
 
 export function ThemeToggle() {
+  const { t } = useLocale();
   const { theme, toggle } = useTheme();
-  const label = theme === "dark" ? "Açık temaya geç" : "Karanlık temaya geç";
+  const label = t(theme === "dark" ? "themeLight" : "themeDark");
   return (
     <button
       className="theme-toggle"

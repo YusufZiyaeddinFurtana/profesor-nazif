@@ -6,3 +6,5 @@
 @import "./features/home/home.css";
 @import "./features/education/education.css";
 @import "./features/lessons/lessons.css";
+
+@import "./i18n/i18n.css";

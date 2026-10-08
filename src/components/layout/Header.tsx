@@ -1,3 +1,6 @@
+import { LanguageSwitcher } from "../../i18n/LanguageSwitcher";
+import { localizeCategory } from "../../i18n/content/categories";
+import { useLocale } from "../../i18n/LocaleProvider";
 import { useState } from "react";
 import { categories } from "../../features/education/data/categories";
 import { educationPath } from "../../app/routes";
@@ -5,15 +8,16 @@ import { Arrow } from "../ui/Arrow";
 import { ThemeToggle } from "../../theme/ThemeToggle";
 
 export function Header() {
+  const { locale, t } = useLocale();
   const [menuOpen, setMenuOpen] = useState(false);
   return (
     <header className="site-header" id="top">
-      <a className="brand" href="/" aria-label="Profesör Nazif ana sayfa">
+      <a className="brand" href="/" aria-label={t("homeLabel")}>
         <span className="brand-mark">
           <img src="/nazif-portrait.png" alt="" />
         </span>
         <span className="brand-wordmark">
-          Profesör <strong>Nazif</strong>
+          <strong>{t("brand")}</strong>
         </span>
       </a>
       <button
@@ -23,13 +27,13 @@ export function Header() {
         aria-controls="main-nav"
         onClick={() => setMenuOpen((value) => !value)}
       >
-        {menuOpen ? "Kapat" : "Menü"}
+        {t(menuOpen ? "close" : "menu")}
         <span aria-hidden="true">{menuOpen ? "×" : "☰"}</span>
       </button>
       <nav
         id="main-nav"
         className={menuOpen ? "nav-open" : ""}
-        aria-label="Ana menü"
+        aria-label={t("mainNav")}
         onClick={(event) => {
           if (event.target instanceof Element && event.target.closest("a")) {
             setMenuOpen(false);
@@ -39,8 +43,8 @@ export function Header() {
           }
         }}
       >
-        <a href="/">Anasayfa</a>
-        <a href="/#kategoriler">Eğitimler</a>
+        <a href="/">{t("home")}</a>
+        <a href="/#kategoriler">{t("courses")}</a>
         {(["FRC", "FLL"] as const).map((program) => (
           <details className="nav-dropdown" key={program}>
             <summary>
@@ -48,10 +52,11 @@ export function Header() {
             </summary>
             <div className="dropdown-panel">
               <a className="dropdown-overview" href={educationPath(program)}>
-                {program} eğitimleri <Arrow />
+                {t("programCourses", { program })} <Arrow />
               </a>
               {categories
                 .filter((item) => item.program === program)
+                .map((item) => localizeCategory(item, locale))
                 .map((item) => (
                   <a href={educationPath(program, item.slug)} key={item.slug}>
                     {item.title}
@@ -61,9 +66,12 @@ export function Header() {
           </details>
         ))}
       </nav>
-      <ThemeToggle />
+      <div className="header-preferences">
+        <LanguageSwitcher />
+        <ThemeToggle />
+      </div>
       <a className="header-cta" href="/#ozel-ders">
-        Özel ders talep et! <Arrow diagonal />
+        {t("requestLesson")} <Arrow diagonal />
       </a>
     </header>
   );

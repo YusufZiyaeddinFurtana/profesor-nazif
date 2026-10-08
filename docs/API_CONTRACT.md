@@ -40,3 +40,7 @@ Bu teslim, oturum veya öneri endpoint'i tanımlamaz. Ekip bu sözleşmeleri bel
 ## Video
 
 Bu sürümde video embed edilmez. `youtubeVideoId` alanı ileride YouTube oynatıcısına bağlanmak üzere korunur; geçerli bir kimlik döndürülmesi şu an otomatik iframe yüklemez. Oynatıcı entegrasyon noktası `src/features/lessons/components/LessonVideo.tsx` dosyasıdır.
+
+## İsteğe bağlı ders çevirileri
+
+`translations`, `tr`, `en`, `zh-Hans`, `hil` dil kodlarıyla kayıtlar taşıyabilir. Her kayıt üç metin alanını birlikte içermelidir: `title`, `summary`, `longDescription` (string). İstenen dil yoksa dersin özgün metni gösterilir; kimlik ve kategori eşleme alanları çevrilmez. Örnek ve entegrasyon ayrıntıları için [Dil rehberi](I18N.md).

@@ -1,3 +1,5 @@
+import { localizeCategory } from "../../../i18n/content/categories";
+import { useLocale } from "../../../i18n/LocaleProvider";
 import type { CatalogState } from "../../catalog/CatalogProvider";
 import { useNavigation } from "../../../app/Navigation";
 import { educationPath } from "../../../app/routes";
@@ -18,10 +20,11 @@ export function EducationSidebar({
   activeLessonId?: string;
   status: CatalogState;
 }) {
+  const { locale, t } = useLocale();
   const { navigate } = useNavigation();
   return (
-    <aside className="education-sidebar" aria-label="Eğitim gezinmesi">
-      <nav className="education-programs" aria-label="Program seçimi">
+    <aside className="education-sidebar" aria-label={t("educationNav")}>
+      <nav className="education-programs" aria-label={t("programSelect")}>
         {(["FRC", "FLL"] as const).map((item) => (
           <a
             href={educationPath(item)}
@@ -33,16 +36,17 @@ export function EducationSidebar({
         ))}
       </nav>
       <label className="category-select">
-        <span>Eğitim alanı</span>
+        <span>{t("field")}</span>
         <select
           value={category?.slug ?? ""}
           onChange={(event) =>
             navigate(educationPath(program, event.target.value || undefined))
           }
         >
-          <option value="">Tüm {program} alanları</option>
+          <option value="">{t("allFields", { program })}</option>
           {categories
             .filter((item) => item.program === program)
+            .map((item) => localizeCategory(item, locale))
             .map((item) => (
               <option key={item.slug} value={item.slug}>
                 {item.title}
@@ -57,19 +61,19 @@ export function EducationSidebar({
             href={educationPath(program, category.slug)}
             aria-current={!activeLessonId ? "page" : undefined}
           >
-            {category.title} hakkında
+            {t("aboutCategory", { category: category.title })}
           </a>
           <h2 className="sidebar-title">
-            Dersler <span>{lessons.length}</span>
+            {t("lessons")} <span>{lessons.length}</span>
           </h2>
           {status !== "ready" ? (
             <p className="sidebar-empty">
-              {status === "loading"
-                ? "Ders listesi açılıyor…"
-                : "Ders listesi yüklenemedi."}
+              {t(
+                status === "loading" ? "lessonListLoading" : "lessonListError",
+              )}
             </p>
           ) : lessons.length ? (
-            <nav aria-label="Ders menüsü">
+            <nav aria-label={t("lessonMenu")}>
               <ol className="sidebar-lessons">
                 {lessons.map((lesson, index) => (
                   <li key={lesson.id}>
@@ -85,9 +89,11 @@ export function EducationSidebar({
                       <span>
                         {lesson.title}
                         <small>
-                          {lesson.youtubeVideoId
-                            ? "Video dersi"
-                            : "İçerik hazırlanıyor"}
+                          {t(
+                            lesson.youtubeVideoId
+                              ? "videoLesson"
+                              : "contentPending",
+                          )}
                         </small>
                       </span>
                     </a>
@@ -96,16 +102,17 @@ export function EducationSidebar({
               </ol>
             </nav>
           ) : (
-            <p className="sidebar-empty">Bu alana henüz ders eklenmedi.</p>
+            <p className="sidebar-empty">{t("noLessons")}</p>
           )}
         </>
       ) : (
         <nav
           className="sidebar-categories"
-          aria-label={`${program} eğitim alanları`}
+          aria-label={t("programFields", { program })}
         >
           {categories
             .filter((item) => item.program === program)
+            .map((item) => localizeCategory(item, locale))
             .map((item) => (
               <a href={educationPath(program, item.slug)} key={item.slug}>
                 {item.title}

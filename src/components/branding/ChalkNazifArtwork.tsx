@@ -1,3 +1,4 @@
+import { useLocale } from "../../i18n/LocaleProvider";
 import { useId } from "react";
 
 const chalkRevealPaths = [
@@ -30,6 +31,7 @@ export function ChalkNazifArtwork({
 }: {
   animated?: boolean;
 }) {
+  const { t } = useLocale();
   const id = useId().replace(/:/g, "");
   const filterId = `chalk-${id}`;
   const maskId = `draw-${id}`;
@@ -38,11 +40,7 @@ export function ChalkNazifArtwork({
       className={`chalk-artwork${animated ? " chalk-artwork--animated" : ""}`}
       viewBox="0 0 1140 932"
       role="img"
-      aria-label={
-        animated
-          ? "Profesör Nazif'in özgün çiziminden oluşan tebeşir açılışı"
-          : "El sallayan Profesör Nazif'in özgün tebeşir çizimi"
-      }
+      aria-label={t(animated ? "chalkAnimated" : "chalkStatic")}
     >
       <defs>
         <filter id={filterId} colorInterpolationFilters="sRGB">

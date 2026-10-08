@@ -1,3 +1,4 @@
+import { locales } from "../../i18n/types.ts";
 import type { Lesson } from "./types";
 
 const requiredStrings = [
@@ -39,6 +40,26 @@ export function parseLessons(value: unknown): Lesson[] {
         !/^[A-Za-z0-9_-]{11}$/.test(row.youtubeVideoId))
     )
       throw new Error("Geçersiz YouTube video kimliği.");
+    if (row.translations !== undefined) {
+      if (
+        !row.translations ||
+        typeof row.translations !== "object" ||
+        Array.isArray(row.translations)
+      )
+        throw new Error("Geçersiz ders çevirileri.");
+      for (const [locale, value] of Object.entries(row.translations)) {
+        if (
+          !(locales as readonly string[]).includes(locale) ||
+          !value ||
+          typeof value !== "object" ||
+          ["title", "summary", "longDescription"].some(
+            (key) =>
+              typeof (value as Record<string, unknown>)[key] !== "string",
+          )
+        )
+          throw new Error("Geçersiz ders çevirisi.");
+      }
+    }
     return row as Lesson;
   });
 }

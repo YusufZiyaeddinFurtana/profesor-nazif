@@ -1,3 +1,4 @@
+import { useLocale } from "../i18n/LocaleProvider";
 import { useEffect } from "react";
 import { useNavigation } from "../app/Navigation";
 import { educationPath } from "../app/routes";
@@ -8,6 +9,7 @@ import { NotFoundPage } from "./NotFoundPage";
 
 /** Keep previously shared /ders/:id links usable after moving to category routes. */
 export function LegacyLessonPage({ id }: { id: string }) {
+  const { t } = useLocale();
   const { lessons, status, retry } = useCatalog();
   const { navigate } = useNavigation();
   const lesson = lessons.find((item) => item.id === id);
@@ -25,7 +27,7 @@ export function LegacyLessonPage({ id }: { id: string }) {
   if (!lesson || !category) return <NotFoundPage />;
   return (
     <p className="section-wrap catalog-status" role="status">
-      Ders açılıyor…
+      {t("lessonLoading")}
     </p>
   );
 }

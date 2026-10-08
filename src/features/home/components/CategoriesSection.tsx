@@ -1,9 +1,12 @@
+import { localizeGroup } from "../../../i18n/content/categories";
+import { useLocale } from "../../../i18n/LocaleProvider";
 import { courseGroups } from "../../education/data/categories";
 import { educationPath } from "../../../app/routes";
 import type { Program } from "../../catalog/types";
 import { Arrow } from "../../../components/ui/Arrow";
 
 export function CategoriesSection() {
+  const { locale, t } = useLocale();
   return (
     <section
       id="kategoriler"
@@ -13,11 +16,11 @@ export function CategoriesSection() {
       <div className="section-heading">
         <div>
           <h2 id="categories-title">
-            İki program, <em>sekiz öğrenme yolu.</em>
+            {t("categoriesStart")} <em>{t("categoriesEnd")}</em>
           </h2>
-          <p>Bir alan seç, konuyu tanı ve ders menüsünden öğrenmeye başla.</p>
+          <p>{t("categoriesDescription")}</p>
         </div>
-        <span className="hand-annotation">Önce bir kapı seç! ↘</span>
+        <span className="hand-annotation">{t("chooseDoor")}</span>
       </div>
       <div className="program-grid">
         {(["FRC", "FLL"] as Program[]).map((item) => (
@@ -27,18 +30,15 @@ export function CategoriesSection() {
           >
             <div className="program-heading">
               <span className="program-index">
-                {item === "FRC" ? "01" : "02"} / PROGRAM
+                {item === "FRC" ? "01" : "02"} / {t("programLabel")}
               </span>
               <h3>{item}</h3>
-              <p>
-                {item === "FRC"
-                  ? "Robotun sahadaki yolculuğundan takımın sürdürülebilirliğine."
-                  : "Bir fikrin robota, projeye ve ekip çalışmasına dönüşmesine."}
-              </p>
+              <p>{t(item === "FRC" ? "frcShort" : "fllShort")}</p>
             </div>
             <div className="program-groups">
               {courseGroups
                 .filter((entry) => entry.program === item)
+                .map((entry) => localizeGroup(entry, locale))
                 .map((entry) => (
                   <a
                     key={entry.id}

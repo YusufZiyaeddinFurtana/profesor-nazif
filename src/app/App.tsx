@@ -1,3 +1,4 @@
+import { useLocale } from "../i18n/LocaleProvider";
 import { useEffect } from "react";
 import { Header } from "../components/layout/Header";
 import { Footer } from "../components/layout/Footer";
@@ -9,18 +10,18 @@ import { useNavigation } from "./Navigation";
 import { resolveRoute } from "./routes";
 
 export default function App() {
+  const { t } = useLocale();
   const { location } = useNavigation();
   const route = resolveRoute(location.pathname);
   useEffect(() => {
-    if (route.kind === "home")
-      document.title = "Profesör Nazif — Tahtada öğren, robotunda dene.";
+    if (route.kind === "home") document.title = t("homeTitle");
     else if (route.kind === "not-found")
-      document.title = "Sayfa bulunamadı — Profesör Nazif";
-  }, [route.kind]);
+      document.title = `${t("notFoundTitle")} — ${t("brand")}`;
+  }, [route.kind, t]);
   return (
     <>
       <a className="skip-link" href="#main">
-        İçeriğe geç
+        {t("skip")}
       </a>
       <Header />
       <main id="main" tabIndex={-1}>

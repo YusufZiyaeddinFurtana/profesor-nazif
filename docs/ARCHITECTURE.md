@@ -62,3 +62,7 @@ Yeni özellikte yeni renk kodları çoğaltmak yerine mevcut tema değişkenleri
 ## Kontrol
 
 PR veya push öncesi `npm test` ve `npm run build` çalıştırın. Testler kategori/veri eşleşmelerini, bozuk URL'leri, eski ders adreslerini ve API veri doğrulamasını kapsar. UI değişikliği varsa açık/koyu tema ile masaüstü/mobil görünümü kontrol edin.
+
+## Çok dil desteği
+
+`i18n/` arayüz ve örnek içerik çevirilerini, dil seçiciyi ve ortak dil state'ini tutar. `LocaleProvider`, uygulama sağlayıcılarının dışında yer alır. Dil değişimi katalog verisini yeniden indirmez; `EducationPage` kararlı anahtarlarla eşlediği verinin yalnızca gösterilen metinlerini yerelleştirir. Yeni özelliklerde `useLocale()` kullanın. Dosya sorumlulukları ve backend çeviri sözleşmesi için [I18N.md](./I18N.md) belgesine bakın.

@@ -37,6 +37,7 @@ src/
     education/           Kategoriler, sol menü, program/alan sayfaları, kendi CSS'i
     lessons/             Ders içeriği, korunmuş tebeşir açılışı, video çerçevesi
     catalog/             Ders tipleri, API servisi, veri doğrulama, state, örnek veriler
+  i18n/                  Dört dil, çeviri metinleri, seçici ve dil state’i
   pages/                 Bulunamayan sayfa ve eski URL yönlendirmesi
   services/              Ortak HTTP erişimi
   styles/                Tema renkleri, temel stiller ve ortak sayfa düzeni
@@ -75,6 +76,7 @@ Nazif'in mevcut tebeşir animasyonu korunmuştur. Mavi kapaklı ikinci alan kald
 
 - **DM Sans** — gövde metinleri, menüler ve kontroller.
 - **Kalam** — tebeşir başlıkları ve el yazısı vurgular.
+- **Ma Shan Zheng** — Çince tebeşir başlıkları ve el yazısı notları.
 
 Ağırlıklar ve kaynak: [Font listesi](docs/FONTS.md).
 
@@ -85,3 +87,7 @@ Açık/koyu tema menüdeki düğmeyle değişir; tercih tarayıcıda korunur. Ha
 GitHub reposunu Vercel'e aktarın: framework Vite, build `npm run build`, output `dist`. `vercel.json`, eğitim adreslerinin doğrudan açılmasını destekleyen SPA rewrite ayarını içerir.
 
 Mevcut ders açıklamaları örnek içeriktir; gerçek videolar, kesin müfredat, öğretmen fotoğrafları ve ders eşleştirmeleri ekip tarafından tamamlanmalıdır.
+
+## Diller
+
+Navbar'dan Türkçe, İngilizce, basitleştirilmiş Çince ve Hiligaynon seçilebilir. Dil tercihi tarayıcıda saklanır; açık dersin adresi ve tema değişmez. Arayüz metinleri, kategori açıklamaları ve örnek ders içerikleri çevrilir. Dosya sorumlulukları, API ders çevirileri ve Hiligaynon dil kontrolü: [Dil rehberi](docs/I18N.md).

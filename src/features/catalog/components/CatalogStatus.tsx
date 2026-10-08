@@ -1,3 +1,4 @@
+import { useLocale } from "../../../i18n/LocaleProvider";
 import type { CatalogState } from "../CatalogProvider";
 
 export function CatalogStatus({
@@ -7,19 +8,20 @@ export function CatalogStatus({
   status: CatalogState;
   retry: () => void;
 }) {
+  const { t } = useLocale();
   if (status === "ready") return null;
   if (status === "loading")
     return (
       <p className="catalog-status" role="status">
-        Ders defteri açılıyor…
+        {t("catalogLoading")}
       </p>
     );
   return (
     <div className="empty-state" role="alert">
-      <strong>Dersler yüklenemedi.</strong>
-      <p>Bağlantını kontrol edip yeniden deneyebilirsin.</p>
+      <strong>{t("catalogError")}</strong>
+      <p>{t("catalogRecovery")}</p>
       <button type="button" onClick={retry}>
-        Yeniden dene
+        {t("retry")}
       </button>
     </div>
   );

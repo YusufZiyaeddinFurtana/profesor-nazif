@@ -1,8 +1,10 @@
+import { useLocale } from "../../../i18n/LocaleProvider";
 import type { Lesson } from "../../catalog/types";
 import { LessonIntro } from "./LessonIntro";
 import { LessonVideo } from "./LessonVideo";
 
 export function LessonContent({ lesson }: { lesson: Lesson }) {
+  const { t } = useLocale();
   return (
     <article className="lesson-content">
       <header className="lesson-heading">
@@ -12,7 +14,7 @@ export function LessonContent({ lesson }: { lesson: Lesson }) {
       <LessonIntro title={lesson.title} />
       <LessonVideo title={lesson.title} />
       <section className="lesson-description">
-        <h2>Bu derste neler var?</h2>
+        <h2>{t("lessonDetails")}</h2>
         <p>{lesson.longDescription}</p>
       </section>
     </article>

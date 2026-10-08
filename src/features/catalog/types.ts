@@ -1,3 +1,4 @@
+import type { Locale, LessonTranslation } from "../../i18n/types";
 export type Program = "FRC" | "FLL";
 
 export type Lesson = {
@@ -8,6 +9,7 @@ export type Lesson = {
   title: string;
   summary: string;
   longDescription: string;
+  translations?: Partial<Record<Locale, LessonTranslation>>;
   coverLabel?: string;
   image?: string;
   youtubeVideoId?: string;

@@ -1,6 +1,8 @@
+import { useLocale } from "../../i18n/LocaleProvider";
 import { socialLinks } from "../../config/site";
 
 export function Footer() {
+  const { t } = useLocale();
   return (
     <footer className="site-footer">
       <div className="section-wrap footer-layout">
@@ -12,12 +14,12 @@ export function Footer() {
         >
           <img src="/cymurghs-logo.png" alt="" />
           <span>
-            <strong>Profesör Nazif</strong>
-            <small>Cymurghs #7466’nın eğitim köşesi</small>
+            <strong>{t("brand")}</strong>
+            <small>{t("footerCredit")}</small>
           </span>
         </a>
         <div className="footer-social">
-          <span>Bizi takip et</span>
+          <span>{t("follow")}</span>
           <div>
             {socialLinks.map((link) => (
               <a
@@ -32,7 +34,7 @@ export function Footer() {
           </div>
         </div>
         <a className="back-to-top" href="#top">
-          Başa dön ↑
+          {t("top")}
         </a>
       </div>
     </footer>

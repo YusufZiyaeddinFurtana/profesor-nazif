@@ -1,3 +1,4 @@
+import { useLocale } from "../../../i18n/LocaleProvider";
 import type { Lesson } from "../../catalog/types";
 import type { EducationCategory } from "../types";
 import { educationPath } from "../../../app/routes";
@@ -10,16 +11,14 @@ export function CategoryOverview({
   category: EducationCategory;
   lessons: Lesson[];
 }) {
+  const { t } = useLocale();
   return (
     <article className="category-overview">
       <h1>{category.title}</h1>
       <p className="education-lead">{category.description}</p>
       <div className="category-note">
-        <h2>Bu alanda nasıl ilerlersin?</h2>
-        <p>
-          Soldaki ders menüsünden bir konu seç. Nazif’in tebeşir açılışıyla
-          başla, ardından dersin açıklamasını ve videosunu takip et.
-        </p>
+        <h2>{t("progressTitle")}</h2>
+        <p>{t("progressDescription")}</p>
       </div>
       {lessons.length ? (
         <>
@@ -27,13 +26,13 @@ export function CategoryOverview({
             className="primary-button"
             href={educationPath(category.program, category.slug, lessons[0].id)}
           >
-            İlk dersi aç <Arrow />
+            {t("firstLesson")} <Arrow />
           </a>
           <section
             className="category-curriculum"
             aria-labelledby="curriculum-title"
           >
-            <h2 id="curriculum-title">Bu alandaki dersler</h2>
+            <h2 id="curriculum-title">{t("fieldLessons")}</h2>
             <ol>
               {lessons.map((lesson) => (
                 <li key={lesson.id}>
@@ -55,13 +54,10 @@ export function CategoryOverview({
         </>
       ) : (
         <div className="category-empty">
-          <h2>Dersler hazırlanıyor.</h2>
-          <p>
-            Bu alanın dersleri eklendiğinde burada ve soldaki menüde görünecek.
-            Şimdilik diğer eğitim alanlarına göz atabilirsin.
-          </p>
+          <h2>{t("lessonsPending")}</h2>
+          <p>{t("emptyDescription")}</p>
           <a href={educationPath(category.program)}>
-            {category.program} eğitimlerine dön <Arrow />
+            {t("backProgram", { program: category.program })} <Arrow />
           </a>
         </div>
       )}

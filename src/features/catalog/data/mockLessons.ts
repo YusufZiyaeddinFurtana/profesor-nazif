@@ -1,6 +1,7 @@
+import { mockLessonTranslations } from "../../../i18n/content/mockLessons.ts";
 import type { Lesson } from "../types";
 
-export const lessons: Lesson[] = [
+const sourceLessons: Lesson[] = [
   {
     id: "wpilib-java",
     program: "FRC",
@@ -111,3 +112,8 @@ export const lessons: Lesson[] = [
     coverLabel: "FLL Proje",
   },
 ];
+
+export const lessons: Lesson[] = sourceLessons.map((lesson) => ({
+  ...lesson,
+  translations: mockLessonTranslations[lesson.id],
+}));

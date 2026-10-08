@@ -1,7 +1,9 @@
+import { useLocale } from "../../../i18n/LocaleProvider";
 /** Replace only this board's interior when adding the real video provider. */
 export function LessonVideo({ title }: { title: string }) {
+  const { t } = useLocale();
   return (
-    <section className="lesson-video" aria-label={`${title} eğitim videosu`}>
+    <section className="lesson-video" aria-label={t("lessonVideo", { title })}>
       <div className="video-board-frame">
         <div className="video-board-surface">
           <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
@@ -19,8 +21,8 @@ export function LessonVideo({ title }: { title: string }) {
               strokeLinejoin="round"
             />
           </svg>
-          <p>Video hazırlanıyor.</p>
-          <span>Bu dersin videosu burada yer alacak.</span>
+          <p>{t("videoPending")}</p>
+          <span>{t("videoPlaceholder")}</span>
         </div>
       </div>
     </section>
