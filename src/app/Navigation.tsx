@@ -79,7 +79,7 @@ export function NavigationProvider({ children }: { children: ReactNode }) {
       }
       document.getElementById(id)?.scrollIntoView();
     } else {
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
       document.getElementById("main")?.focus({ preventScroll: true });
     }
   }, [location.pathname, location.hash]);

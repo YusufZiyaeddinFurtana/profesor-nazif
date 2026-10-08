@@ -1,78 +1,87 @@
 # Profesör Nazif
 
-Cymurghs #7466 eğitim sitesi. React + TypeScript + Vite frontend'i; backend ayrı geliştirilebilir.
+React + TypeScript + Vite ile eğitim sitesi. FRC/FLL alanları kendi sayfalarında açılır; her alanın sol menüsünden ders seçilir.
 
 ## Çalıştırma
 
-Proje dizininde:
+Node.js 22.18+ gereklidir. Proje dizininde:
 
 ```bash
 npm ci
 npm run dev
 ```
 
-Üretim kontrolü: `npm run build`, ardından `npm run preview`.
+```bash
+npm test          # Kategori eşleştirme, URL ve API veri kontrolleri
+npm run build    # TypeScript kontrolü ve üretim derlemesi
+npm run preview  # Derlenmiş siteyi yerelde açma
+```
 
-## Dosya yapısı
+## Sayfalar
+
+- `/`: ana sayfa ve eğitim alanlarına giriş.
+- `/egitimler/frc` ve `/egitimler/fll`: programın tüm alanları.
+- `/egitimler/frc/programming`: alan açıklaması ve solda ders menüsü.
+- `/egitimler/frc/programming/wpilib-java`: seçili ders, Nazif açılışı ve video için kara tahta çerçevesi.
+- Eski `/ders/:id` bağlantıları uygun yeni ders adresine yönlendirilir.
+
+## Geliştirme yapısı
 
 ```text
 src/
-  app/                 Uygulama ve History API ile sayfa gezinmesi
-  pages/               Ana sayfa, ders detayı, bulunamayan sayfa
-  components/
-    home/              Ana sayfanın bağımsız bölümleri
-    layout/            Navbar ve footer
-    branding/          Özgün Nazif çizimi, takım logosu açılışı
-    lessons/           Kapak, yüklenme/hata durumu, YouTube oynatıcısı
-    ui/                Ortak küçük arayüz parçaları
-  features/catalog/    Ders tipleri, veri kaynağı, filtreler, katalog state'i
-  services/            Ortak HTTP erişimi
-  data/                Örnek dersler ve sabit site içerikleri
-  theme/               Açık/koyu tema ve kalıcı kullanıcı tercihi
-  styles/              Tema renkleri, temel stiller, düzen ve mobil kurallar
+  app/                   Uygulama kabuğu, URL çözümleme, gezinme
+  components/            Ortak navbar/footer, Nazif çizimi, küçük UI parçaları
+  config/                Site bağlantıları ve iletişim ayarları
+  features/
+    home/                Ana sayfa, bölümleri, öğretmen verisi, kendi CSS'i
+    education/           Kategoriler, sol menü, program/alan sayfaları, kendi CSS'i
+    lessons/             Ders içeriği, korunmuş tebeşir açılışı, video çerçevesi
+    catalog/             Ders tipleri, API servisi, veri doğrulama, state, örnek veriler
+  pages/                 Bulunamayan sayfa ve eski URL yönlendirmesi
+  services/              Ortak HTTP erişimi
+  styles/                Tema renkleri, temel stiller ve ortak sayfa düzeni
+  theme/                 Açık/koyu tema, tarayıcıda saklanan tercih
 ```
 
-Bileşenler doğrudan mock veriyi okumaz. `CatalogProvider → catalogService → HTTP / mock` akışı kullanılır. API açılınca örnek ders modülü yüklenmez. Ana sayfanın sabit kategori ve takım bilgileri `src/data/siteContent.ts` içindedir.
+Yeni özellik ekleme, dosyaların sorumlulukları ve veri akışı: [Mimari rehberi](docs/ARCHITECTURE.md).
 
-### Sayfalar
+## İçerik ekleme
 
-- `/`: ana sayfa.
-- `/ders/:id`: paylaşılabilir ders sayfası.
-- `/?program=FRC&topic=Programming#dersler`: filtrelenmiş katalog.
-- Filtreler ve arama URL'de saklanır; yenileme ve geri dönüşte korunur.
-- Vercel SPA rewrite ayarı, ders adresinin doğrudan açılmasını destekler.
+- Kategori ve ana sayfadaki grup bilgileri: `src/features/education/data/categories.ts`.
+- Örnek dersler: `src/features/catalog/data/mockLessons.ts`.
+- Öğretmen isimleri: `src/features/home/data/teachers.ts`.
+- Sosyal medya ve iletişim adresleri: `src/config/site.ts`.
+- Tema renkleri: `src/styles/tokens.css`.
 
-### Backend bağlama
+Kategori adı ile URL kimliği ayrıdır. İsimleri değiştirirken `slug` değerlerini sabit tutun. Dersler `program`, `topic` ve `group` ile kategoriye eşlenir. Eklenen bir ders, ilgili alanın menüsünde otomatik görünür; ders başına yeni sayfa dosyası oluşturulmaz.
 
-`.env.example` dosyasını `.env.local` olarak kopyalayın ve kendi API adresinizi girin:
+## Backend bağlama
+
+`.env.example` dosyasını `.env.local` olarak kopyalayıp API adresini girin:
 
 ```dotenv
 VITE_API_BASE_URL=https://api.example.com
 ```
 
-Frontend `GET https://api.example.com/lessons` çağırır. Değişiklik sonrası yerel sunucuyu yeniden başlatın; Vercel'de değişkeni tanımlayıp yeniden deploy edin. Değişken boşsa örnek dersler kullanılır.
+Adres boşsa örnek dersler kullanılır. Tanımlıysa frontend `GET /lessons` çağırır. Yerelde sunucuyu yeniden başlatın; Vercel'de değişken değiştiğinde yeniden deploy edin. API'nin veri biçimi: [API sözleşmesi](docs/API_CONTRACT.md).
 
-Yanıt biçimi ve ekip için entegrasyon sınırları: [API sözleşmesi](docs/API_CONTRACT.md).
+Login, oturum, öneriler, veri tabanı ve yönetim paneli henüz uygulanmadı. Bu özellikler kendi feature klasörlerinde geliştirilebilir. Gizli anahtarları `VITE_` değişkenlerine koymayın; bu değişkenler tarayıcıya gönderilir.
 
-Login, oturum, öneri algoritması, veri tabanı ve yönetim paneli henüz uygulanmadı. Bunlar takım tarafından ayrı özellikler olarak eklenebilir; ders sayfalarının görsel bileşenleri değişmeden servis katmanı genişletilebilir. Ön yüz değişkenlerine gizli anahtar koymayın.
+## Video alanı
 
-### YouTube videosu ekleme
+Nazif'in mevcut tebeşir animasyonu korunmuştur. Mavi kapaklı ikinci alan kaldırılmıştır. `LessonVideo.tsx` şimdilik kara tahta çerçevesinde bir hazırlık alanı gösterir; herhangi bir video veya YouTube iframe'i yüklenmez. Gerçek oynatıcı eklenirken bu bileşenin içi değiştirilir. `youtubeVideoId` veri alanı ileride kullanım için korunur; tek başına video oynatmaz.
 
-`src/data/mockLessons.ts` içindeki bir derse `youtubeVideoId` alanı ekleyin veya aynı alanı API'den döndürün. Tam bağlantı yerine videonun 11 karakterlik kimliğini kullanın. Video verilmediyse kapak ve hazırlık mesajı görünür. Verildiyse kullanıcı oynatmaya basınca YouTube iframe'i yüklenir; ayrıca YouTube'da aç bağlantısı bulunur.
+## Fontlar
 
-Tebeşir açılışı sitenin arayüz animasyonudur; YouTube videosunun dosyasını değiştirmez. Videolarınıza aynı açılışı eklemek için yayınladığınız videonun başında bulunması gerekir.
+- **DM Sans** — gövde metinleri, menüler ve kontroller.
+- **Kalam** — tebeşir başlıkları ve el yazısı vurgular.
 
-### Tasarım
+Ağırlıklar ve kaynak: [Font listesi](docs/FONTS.md).
 
-- Üst menüdeki tema düğmesi açık/koyu görünümü değiştirir; tercih tarayıcıda saklanır. İlk ziyaret sistem temasını izler.
-- `src/styles/tokens.css` iki temanın ortak renk sözleşmesidir.
-- Girişte takımın özgün tebeşir logosu, kısa terminal/boot animasyonu ile görünür; içerik ve bağlantılar bekletilmez. Yeniden oynatma ve azaltılmış hareket desteği bulunur.
-- Google Fonts: DM Sans ve Kalam. Kullanıcı görselleri `public/` içindedir; yeni görsel üretimi yapılmamıştır.
+## Tasarım ve yayın
 
-## Yayınlama
+Açık/koyu tema menüdeki düğmeyle değişir; tercih tarayıcıda korunur. Hareket azaltma tercihi desteklenir. Cymurghs logosu, tanıtımı ve sosyal bağlantıları yalnızca footer'da bulunur.
 
-GitHub reposunu Vercel'e aktarın. Framework: Vite. Build: `npm run build`. Output: `dist`. Ayarlar `vercel.json` içindedir.
+GitHub reposunu Vercel'e aktarın: framework Vite, build `npm run build`, output `dist`. `vercel.json`, eğitim adreslerinin doğrudan açılmasını destekleyen SPA rewrite ayarını içerir.
 
-## Mevcut içerik
-
-Örnek dersler taslaktır; gerçek video kimlikleri ve kesin müfredat beklenir. Öğretmen adları kullanıcı dokümanından alınmıştır; fotoğraf, biyografi ve ders eşleştirmesi henüz verilmemiştir. Takım logosu ve sosyal bağlantılar [resmî takım sitesinden](https://www.cymurghs7466.com/) alınmıştır.
+Mevcut ders açıklamaları örnek içeriktir; gerçek videolar, kesin müfredat, öğretmen fotoğrafları ve ders eşleştirmeleri ekip tarafından tamamlanmalıdır.

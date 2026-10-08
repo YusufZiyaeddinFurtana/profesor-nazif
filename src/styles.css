@@ -1,6 +1,8 @@
 @import "./styles/tokens.css";
 @import "./styles/base.css";
 @import "./styles/layout.css";
-@import "./styles/sections.css";
-@import "./styles/responsive.css";
-@import "./styles/enhancements.css";
+@import "./theme/theme.css";
+@import "./components/branding/chalk.css";
+@import "./features/home/home.css";
+@import "./features/education/education.css";
+@import "./features/lessons/lessons.css";

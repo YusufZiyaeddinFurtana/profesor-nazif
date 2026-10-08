@@ -1,25 +1,22 @@
 import { useEffect } from "react";
 import { Header } from "../components/layout/Header";
 import { Footer } from "../components/layout/Footer";
-import { HomePage } from "../pages/HomePage";
-import { LessonPage } from "../pages/LessonPage";
+import { HomePage } from "../features/home/pages/HomePage";
+import { EducationPage } from "../features/education/pages/EducationPage";
+import { LegacyLessonPage } from "../pages/LegacyLessonPage";
 import { NotFoundPage } from "../pages/NotFoundPage";
 import { useNavigation } from "./Navigation";
+import { resolveRoute } from "./routes";
 
 export default function App() {
   const { location } = useNavigation();
-  const match = /^\/ders\/([^/]+)\/?$/.exec(location.pathname);
-  let lessonId: string | undefined;
-  try {
-    lessonId = match ? decodeURIComponent(match[1]) : undefined;
-  } catch {
-    /* Invalid paths show 404. */
-  }
+  const route = resolveRoute(location.pathname);
   useEffect(() => {
-    if (location.pathname === "/")
+    if (route.kind === "home")
       document.title = "Profesör Nazif — Tahtada öğren, robotunda dene.";
-    else if (!match) document.title = "Sayfa bulunamadı — Profesör Nazif";
-  }, [location.pathname]);
+    else if (route.kind === "not-found")
+      document.title = "Sayfa bulunamadı — Profesör Nazif";
+  }, [route.kind]);
   return (
     <>
       <a className="skip-link" href="#main">
@@ -27,10 +24,16 @@ export default function App() {
       </a>
       <Header />
       <main id="main" tabIndex={-1}>
-        {location.pathname === "/" ? (
+        {route.kind === "home" ? (
           <HomePage />
-        ) : lessonId ? (
-          <LessonPage key={lessonId} id={lessonId} />
+        ) : route.kind === "education" ? (
+          <EducationPage
+            program={route.program}
+            categorySlug={route.categorySlug}
+            lessonId={route.lessonId}
+          />
+        ) : route.kind === "legacy-lesson" ? (
+          <LegacyLessonPage id={route.lessonId} />
         ) : (
           <NotFoundPage />
         )}

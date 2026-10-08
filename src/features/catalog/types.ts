@@ -1,12 +1,5 @@
 export type Program = "FRC" | "FLL";
 
-export type CourseGroup = {
-  id: string;
-  program: Program;
-  title: string;
-  description: string;
-};
-
 export type Lesson = {
   id: string;
   program: Program;
@@ -15,7 +8,7 @@ export type Lesson = {
   title: string;
   summary: string;
   longDescription: string;
-  coverLabel: string;
+  coverLabel?: string;
   image?: string;
   youtubeVideoId?: string;
 };

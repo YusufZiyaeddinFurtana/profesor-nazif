@@ -20,7 +20,7 @@
 ]
 ```
 
-`id` benzersiz, boş olmayan bir string; `program` yalnızca `FRC` veya `FLL`. Örnekteki diğer string alanları zorunlu. `image` isteğe bağlıdır; aynı siteye ait `/` ile başlayan yol veya HTTPS adresi kabul edilir. `youtubeVideoId` isteğe bağlıdır ve 11 karakterlik YouTube kimliği olmalıdır. Tipler: `src/features/catalog/types.ts`.
+`id` benzersiz, boş olmayan bir string; `program` yalnızca `FRC` veya `FLL`. Örnekteki diğer string alanlarından `coverLabel` dışındakiler zorunlu. `coverLabel` isteğe bağlı eski kapak etiketidir ve mevcut arayüzde gösterilmez. `image` isteğe bağlıdır; aynı siteye ait `/` ile başlayan yol veya HTTPS adresi kabul edilir. `youtubeVideoId` isteğe bağlıdır ve 11 karakterlik YouTube kimliği olmalıdır. Tipler: `src/features/catalog/types.ts`.
 
 Şimdilik tüm katalog tek çağrıyla alınır; ders detayları bu listeden seçilir. Büyük katalogda backend sayfalama/arama ve ayrı detay endpoint'i eklenirken `catalogService` ve provider genişletilmelidir.
 
@@ -37,6 +37,6 @@
 
 Bu teslim, oturum veya öneri endpoint'i tanımlamaz. Ekip bu sözleşmeleri belirleyip `features/auth` ve `features/recommendations` gibi bağımsız özellikler ekleyebilir. Ortak istek davranışı `services/http.ts` üzerinden genişletilebilir. Korumalı endpoint yetkilendirmesi backend'de yapılmalıdır; frontend'de bir düğmeyi gizlemek erişim kontrolü değildir.
 
-## YouTube
+## Video
 
-Oynatıcı `youtube-nocookie.com/embed/:id` adresini kullanıcı oynatmaya basınca açar. Video YouTube'da gömmeye kapalıysa veya erişimi kısıtlıysa oynatımı YouTube belirler; alternatif doğrudan video bağlantısı her zaman görünür.
+Bu sürümde video embed edilmez. `youtubeVideoId` alanı ileride YouTube oynatıcısına bağlanmak üzere korunur; geçerli bir kimlik döndürülmesi şu an otomatik iframe yüklemez. Oynatıcı entegrasyon noktası `src/features/lessons/components/LessonVideo.tsx` dosyasıdır.

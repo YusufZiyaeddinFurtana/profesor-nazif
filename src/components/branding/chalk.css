@@ -1,0 +1,75 @@
+@keyframes chalkTrace {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.hero-visual .chalk-artwork {
+  width: min(98%, 610px);
+  height: auto;
+  max-height: 550px;
+  transform: translate(3%, 8%);
+  filter: drop-shadow(0 0 5px #fff3);
+}
+
+@media (max-width: 780px) {
+  .hero-visual .chalk-artwork {
+    width: 400px;
+    max-height: 330px;
+    transform: translate(0, 6%);
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-visual .chalk-artwork {
+    width: 295px;
+    max-height: 250px;
+    transform: translate(0, 8%);
+  }
+}
+
+.intro-preview .chalk-artwork {
+  width: 55%;
+  height: 100%;
+  flex: none;
+}
+
+.chalk-mask-path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: chalkTrace 0.86s cubic-bezier(0.18, 0.8, 0.33, 1) forwards;
+}
+
+.chalk-mask-complete {
+  opacity: 0;
+  animation: maskFinish 0.01s 2.72s forwards;
+}
+
+@keyframes maskFinish {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chalk-mask-path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chalk-mask-complete {
+    animation: none;
+    opacity: 1;
+  }
+}
+.hero-nazif-entrance .chalk-artwork {
+  filter: none;
+}
+@media (max-width: 560px) {
+  .hero-visual .chalk-artwork {
+    max-height: 220px;
+    transform: none;
+  }
+}

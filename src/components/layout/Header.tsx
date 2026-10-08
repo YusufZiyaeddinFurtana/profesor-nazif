@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { frcTopics } from "../../data/siteContent";
+import { categories } from "../../features/education/data/categories";
+import { educationPath } from "../../app/routes";
 import { Arrow } from "../ui/Arrow";
 import { ThemeToggle } from "../../theme/ThemeToggle";
 
@@ -13,7 +14,6 @@ export function Header() {
         </span>
         <span className="brand-wordmark">
           Profesör <strong>Nazif</strong>
-          <small>Cymurghs #7466</small>
         </span>
       </a>
       <button
@@ -21,7 +21,7 @@ export function Header() {
         type="button"
         aria-expanded={menuOpen}
         aria-controls="main-nav"
-        onClick={() => setMenuOpen(!menuOpen)}
+        onClick={() => setMenuOpen((value) => !value)}
       >
         {menuOpen ? "Kapat" : "Menü"}
         <span aria-hidden="true">{menuOpen ? "×" : "☰"}</span>
@@ -32,38 +32,34 @@ export function Header() {
         aria-label="Ana menü"
         onClick={(event) => {
           if (event.target instanceof Element && event.target.closest("a")) {
+            setMenuOpen(false);
             event.currentTarget
-              .querySelector("details")
-              ?.removeAttribute("open");
+              .querySelectorAll("details")
+              .forEach((item) => item.removeAttribute("open"));
           }
         }}
       >
-        <a href="/" onClick={() => setMenuOpen(false)}>
-          Anasayfa
-        </a>
-        <a href="/#hakkimizda" onClick={() => setMenuOpen(false)}>
-          Hakkımızda
-        </a>
-        <details className="nav-dropdown">
-          <summary>
-            FRC <span aria-hidden="true">⌄</span>
-          </summary>
-          <div className="dropdown-panel">
-            <p>FRC konu başlıkları</p>
-            {frcTopics.map((item) => (
-              <a
-                href={`/?program=FRC&topic=${encodeURIComponent(item.title)}#dersler`}
-                key={item.title}
-                onClick={() => setMenuOpen(false)}
-              >
-                {item.title}
+        <a href="/">Anasayfa</a>
+        <a href="/#kategoriler">Eğitimler</a>
+        {(["FRC", "FLL"] as const).map((program) => (
+          <details className="nav-dropdown" key={program}>
+            <summary>
+              {program} <span aria-hidden="true">⌄</span>
+            </summary>
+            <div className="dropdown-panel">
+              <a className="dropdown-overview" href={educationPath(program)}>
+                {program} eğitimleri <Arrow />
               </a>
-            ))}
-          </div>
-        </details>
-        <a href="/?program=FLL#dersler" onClick={() => setMenuOpen(false)}>
-          FLL
-        </a>
+              {categories
+                .filter((item) => item.program === program)
+                .map((item) => (
+                  <a href={educationPath(program, item.slug)} key={item.slug}>
+                    {item.title}
+                  </a>
+                ))}
+            </div>
+          </details>
+        ))}
       </nav>
       <ThemeToggle />
       <a className="header-cta" href="/#ozel-ders">
