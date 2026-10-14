@@ -5,7 +5,6 @@ export function JourneySection() {
     <section id="nasil-calisir" className="journey-section">
       <div className="section-wrap journey-layout">
         <div>
-          <span className="eyebrow">{t("method")}</span>
           <h2>
             {t("understand")}
             <br />

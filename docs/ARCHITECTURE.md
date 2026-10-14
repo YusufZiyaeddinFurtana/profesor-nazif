@@ -27,14 +27,14 @@ Bileşenlerde doğrudan `fetch` veya örnek veri import'u yapılmaz. Provider or
 ## Yeni ders eklemek
 
 1. `features/catalog/data/mockLessons.ts` içine benzersiz `id` ile ders ekleyin veya aynı kaydı API'den döndürün.
-2. `program` değeri `FRC` ya da `FLL` olmalıdır.
+2. `program` değeri `FRC`, `FTC` ya da `FLL` olmalıdır.
 3. FRC alt başlıkları `topic` ile eşleşir: örneğin `Programming`. Business Management sayfası `group` üzerinden ilgili konuları birlikte gösterir.
 4. FLL alanları `group` ile eşleşir: `Robot Yapımı`, `Programlama`, `Özdeğerler`, `Proje`.
 5. Menü, ders içeriği ve paylaşılabilir URL otomatik oluşur.
 
 ## Yeni kategori eklemek
 
-`features/education/data/categories.ts` kayıtlarına kararlı bir `slug`, program, başlık, açıklama ve eşleme bilgisi ekleyin. FRC başlıkları için topic kayıtları, FLL için courseGroups kayıtları kullanılır. Ana sayfa grubu yeni kategoriye bağlanacaksa `categorySlug` değerini aynı yapın. Yeni sayfa dosyası kopyalamayın; bütün kategoriler `EducationPage` üzerinden render edilir.
+`features/education/data/categories.ts` kayıtlarına kararlı bir `slug`, program, başlık, açıklama ve eşleme bilgisi ekleyin. FRC başlıkları için topic kayıtları, FTC ve FLL için courseGroups kayıtları kullanılır. Ana sayfa grubu yeni kategoriye bağlanacaksa `categorySlug` değerini aynı yapın. Yeni sayfa dosyası kopyalamayın; bütün kategoriler `EducationPage` üzerinden render edilir.
 
 Kategori slug'ını değiştirirseniz eski bağlantılar için ayrıca yönlendirme ekleyin. Güncel görünen başlıkları değiştirmek URL'yi değiştirmez.
 
@@ -66,3 +66,11 @@ PR veya push öncesi `npm test` ve `npm run build` çalıştırın. Testler kate
 ## Çok dil desteği
 
 `i18n/` arayüz ve örnek içerik çevirilerini, dil seçiciyi ve ortak dil state'ini tutar. `LocaleProvider`, uygulama sağlayıcılarının dışında yer alır. Dil değişimi katalog verisini yeniden indirmez; `EducationPage` kararlı anahtarlarla eşlediği verinin yalnızca gösterilen metinlerini yerelleştirir. Yeni özelliklerde `useLocale()` kullanın. Dosya sorumlulukları ve backend çeviri sözleşmesi için [I18N.md](./I18N.md) belgesine bakın.
+
+## Eğitmenler ve özel ders
+
+`features/instructors/` kendi veri tiplerini, eğitmen listesini, portre bileşenini ve liste/profil sayfasını içerir. Ana sayfadaki kısa liste aynı veriyi kullanır. Profil alanları isteğe bağlıdır; eksik üniversite ve FIRST deneyimi için kurum veya başarı uydurulmaz.
+
+`features/booking/` dört adımlı özel ders arayüzünü yönetir. Ad ve e-posta yalnızca bileşen state'inde tutulur; backend'e, localStorage'a veya URL'ye gönderilmez. Program değişince eski konu seçimi silinir. `bookingConfig.ts`, program+konu için eğitmen ve Google randevu bağlantısını belirler. `calendar.ts` yalnızca Google randevu sayfalarına izin verir; tam randevu sayfası gömülür, kısa Google bağlantısı yeni sekmede açılır. Saat seçimi, müsaitlik ve son onay Google'da yönetilir. Henüz yapılandırılmış canlı takvim yoktur.
+
+`features/education/data/curricula.ts`, dil bazında kurs kazanımları ve kullanım açıklamasını tutar. Boşken mevcut ders özetleri açıkça taslak olarak gösterilir. Onaylı müfredat eklendiğinde `reviewed: true` yapılır. `LessonStatusIcon` yalnızca üç görsel durumu tanımlar; kullanıcı ilerlemesi tutmaz, backend ile bağlanmadı.

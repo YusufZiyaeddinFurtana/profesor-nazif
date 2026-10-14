@@ -1,26 +1,26 @@
 import { useLocale } from "../../../i18n/LocaleProvider";
-import { teachers } from "../data/teachers";
-
+import { instructors } from "../../instructors/data/instructors";
+import { Arrow } from "../../../components/ui/Arrow";
 export function TeachersSection() {
   const { t } = useLocale();
   return (
     <section id="egitmenler" className="section-wrap teachers-section">
       <div className="section-heading">
         <div>
-          <span className="eyebrow">{t("teachersLabel")}</span>
-          <h2>
-            {t("teachersStart")} <em>{t("teachersEnd")}</em>
-          </h2>
-          <p>{t("teachersDescription")}</p>
+          <h2>{t("instructors")}</h2>
+          <p>{t("instructorsDescription")}</p>
         </div>
+        <a className="text-action" href="/egitmenler">
+          {t("allInstructors")}
+          <Arrow diagonal />
+        </a>
       </div>
-      <div className="teacher-list">
-        {teachers.map((name, index) => (
-          <div key={name}>
-            <span>{String(index + 1).padStart(2, "0")}</span>
-            <strong>{name}</strong>
-            <small>{t("profilePending")}</small>
-          </div>
+      <div className="instructor-preview">
+        {instructors.map((instructor) => (
+          <a href={`/egitmenler/${instructor.id}`} key={instructor.id}>
+            <strong>{instructor.name}</strong>
+            <Arrow diagonal />
+          </a>
         ))}
       </div>
     </section>

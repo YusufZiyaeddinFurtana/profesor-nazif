@@ -2,6 +2,8 @@ import type { Program } from "../features/catalog/types";
 
 type Route =
   | { kind: "home" }
+  | { kind: "instructors"; instructorId?: string }
+  | { kind: "booking" }
   | {
       kind: "education";
       program: Program;
@@ -41,12 +43,22 @@ export function resolveRoute(pathname: string): Route {
   }
   if (parts.some((part) => !part || part.includes("/")))
     return { kind: "not-found" };
+  if (parts.length === 1 && parts[0] === "ozel-ders")
+    return { kind: "booking" };
+  if (parts[0] === "egitmenler" && parts.length <= 2)
+    return { kind: "instructors", instructorId: parts[1] };
   if (parts.length === 2 && parts[0] === "ders")
     return { kind: "legacy-lesson", lessonId: parts[1] };
   if (parts[0] !== "egitimler" || parts.length < 2 || parts.length > 4)
     return { kind: "not-found" };
   const program =
-    parts[1] === "frc" ? "FRC" : parts[1] === "fll" ? "FLL" : undefined;
+    parts[1] === "frc"
+      ? "FRC"
+      : parts[1] === "ftc"
+        ? "FTC"
+        : parts[1] === "fll"
+          ? "FLL"
+          : undefined;
   if (!program) return { kind: "not-found" };
   return {
     kind: "education",

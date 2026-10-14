@@ -20,7 +20,7 @@
 ]
 ```
 
-`id` benzersiz, boş olmayan bir string; `program` yalnızca `FRC` veya `FLL`. Örnekteki diğer string alanlarından `coverLabel` dışındakiler zorunlu. `coverLabel` isteğe bağlı eski kapak etiketidir ve mevcut arayüzde gösterilmez. `image` isteğe bağlıdır; aynı siteye ait `/` ile başlayan yol veya HTTPS adresi kabul edilir. `youtubeVideoId` isteğe bağlıdır ve 11 karakterlik YouTube kimliği olmalıdır. Tipler: `src/features/catalog/types.ts`.
+`id` benzersiz, boş olmayan bir string; `program` yalnızca `FRC`, `FTC` veya `FLL`. Örnekteki diğer string alanlarından `coverLabel` dışındakiler zorunlu. `coverLabel` isteğe bağlı eski kapak etiketidir ve mevcut arayüzde gösterilmez. `image` isteğe bağlıdır; aynı siteye ait `/` ile başlayan yol veya HTTPS adresi kabul edilir. `youtubeVideoId` isteğe bağlıdır ve 11 karakterlik YouTube kimliği olmalıdır. Tipler: `src/features/catalog/types.ts`.
 
 Şimdilik tüm katalog tek çağrıyla alınır; ders detayları bu listeden seçilir. Büyük katalogda backend sayfalama/arama ve ayrı detay endpoint'i eklenirken `catalogService` ve provider genişletilmelidir.
 

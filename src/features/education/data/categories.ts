@@ -1,7 +1,7 @@
 import type { Lesson, Program } from "../../catalog/types";
 import type { CourseGroup, EducationCategory } from "../types";
 
-export const courseGroups: CourseGroup[] = [
+const baseGroups: CourseGroup[] = [
   {
     id: "frc-mekanik",
     categorySlug: "mechanics",
@@ -63,6 +63,26 @@ export const courseGroups: CourseGroup[] = [
     title: "Proje",
     description: "Bir problemi keşfetme, fikir geliştirme ve çözümü sunma.",
   },
+];
+
+export const courseGroups: CourseGroup[] = [
+  ...baseGroups,
+  ...["mechanics", "electronics", "programming", "business-management"].map(
+    (slug) => {
+      const source = baseGroups.find(
+        (c) => c.program === "FRC" && c.categorySlug === slug,
+      )!;
+      return {
+        ...source,
+        id: `ftc-${slug}`,
+        program: "FTC" as const,
+        description:
+          slug === "programming"
+            ? "FTC robotları için komutlar, sensörler ve otonom kontrol."
+            : source.description,
+      };
+    },
+  ),
 ];
 
 const frcTopics = [
@@ -138,7 +158,7 @@ export const categories: EducationCategory[] = [
       "Kaynak geliştirme, liderlik, iletişim ve sürdürülebilirlik ile takım çalışmalarını yönetmeyi keşfet.",
   },
   ...courseGroups
-    .filter((item) => item.program === "FLL")
+    .filter((item) => item.program === "FLL" || item.program === "FTC")
     .map((item) => ({
       slug: item.categorySlug,
       program: item.program,

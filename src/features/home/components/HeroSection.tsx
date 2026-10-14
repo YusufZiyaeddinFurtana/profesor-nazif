@@ -11,11 +11,9 @@ export function HeroSection() {
       <div className="board-frame">
         <div className="board-inner">
           <div className="hero-content">
-            <p className="hero-hand-note">{t("heroNote")}</p>
             <h1 id="hero-title">
               {t("heroStart")} <span>{t("heroAccent")}</span>
-              <br />
-              {t("heroEnd")}
+              <span className="hero-motto-end">{t("heroEnd")}</span>
             </h1>
             <p className="hero-description">{t("heroDescription")}</p>
             <div className="hero-actions">
@@ -32,7 +30,6 @@ export function HeroSection() {
             <div className="hero-nazif-entrance" key={introCycle}>
               <ChalkNazifArtwork animated />
             </div>
-            <p>{t("heroQuestion")}</p>
             <button
               className="hero-replay"
               type="button"

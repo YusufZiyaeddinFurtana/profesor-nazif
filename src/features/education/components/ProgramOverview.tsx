@@ -11,7 +11,13 @@ export function ProgramOverview({ program }: { program: Program }) {
     <article className="program-overview">
       <h1>{t("programCourses", { program })}</h1>
       <p className="education-lead">
-        {t(program === "FRC" ? "frcDescription" : "fllDescription")}
+        {t(
+          program === "FRC"
+            ? "frcDescription"
+            : program === "FTC"
+              ? "ftcDescription"
+              : "fllDescription",
+        )}
       </p>
       <div className="program-directory">
         {categories

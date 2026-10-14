@@ -1,5 +1,6 @@
 import type { Locale, LessonTranslation } from "../../i18n/types";
-export type Program = "FRC" | "FLL";
+export const programs = ["FRC", "FTC", "FLL"] as const;
+export type Program = (typeof programs)[number];
 
 export type Lesson = {
   id: string;

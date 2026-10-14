@@ -1,10 +1,9 @@
 import { localizeGroup } from "../../../i18n/content/categories";
 import { useLocale } from "../../../i18n/LocaleProvider";
 import { courseGroups } from "../../education/data/categories";
+import { programs } from "../../catalog/types";
 import { educationPath } from "../../../app/routes";
-import type { Program } from "../../catalog/types";
 import { Arrow } from "../../../components/ui/Arrow";
-
 export function CategoriesSection() {
   const { locale, t } = useLocale();
   return (
@@ -20,34 +19,41 @@ export function CategoriesSection() {
           </h2>
           <p>{t("categoriesDescription")}</p>
         </div>
-        <span className="hand-annotation">{t("chooseDoor")}</span>
       </div>
       <div className="program-grid">
-        {(["FRC", "FLL"] as Program[]).map((item) => (
+        {programs.map((program) => (
           <article
-            className={`program-panel program-panel--${item.toLowerCase()}`}
-            key={item}
+            className={`program-panel program-panel--${program.toLowerCase()}`}
+            key={program}
           >
             <div className="program-heading">
-              <span className="program-index">
-                {item === "FRC" ? "01" : "02"} / {t("programLabel")}
-              </span>
-              <h3>{item}</h3>
-              <p>{t(item === "FRC" ? "frcShort" : "fllShort")}</p>
+              <h3>
+                <a href={educationPath(program)}>
+                  {program}
+                  <Arrow diagonal />
+                </a>
+              </h3>
+              <p>
+                {t(
+                  program === "FRC"
+                    ? "frcShort"
+                    : program === "FTC"
+                      ? "ftcShort"
+                      : "fllShort",
+                )}
+              </p>
             </div>
             <div className="program-groups">
               {courseGroups
-                .filter((entry) => entry.program === item)
-                .map((entry) => localizeGroup(entry, locale))
-                .map((entry) => (
-                  <a
-                    key={entry.id}
-                    href={educationPath(item, entry.categorySlug)}
-                  >
+                .filter((c) => c.program === program)
+                .map((c) => localizeGroup(c, locale))
+                .map((c) => (
+                  <a key={c.id} href={educationPath(program, c.categorySlug)}>
                     <strong>
-                      {entry.title} <Arrow diagonal />
+                      {c.title}
+                      <Arrow diagonal />
                     </strong>
-                    <span>{entry.description}</span>
+                    <span>{c.description}</span>
                   </a>
                 ))}
             </div>

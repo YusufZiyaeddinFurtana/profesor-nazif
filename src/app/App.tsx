@@ -1,3 +1,5 @@
+import { InstructorsPage } from "../features/instructors/pages/InstructorsPage";
+import { BookingPage } from "../features/booking/pages/BookingPage";
 import { useLocale } from "../i18n/LocaleProvider";
 import { useEffect } from "react";
 import { Header } from "../components/layout/Header";
@@ -27,6 +29,10 @@ export default function App() {
       <main id="main" tabIndex={-1}>
         {route.kind === "home" ? (
           <HomePage />
+        ) : route.kind === "instructors" ? (
+          <InstructorsPage instructorId={route.instructorId} />
+        ) : route.kind === "booking" ? (
+          <BookingPage />
         ) : route.kind === "education" ? (
           <EducationPage
             program={route.program}

@@ -57,89 +57,12 @@ html:lang(zh) {
   line-height: 1.25;
   letter-spacing: 0;
 }
-.hero-visual p {
-  max-width: 12ch;
-}
-.hero-visual-label {
-  max-width: 22ch;
-}
-.hero-content {
-  min-width: 0;
-}
-.hero h1 {
-  overflow-wrap: anywhere;
-}
-.header-cta {
-  white-space: normal;
-}
-.site-header {
-  gap: 20px;
-}
-.site-header nav {
-  gap: 22px;
-}
-.dropdown-panel {
-  width: 310px;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-}
-.dropdown-panel a {
-  overflow-wrap: anywhere;
-}
+
 :is(.program-groups, .program-directory, .sidebar-lessons)
   :is(strong, span, a) {
   overflow-wrap: anywhere;
 }
 @media (max-width: 1200px) {
-  .site-header {
-    flex-wrap: wrap;
-    gap: 14px;
-    padding-block: 16px;
-  }
-  .site-header .brand {
-    margin-inline-end: auto;
-  }
-  .site-header .menu-toggle {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    order: 1;
-    margin: 0;
-    padding: 10px 4px;
-    border: 0;
-    background: transparent;
-    color: var(--ink);
-    font-weight: 700;
-  }
-  .site-header .header-preferences {
-    order: 2;
-  }
-  .site-header .header-cta {
-    order: 3;
-  }
-  .site-header nav {
-    display: none;
-    order: 4;
-    width: 100%;
-    margin: 0;
-    padding: 12px 0;
-    align-items: stretch;
-    flex-direction: column;
-    gap: 0;
-    border-top: 1px solid var(--line);
-  }
-  .site-header nav.nav-open {
-    display: flex;
-  }
-  .site-header nav > a,
-  .nav-dropdown summary {
-    padding: 11px 2px;
-  }
-  .dropdown-panel {
-    position: static;
-    width: 100%;
-    box-shadow: none;
-    margin-top: 5px;
-  }
   .section-heading {
     flex-wrap: wrap;
   }
@@ -148,63 +71,12 @@ html:lang(zh) {
   }
 }
 @media (max-width: 560px) {
-  .site-header {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 12px;
-  }
-  .site-header .brand {
-    margin: 0;
-    gap: 9px;
-  }
-  .brand-wordmark {
-    font-size: 15px;
-    line-height: 1.25;
-  }
-  .brand-mark {
-    flex: none;
-  }
-  .site-header .menu-toggle {
-    grid-column: 2;
-    grid-row: 1;
-  }
-  .site-header .header-preferences {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    justify-content: flex-end;
-  }
-  .site-header nav {
-    grid-column: 1 / -1;
-  }
-  .site-header .header-cta {
-    grid-column: 1 / -1;
-    width: auto;
-    justify-content: center;
-  }
   .language-switcher select {
     min-height: 38px;
     font-size: 16px;
     max-width: 140px;
   }
-  .hero-visual-label {
-    max-width: 17ch;
-  }
-  .hero-visual p {
-    max-width: 11ch;
-  }
-  .hero-visual {
-    margin-top: 14px;
-  }
-  .hero-replay {
-    max-width: 80%;
-    text-align: start;
-  }
-  .contact-layout > a {
-    white-space: normal;
-  }
 }
-
-/* Keep Chinese headline phrases together instead of balancing across words. */
 :lang(zh) .hero h1 {
   font-size: clamp(44px, 6vw, 88px);
 }
@@ -213,12 +85,6 @@ html:lang(zh) {
 }
 :lang(zh) .hero h1 br {
   display: none;
-}
-:lang(zh) .hero-visual-label {
-  max-width: 45%;
-}
-:lang(zh) .hero-visual p {
-  max-width: 8em;
 }
 @media (max-width: 560px) {
   :lang(zh) .hero h1 {

@@ -1,0 +1,130 @@
+.instructors-page {
+  padding-block: 55px 100px;
+  min-height: 65vh;
+}
+.instructors-heading {
+  max-width: 720px;
+  margin-bottom: 52px;
+}
+.instructors-heading h1,
+.instructor-profile h1 {
+  font-size: clamp(36px, 4.5vw, 62px);
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  margin: 0 0 18px;
+}
+.instructors-heading p,
+.instructor-entry > p,
+.instructor-bio p {
+  color: var(--muted);
+  line-height: 1.75;
+}
+.instructors-directory {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 60px 32px;
+}
+.instructor-entry {
+  min-width: 0;
+}
+.instructor-photo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 6 / 7;
+  object-fit: cover;
+  display: block;
+  background: var(--subtle);
+}
+.instructor-photo--pending {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: var(--muted);
+}
+.instructor-photo--pending svg {
+  width: 80px;
+  height: 80px;
+  opacity: 0.65;
+}
+.instructor-photo--pending span {
+  font-size: 13px;
+}
+.instructor-entry h2 {
+  font-size: 23px;
+  letter-spacing: -0.025em;
+  margin: 22px 0 18px;
+}
+.instructor-entry > a:hover h2 {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.instructor-facts {
+  margin: 0;
+  display: grid;
+  gap: 15px;
+}
+.instructor-facts > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.instructor-facts dt {
+  font-size: 13px;
+  color: var(--muted);
+}
+.instructor-facts dd {
+  font-size: 14px;
+  margin: 0;
+  text-align: end;
+}
+.instructor-entry .text-action {
+  margin-top: 12px;
+}
+.instructor-profile {
+  display: grid;
+  grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+  gap: 65px;
+  margin-top: 36px;
+}
+.instructor-profile .instructor-facts {
+  margin-top: 30px;
+}
+.instructor-bio {
+  margin: 32px 0;
+  max-width: 65ch;
+}
+.instructor-bio h2 {
+  font-size: 22px;
+}
+@media (max-width: 900px) {
+  .instructors-directory {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .instructor-profile {
+    gap: 32px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  }
+}
+@media (max-width: 560px) {
+  .instructors-page {
+    padding-block: 35px 65px;
+  }
+  .instructors-directory,
+  .instructor-profile {
+    grid-template-columns: 1fr;
+  }
+  .instructor-photo {
+    max-height: 380px;
+  }
+  .instructor-profile {
+    margin-top: 28px;
+  }
+  .instructors-heading {
+    margin-bottom: 32px;
+  }
+}

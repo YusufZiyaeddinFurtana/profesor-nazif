@@ -8,3 +8,6 @@
 @import "./features/lessons/lessons.css";
 
 @import "./i18n/i18n.css";
+
+@import "./features/instructors/instructors.css";
+@import "./features/booking/booking.css";

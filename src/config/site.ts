@@ -1,15 +1,7 @@
-export const socialLinks = [
-  { label: "Instagram", href: "https://www.instagram.com/cymurghs/?hl=en" },
-  {
-    label: "YouTube",
-    href: "https://www.youtube.com/channel/UCSktvl3F2j85QU-7_LKIjvw",
-  },
-  { label: "GitHub", href: "https://github.com/Team7466" },
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/company/cymurghs/?originalSubdomain=tr",
-  },
-];
-
-export const contactUrl =
-  "https://www.cymurghs7466.com/html/turkish/contact-tr.html";
+/** Replace with the approved combined logo when the brand team supplies it. */
+export const brandAssets = {
+  portrait: "/nazif-portrait.png",
+  wordmark: undefined as string | undefined,
+};
+/** Add only Professor Nazif's confirmed account; no team links or guessed handles. */
+export const instagramUrl: string | undefined = undefined;

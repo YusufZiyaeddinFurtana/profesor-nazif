@@ -329,9 +329,14 @@ export function localizeCategory(
     ? category
     : {
         ...category,
-        ...categories[locale][`${category.program}/${category.slug}`],
+        ...categories[locale][
+          `${category.program === "FTC" ? "FRC" : category.program}/${category.slug}`
+        ],
       };
 }
 export function localizeGroup(group: CourseGroup, locale: Locale): CourseGroup {
-  return locale === "tr" ? group : { ...group, ...groups[locale][group.id] };
+  if (locale === "tr") return group;
+  if (group.program === "FTC")
+    return { ...group, ...categories[locale][`FRC/${group.categorySlug}`] };
+  return { ...group, ...groups[locale][group.id] };
 }

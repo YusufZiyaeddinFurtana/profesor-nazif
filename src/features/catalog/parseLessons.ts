@@ -1,3 +1,4 @@
+import { programs } from "./types.ts";
 import { locales } from "../../i18n/types.ts";
 import type { Lesson } from "./types";
 
@@ -20,7 +21,7 @@ export function parseLessons(value: unknown): Lesson[] {
       requiredStrings.some(
         (key) => typeof row[key] !== "string" || (key === "id" && !row[key]),
       ) ||
-      !["FRC", "FLL"].includes(String(row.program))
+      !(programs as readonly string[]).includes(String(row.program))
     )
       throw new Error("Ders alanları eksik.");
     if (ids.has(row.id as string))

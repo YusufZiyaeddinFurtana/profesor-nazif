@@ -1,3 +1,5 @@
+import { programs } from "../../catalog/types";
+import { LessonStatusIcon } from "./LessonStatusIcon";
 import { localizeCategory } from "../../../i18n/content/categories";
 import { useLocale } from "../../../i18n/LocaleProvider";
 import type { CatalogState } from "../../catalog/CatalogProvider";
@@ -25,7 +27,7 @@ export function EducationSidebar({
   return (
     <aside className="education-sidebar" aria-label={t("educationNav")}>
       <nav className="education-programs" aria-label={t("programSelect")}>
-        {(["FRC", "FLL"] as const).map((item) => (
+        {programs.map((item) => (
           <a
             href={educationPath(item)}
             key={item}
@@ -96,6 +98,7 @@ export function EducationSidebar({
                           )}
                         </small>
                       </span>
+                      <LessonStatusIcon />
                     </a>
                   </li>
                 ))}

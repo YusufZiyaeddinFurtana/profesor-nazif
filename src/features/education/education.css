@@ -168,61 +168,6 @@
   max-width: 65ch;
   margin: 0;
 }
-.category-note {
-  margin: 36px 0 26px;
-  padding-top: 26px;
-  border-top: 1px solid var(--line);
-}
-.category-note h2,
-.category-curriculum h2,
-.category-empty h2 {
-  font-size: 21px;
-  letter-spacing: -0.025em;
-  margin: 0 0 10px;
-}
-.category-note p,
-.category-empty p {
-  color: var(--muted);
-  line-height: 1.7;
-  max-width: 65ch;
-  margin: 0;
-}
-.category-curriculum {
-  margin-top: 50px;
-}
-.category-curriculum ol {
-  list-style: none;
-  margin: 18px 0 0;
-  padding: 0;
-}
-.category-curriculum a {
-  position: relative;
-  display: block;
-  padding: 22px 35px 22px 0;
-  border-top: 1px solid var(--line);
-}
-.category-curriculum strong {
-  font-size: 18px;
-  font-weight: 700;
-}
-.category-curriculum a > span {
-  display: block;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.6;
-  max-width: 65ch;
-  margin-top: 6px;
-}
-.category-curriculum svg {
-  position: absolute;
-  right: 5px;
-  top: 23px;
-  color: var(--link);
-}
-.category-curriculum a:hover strong {
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
 .category-empty {
   margin-top: 38px;
   padding: 28px;
@@ -305,5 +250,104 @@
   }
   .category-empty {
     padding: 20px;
+  }
+}
+
+.sidebar-lessons a {
+  grid-template-columns: 22px minmax(0, 1fr) 20px;
+}
+.lesson-state {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  flex: none;
+}
+.lesson-state--completed {
+  color: #287b45;
+}
+:root[data-theme="dark"] .lesson-state--completed {
+  color: #91dba6;
+}
+.course-outcomes {
+  margin-top: 38px;
+  padding-block: 28px;
+  border-top: 1px solid var(--line);
+}
+.outcomes-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+.course-outcomes h2,
+.course-application h2 {
+  font-size: 23px;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+.course-outcomes > p,
+.course-application p {
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 65ch;
+}
+.draft-label {
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 5px;
+  background: var(--subtle);
+  color: var(--muted);
+}
+.course-outcomes ul {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+}
+.course-outcomes li {
+  display: flex;
+  align-items: start;
+  gap: 16px;
+  padding-block: 19px;
+  border-bottom: 1px solid var(--line);
+  line-height: 1.7;
+  max-width: 72ch;
+}
+.course-outcomes li svg {
+  color: var(--link);
+  flex: none;
+  margin-top: 4px;
+}
+.curriculum-pending {
+  padding: 22px;
+  background: var(--subtle);
+}
+.course-start {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 28px;
+  background: var(--subtle);
+  border-radius: 12px;
+  margin-top: 15px;
+}
+.course-start strong {
+  font-size: 19px;
+}
+.course-start p {
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 14px;
+  max-width: 40ch;
+  margin-bottom: 0;
+}
+.course-application {
+  margin-block: 12px 36px;
+}
+@media (max-width: 560px) {
+  .course-start {
+    padding: 22px;
   }
 }

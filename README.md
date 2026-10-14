@@ -1,6 +1,6 @@
 # Profesör Nazif
 
-React + TypeScript + Vite ile eğitim sitesi. FRC/FLL alanları kendi sayfalarında açılır; her alanın sol menüsünden ders seçilir.
+React + TypeScript + Vite ile eğitim sitesi. FRC/FTC/FLL alanları kendi sayfalarında açılır; her alanın sol menüsünden ders seçilir.
 
 ## Çalıştırma
 
@@ -20,7 +20,9 @@ npm run preview  # Derlenmiş siteyi yerelde açma
 ## Sayfalar
 
 - `/`: ana sayfa ve eğitim alanlarına giriş.
-- `/egitimler/frc` ve `/egitimler/fll`: programın tüm alanları.
+- `/egitimler/frc`, `/egitimler/ftc` ve `/egitimler/fll`: programın tüm alanları.
+- `/egitmenler` ve `/egitmenler/:id`: eğitmen listesi ve profil sayfası.
+- `/ozel-ders`: bilgi, program, konu ve uygun saat seçimi akışı.
 - `/egitimler/frc/programming`: alan açıklaması ve solda ders menüsü.
 - `/egitimler/frc/programming/wpilib-java`: seçili ders, Nazif açılışı ve video için kara tahta çerçevesi.
 - Eski `/ders/:id` bağlantıları uygun yeni ders adresine yönlendirilir.
@@ -33,10 +35,12 @@ src/
   components/            Ortak navbar/footer, Nazif çizimi, küçük UI parçaları
   config/                Site bağlantıları ve iletişim ayarları
   features/
-    home/                Ana sayfa, bölümleri, öğretmen verisi, kendi CSS'i
+    home/                Ana sayfa, bölümleri, eğitmen özeti, kendi CSS'i
     education/           Kategoriler, sol menü, program/alan sayfaları, kendi CSS'i
     lessons/             Ders içeriği, korunmuş tebeşir açılışı, video çerçevesi
     catalog/             Ders tipleri, API servisi, veri doğrulama, state, örnek veriler
+    instructors/         Eğitmen listesi, profil bilgileri ve sayfaları
+    booking/             Özel ders seçim adımları ve Google randevu eşleştirmeleri
   i18n/                  Dört dil, çeviri metinleri, seçici ve dil state’i
   pages/                 Bulunamayan sayfa ve eski URL yönlendirmesi
   services/              Ortak HTTP erişimi
@@ -50,8 +54,10 @@ Yeni özellik ekleme, dosyaların sorumlulukları ve veri akışı: [Mimari rehb
 
 - Kategori ve ana sayfadaki grup bilgileri: `src/features/education/data/categories.ts`.
 - Örnek dersler: `src/features/catalog/data/mockLessons.ts`.
-- Öğretmen isimleri: `src/features/home/data/teachers.ts`.
-- Sosyal medya ve iletişim adresleri: `src/config/site.ts`.
+- Eğitmen isimleri ve profilleri: `src/features/instructors/data/instructors.ts`.
+- Onaylı kurs kazanımları: `src/features/education/data/curricula.ts`.
+- Konu/eğitmen/Google randevu takvimi eşleştirmeleri: `src/features/booking/bookingConfig.ts`.
+- Logo ve Profesör Nazif Instagram adresi: `src/config/site.ts`.
 - Tema renkleri: `src/styles/tokens.css`.
 
 Kategori adı ile URL kimliği ayrıdır. İsimleri değiştirirken `slug` değerlerini sabit tutun. Dersler `program`, `topic` ve `group` ile kategoriye eşlenir. Eklenen bir ders, ilgili alanın menüsünde otomatik görünür; ders başına yeni sayfa dosyası oluşturulmaz.
@@ -82,12 +88,16 @@ Ağırlıklar ve kaynak: [Font listesi](docs/FONTS.md).
 
 ## Tasarım ve yayın
 
-Açık/koyu tema menüdeki düğmeyle değişir; tercih tarayıcıda korunur. Hareket azaltma tercihi desteklenir. Cymurghs logosu, tanıtımı ve sosyal bağlantıları yalnızca footer'da bulunur.
+Açık/koyu tema menüdeki düğmeyle değişir; tercih tarayıcıda korunur. Hareket azaltma tercihi desteklenir. Takım logosu, adı ve bağlantıları arayüzden kaldırılmıştır. Nazif görsel kimliği dil değişiminden bağımsızdır.
 
 GitHub reposunu Vercel'e aktarın: framework Vite, build `npm run build`, output `dist`. `vercel.json`, eğitim adreslerinin doğrudan açılmasını destekleyen SPA rewrite ayarını içerir.
 
-Mevcut ders açıklamaları örnek içeriktir; gerçek videolar, kesin müfredat, öğretmen fotoğrafları ve ders eşleştirmeleri ekip tarafından tamamlanmalıdır.
+Mevcut ders açıklamaları örnek içeriktir; gerçek videolar, kesin müfredat, eğitmen fotoğrafları ve ders eşleştirmeleri ekip tarafından tamamlanmalıdır.
 
 ## Diller
 
 Navbar'dan Türkçe, İngilizce, basitleştirilmiş Çince ve Hiligaynon seçilebilir. Dil tercihi tarayıcıda saklanır; açık dersin adresi ve tema değişmez. Arayüz metinleri, kategori açıklamaları ve örnek ders içerikleri çevrilir. Dosya sorumlulukları, API ders çevirileri ve Hiligaynon dil kontrolü: [Dil rehberi](docs/I18N.md).
+
+## Son revizyon ve bekleyen bağlantılar
+
+PDF revizyonlarının uygulanan ve bekletilen kısımları: [Revizyon notları](docs/REVISIONS.md). Giriş, kullanıcıya özel ilerleme ve sertifika bildirimleri veritabanı kararı gelene kadar uygulanmadı. Özel ders arayüzü saat uydurmaz veya rezervasyon yapıldığını söylemez: Google randevu bağlantısı yoksa takvimin kapalı olduğunu gösterir. Mevcut dört dil korunur.
