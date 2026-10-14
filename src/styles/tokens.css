@@ -1,6 +1,8 @@
 :root {
   color-scheme: light;
   --page: #f4f0e5;
+  --auth-error: #8f3429;
+  --auth-error-surface: #f7e5de;
   --surface: #fffdf8;
   --subtle: #e7eadf;
   --ink: #17382d;
@@ -16,6 +18,8 @@
 :root[data-theme="dark"] {
   color-scheme: dark;
   --page: #111c18;
+  --auth-error: #ffb6a2;
+  --auth-error-surface: #422b25;
   --surface: #1b2a23;
   --subtle: #16241e;
   --ink: #f1efdf;

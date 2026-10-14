@@ -33,3 +33,7 @@ Kara tahtanın yeni marka renkleriyle değiştirilmesi PDF'de bir ekip kararı o
 | Ders videoları ve alıştırma PDF'leri | Veritabanı ve erişim kararı sonrasında ders veri sözleşmesi |
 
 Eğitmenler için yalnızca verilen isimler kullanıldı. Prestijli üniversite, mezuniyet veya program deneyimi hakkında doğrulanmamış kişisel iddialar eklenmedi.
+
+## Sonraki kullanıcı kararı: Supabase login
+
+Kullanıcı PostgreSQL + Supabase için login mantığını kurmayı istedi. Kayıt/giriş/çıkış, e-posta doğrulama, şifre sıfırlama ve profil migration'ı bağlantıya hazırlandı. Henüz Supabase projesi olmadığı için canlı üyelik kapalıdır. İzleme ilerlemesi ve sertifika işleri beklemeye devam eder. Kurulum: [AUTH.md](AUTH.md).

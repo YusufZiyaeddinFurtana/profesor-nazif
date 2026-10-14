@@ -1,3 +1,6 @@
+import { AuthPage } from "../features/auth/pages/AuthPage";
+import { AccountPage } from "../features/auth/pages/AccountPage";
+import { AuthCallbackPage } from "../features/auth/pages/AuthCallbackPage";
 import { InstructorsPage } from "../features/instructors/pages/InstructorsPage";
 import { BookingPage } from "../features/booking/pages/BookingPage";
 import { useLocale } from "../i18n/LocaleProvider";
@@ -29,6 +32,12 @@ export default function App() {
       <main id="main" tabIndex={-1}>
         {route.kind === "home" ? (
           <HomePage />
+        ) : route.kind === "auth" ? (
+          <AuthPage key={route.mode} mode={route.mode} />
+        ) : route.kind === "auth-callback" ? (
+          <AuthCallbackPage />
+        ) : route.kind === "account" ? (
+          <AccountPage />
         ) : route.kind === "instructors" ? (
           <InstructorsPage instructorId={route.instructorId} />
         ) : route.kind === "booking" ? (

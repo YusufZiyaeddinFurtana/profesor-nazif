@@ -137,4 +137,61 @@ export const messages: Messages = {
   applicationDescription:
     "Bring what you learn to your next team session. Choose a task, try your approach and review the result with your teammates.",
   courseLessonCountOne: "{number} lesson",
+  authLogin: "Sign in",
+  authRegister: "Create an account",
+  authLogout: "Sign out",
+  authAccount: "My account",
+  authLoginTitle: "Keep learning.",
+  authRegisterTitle: "Become a Professor Nazif student.",
+  authIntro: "Sign in to your account and continue your learning journey.",
+  authRegisterIntro:
+    "Create your student account using your name and email address.",
+  authPassword: "Password",
+  authConfirmPassword: "Confirm password",
+  authPasswordHint: "Use at least 8 characters.",
+  authPasswordMismatch: "The passwords don’t match.",
+  authShowPassword: "Show password",
+  authHidePassword: "Hide password",
+  authForgot: "Forgot password?",
+  authNoAccount: "Don’t have an account yet?",
+  authHasAccount: "Already have an account?",
+  authBusy: "Working…",
+  authLoading: "Checking your session…",
+  authUnavailable: "Student accounts are not open yet.",
+  authUnavailableDescription:
+    "Account registration and sign-in will be available soon. You can explore the learning fields in the meantime.",
+  authGenericError: "We couldn’t complete that action. Please try again.",
+  authNetworkError:
+    "Couldn’t connect. Check your internet connection and try again.",
+  authInvalidCredentials: "The email or password is incorrect.",
+  authEmailNotConfirmed:
+    "Open the verification link in your email before signing in.",
+  authWeakPassword: "Choose a different, stronger password.",
+  authRateLimit: "Too many attempts. Wait a little and try again.",
+  authLinkExpired: "This link is invalid or expired. Request a new one.",
+  authVerificationTitle: "Check your email.",
+  authVerificationDescription:
+    "Open the verification link in this browser to confirm your account. Check your spam folder if it hasn’t arrived.",
+  authResend: "Resend verification email",
+  authEmailSent:
+    "A verification email has been sent if applicable to this address.",
+  authResetTitle: "Reset your password.",
+  authResetIntro:
+    "Request a password reset link for your registered email address.",
+  authSendReset: "Send reset link",
+  authResetSent:
+    "If an account uses this address, a reset link has been sent. Open it in this browser.",
+  authNewPasswordTitle: "Choose your new password.",
+  authSavePassword: "Update password",
+  authPasswordSaved: "Your password has been updated.",
+  authCallbackTitle: "Verifying your account…",
+  authCallbackDescription:
+    "You’ll continue to your account after the link is verified.",
+  authAccountTitle: "Your learning journey.",
+  authAccountIntro:
+    "Your account is ready. Choose a program and keep learning.",
+  authVerifiedEmail: "Verified email",
+  authStudent: "Student",
+  authSignInRequired: "Sign in to continue.",
+  authSessionError: "We couldn’t check your session.",
 };

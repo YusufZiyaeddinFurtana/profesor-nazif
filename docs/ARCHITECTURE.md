@@ -74,3 +74,7 @@ PR veya push öncesi `npm test` ve `npm run build` çalıştırın. Testler kate
 `features/booking/` dört adımlı özel ders arayüzünü yönetir. Ad ve e-posta yalnızca bileşen state'inde tutulur; backend'e, localStorage'a veya URL'ye gönderilmez. Program değişince eski konu seçimi silinir. `bookingConfig.ts`, program+konu için eğitmen ve Google randevu bağlantısını belirler. `calendar.ts` yalnızca Google randevu sayfalarına izin verir; tam randevu sayfası gömülür, kısa Google bağlantısı yeni sekmede açılır. Saat seçimi, müsaitlik ve son onay Google'da yönetilir. Henüz yapılandırılmış canlı takvim yoktur.
 
 `features/education/data/curricula.ts`, dil bazında kurs kazanımları ve kullanım açıklamasını tutar. Boşken mevcut ders özetleri açıkça taslak olarak gösterilir. Onaylı müfredat eklendiğinde `reviewed: true` yapılır. `LessonStatusIcon` yalnızca üç görsel durumu tanımlar; kullanıcı ilerlemesi tutmaz, backend ile bağlanmadı.
+
+## Supabase üyelik
+
+`features/auth/` kayıt, giriş, doğrulama ve şifre yenileme akışlarını taşır. `AuthProvider` navigasyonun içinde, katalog sağlayıcısının dışında bağlıdır. Sayfa bileşenleri `authService.ts` aracılığıyla resmi SDK'yı kullanır. Veritabanı profil izolasyonu `supabase/migrations/` içindeki RLS kurallarıyla sağlanır. [Kurulum rehberi](AUTH.md).

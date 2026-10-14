@@ -1,3 +1,4 @@
+import { AuthProvider } from "./features/auth/AuthProvider";
 import { LocaleProvider } from "./i18n/LocaleProvider";
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -12,9 +13,11 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <LocaleProvider>
       <ThemeProvider>
         <NavigationProvider>
-          <CatalogProvider>
-            <App />
-          </CatalogProvider>
+          <AuthProvider>
+            <CatalogProvider>
+              <App />
+            </CatalogProvider>
+          </AuthProvider>
         </NavigationProvider>
       </ThemeProvider>
     </LocaleProvider>

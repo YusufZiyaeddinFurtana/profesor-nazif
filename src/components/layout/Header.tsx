@@ -1,3 +1,4 @@
+import { AuthNav } from "../../features/auth/components/AuthNav";
 import { useState } from "react";
 import { useLocale } from "../../i18n/LocaleProvider";
 import { LanguageSwitcher } from "../../i18n/LanguageSwitcher";
@@ -80,6 +81,7 @@ export function Header() {
       <div className="header-preferences">
         <LanguageSwitcher />
         <ThemeToggle />
+        <AuthNav />
       </div>
       <a className="header-cta" href="/ozel-ders">
         {t("requestLesson")}

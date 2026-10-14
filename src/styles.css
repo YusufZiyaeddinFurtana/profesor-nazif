@@ -11,3 +11,5 @@
 
 @import "./features/instructors/instructors.css";
 @import "./features/booking/booking.css";
+
+@import "./features/auth/auth.css";

@@ -142,4 +142,62 @@ export const messages: Messages = {
   applicationDescription:
     "Gamita ang imo natun-an sa masunod nga buluhaton sang grupo. Magpili sang buluhaton, tilawi ang imo pamaagi kag usisaa ang resulta upod sa imo mga kaupod.",
   courseLessonCountOne: "{number} ka leksyon",
+  authLogin: "Magsulod",
+  authRegister: "Maghimo sang account",
+  authLogout: "Maggwa",
+  authAccount: "Akon account",
+  authLoginTitle: "Magpadayon sa pagtuon.",
+  authRegisterTitle: "Mangin estudyante ni Propesor Nazif.",
+  authIntro: "Magsulod sa imo account kag ipadayon ang imo pagtuon.",
+  authRegisterIntro:
+    "Maghimo sang estudyante nga account gamit ang imo ngalan kag email.",
+  authPassword: "Password",
+  authConfirmPassword: "Isulat liwat ang password",
+  authPasswordHint: "Maggamit sang labing kubos 8 ka karakter.",
+  authPasswordMismatch: "Indi pareho ang mga password.",
+  authShowPassword: "Ipakita ang password",
+  authHidePassword: "Taguon ang password",
+  authForgot: "Nalimtan ko ang password",
+  authNoAccount: "Wala ka pa sang account?",
+  authHasAccount: "May account ka na?",
+  authBusy: "Ginaproseso…",
+  authLoading: "Ginausisa ang imo sesyon…",
+  authUnavailable: "Wala pa nabuksan ang mga account sang estudyante.",
+  authUnavailableDescription:
+    "Malapit na magamit ang paghimo sang account kag pagsulod. Sa karon, usisaa anay ang mga larang sang pagtuon.",
+  authGenericError: "Wala natapos ang buluhaton. Palihog tilawi liwat.",
+  authNetworkError:
+    "Wala makakonekta. Usisaa ang imo internet kag tilawi liwat.",
+  authInvalidCredentials: "Indi husto ang email ukon password.",
+  authEmailNotConfirmed:
+    "Abrihi anay ang link sa imo email para mapamatud-an ang account antes magsulod.",
+  authWeakPassword: "Magpili sang lain kag mas mabaskog nga password.",
+  authRateLimit: "Madamo na nga pagtilaw. Maghulat anay kag tilawi liwat.",
+  authLinkExpired:
+    "Indi balido ukon nag-expire na ang link. Magpangayo sang bag-o.",
+  authVerificationTitle: "Usisaa ang imo email.",
+  authVerificationDescription:
+    "Abrihi sa sini nga browser ang link para mapamatud-an ang account. Usisaa man ang spam kon wala pa ang email.",
+  authResend: "Ipadala liwat ang email sang pagpamatuod",
+  authEmailSent:
+    "Ginpadala ang email sang pagpamatuod kon angay sa sini nga adres.",
+  authResetTitle: "I-reset ang imo password.",
+  authResetIntro:
+    "Magpangayo sang link sa pag-ilis sang password para sa imo narehistro nga email.",
+  authSendReset: "Ipadala ang link sa pag-ilis",
+  authResetSent:
+    "Kon may account sa sini nga adres, ginpadala ang link. Abrihi ini sa sini nga browser.",
+  authNewPasswordTitle: "Magpili sang bag-o nga password.",
+  authSavePassword: "I-update ang password",
+  authPasswordSaved: "Na-update na ang imo password.",
+  authCallbackTitle: "Ginapamatud-an ang imo account…",
+  authCallbackDescription:
+    "Makadto ka sa imo account kon mapamatud-an na ang link.",
+  authAccountTitle: "Imo dalan sa pagtuon.",
+  authAccountIntro:
+    "Handa na ang imo account. Magpili sang programa kag magpadayon sa pagtuon.",
+  authVerifiedEmail: "Napamatud-an nga email",
+  authStudent: "Estudyante",
+  authSignInRequired: "Magsulod agod magpadayon.",
+  authSessionError: "Wala mausisa ang imo sesyon.",
 };

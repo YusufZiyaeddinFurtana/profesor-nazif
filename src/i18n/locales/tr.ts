@@ -134,4 +134,62 @@ export const messages = {
   applicationDescription:
     "Öğrendiğin kavramları takımının bir sonraki çalışmasına taşı. Bir görev seç, yaklaşımını dene ve sonucu takım arkadaşlarınla değerlendir.",
   courseLessonCountOne: "{number} ders",
+  authLogin: "Giriş yap",
+  authRegister: "Hesap oluştur",
+  authLogout: "Çıkış yap",
+  authAccount: "Hesabım",
+  authLoginTitle: "Öğrenmeye devam et.",
+  authRegisterTitle: "Profesör Nazif öğrencisi ol.",
+  authIntro:
+    "Hesabınla giriş yap, eğitim yolculuğuna kaldığın yerden devam et.",
+  authRegisterIntro:
+    "Adını ve e-posta adresini kullanarak öğrenci hesabını oluştur.",
+  authPassword: "Şifre",
+  authConfirmPassword: "Şifreyi tekrar yaz",
+  authPasswordHint: "En az 8 karakter kullan.",
+  authPasswordMismatch: "Şifreler eşleşmiyor.",
+  authShowPassword: "Şifreyi göster",
+  authHidePassword: "Şifreyi gizle",
+  authForgot: "Şifremi unuttum",
+  authNoAccount: "Henüz hesabın yok mu?",
+  authHasAccount: "Zaten hesabın var mı?",
+  authBusy: "İşlem yapılıyor…",
+  authLoading: "Oturum kontrol ediliyor…",
+  authUnavailable: "Üyelik henüz açılmadı.",
+  authUnavailableDescription:
+    "Hesap oluşturma ve giriş kısa süre içinde kullanılabilecek. Bu sırada eğitim alanlarını keşfedebilirsin.",
+  authGenericError: "İşlem tamamlanamadı. Lütfen yeniden dene.",
+  authNetworkError:
+    "Bağlantı kurulamadı. İnternet bağlantını kontrol edip yeniden dene.",
+  authInvalidCredentials: "E-posta veya şifre doğru değil.",
+  authEmailNotConfirmed:
+    "Giriş yapmadan önce e-postandaki doğrulama bağlantısını aç.",
+  authWeakPassword: "Farklı ve daha güçlü bir şifre seç.",
+  authRateLimit: "Çok fazla deneme yapıldı. Biraz bekleyip yeniden dene.",
+  authLinkExpired:
+    "Bağlantı geçersiz veya süresi dolmuş. Yeni bir bağlantı iste.",
+  authVerificationTitle: "E-postanı kontrol et.",
+  authVerificationDescription:
+    "Hesabını doğrulamak için gelen bağlantıyı bu tarayıcıda aç. E-posta ulaşmadıysa spam klasörüne de bak.",
+  authResend: "Doğrulama e-postasını yeniden gönder",
+  authEmailSent: "Adres için uygunsa doğrulama e-postası gönderildi.",
+  authResetTitle: "Şifreni sıfırla.",
+  authResetIntro:
+    "Kayıtlı e-posta adresine bir şifre yenileme bağlantısı iste.",
+  authSendReset: "Yenileme bağlantısı gönder",
+  authResetSent:
+    "Bu adresle bir hesap varsa şifre yenileme bağlantısı gönderildi. Bağlantıyı bu tarayıcıda aç.",
+  authNewPasswordTitle: "Yeni şifreni belirle.",
+  authSavePassword: "Şifreyi güncelle",
+  authPasswordSaved: "Şifren güncellendi.",
+  authCallbackTitle: "Hesabın doğrulanıyor…",
+  authCallbackDescription:
+    "Bağlantı doğrulandığında hesabına yönlendirileceksin.",
+  authAccountTitle: "Öğrenme yolculuğun.",
+  authAccountIntro:
+    "Hesabın hazır. Bir program seçerek öğrenmeye devam edebilirsin.",
+  authVerifiedEmail: "Doğrulanmış e-posta",
+  authStudent: "Öğrenci",
+  authSignInRequired: "Bu alan için giriş yap.",
+  authSessionError: "Oturum kontrol edilemedi.",
 };

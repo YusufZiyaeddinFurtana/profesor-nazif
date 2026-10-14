@@ -41,6 +41,8 @@ src/
     catalog/             Ders tipleri, API servisi, veri doğrulama, state, örnek veriler
     instructors/         Eğitmen listesi, profil bilgileri ve sayfaları
     booking/             Özel ders seçim adımları ve Google randevu eşleştirmeleri
+    auth/                Supabase kayıt/giriş, oturum, callback ve hesap sayfaları
+  lib/                   Supabase istemcisi
   i18n/                  Dört dil, çeviri metinleri, seçici ve dil state’i
   pages/                 Bulunamayan sayfa ve eski URL yönlendirmesi
   services/              Ortak HTTP erişimi
@@ -72,7 +74,7 @@ VITE_API_BASE_URL=https://api.example.com
 
 Adres boşsa örnek dersler kullanılır. Tanımlıysa frontend `GET /lessons` çağırır. Yerelde sunucuyu yeniden başlatın; Vercel'de değişken değiştiğinde yeniden deploy edin. API'nin veri biçimi: [API sözleşmesi](docs/API_CONTRACT.md).
 
-Login, oturum, öneriler, veri tabanı ve yönetim paneli henüz uygulanmadı. Bu özellikler kendi feature klasörlerinde geliştirilebilir. Gizli anahtarları `VITE_` değişkenlerine koymayın; bu değişkenler tarayıcıya gönderilir.
+Supabase ile kayıt, giriş, e-posta doğrulama, şifre sıfırlama ve oturum mantığı hazırdır. Canlı proje bağlantısı henüz eklenmedi. Öneriler, kullanıcı ilerlemesi ve yönetim paneli henüz uygulanmadı. Bu özellikler kendi feature klasörlerinde geliştirilebilir. Gizli anahtarları `VITE_` değişkenlerine koymayın; bu değişkenler tarayıcıya gönderilir.
 
 ## Video alanı
 
@@ -100,4 +102,8 @@ Navbar'dan Türkçe, İngilizce, basitleştirilmiş Çince ve Hiligaynon seçile
 
 ## Son revizyon ve bekleyen bağlantılar
 
-PDF revizyonlarının uygulanan ve bekletilen kısımları: [Revizyon notları](docs/REVISIONS.md). Giriş, kullanıcıya özel ilerleme ve sertifika bildirimleri veritabanı kararı gelene kadar uygulanmadı. Özel ders arayüzü saat uydurmaz veya rezervasyon yapıldığını söylemez: Google randevu bağlantısı yoksa takvimin kapalı olduğunu gösterir. Mevcut dört dil korunur.
+PDF revizyonlarının uygulanan ve bekletilen kısımları: [Revizyon notları](docs/REVISIONS.md). Giriş altyapısı sonraki değişiklikte Supabase için hazırlandı. Kullanıcıya özel ilerleme ve sertifika bildirimleri hâlâ bekliyor. Özel ders arayüzü saat uydurmaz veya rezervasyon yapıldığını söylemez: Google randevu bağlantısı yoksa takvimin kapalı olduğunu gösterir. Mevcut dört dil korunur.
+
+## Üyelik bağlantısını açma
+
+Kurulum, Supabase e-posta ayarları, PostgreSQL migration'ı ve gerekli iki ortam değişkeni: [Auth rehberi](docs/AUTH.md). Proje bilgileri yoksa sitede “Üyelik henüz açılmadı” durumu gösterilir.

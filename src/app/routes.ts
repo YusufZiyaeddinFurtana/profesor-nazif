@@ -2,6 +2,9 @@ import type { Program } from "../features/catalog/types";
 
 type Route =
   | { kind: "home" }
+  | { kind: "auth"; mode: "login" | "register" | "forgot" | "reset" }
+  | { kind: "auth-callback" }
+  | { kind: "account" }
   | { kind: "instructors"; instructorId?: string }
   | { kind: "booking" }
   | {
@@ -43,6 +46,19 @@ export function resolveRoute(pathname: string): Route {
   }
   if (parts.some((part) => !part || part.includes("/")))
     return { kind: "not-found" };
+  if (parts.length === 1) {
+    const modes: Record<string, "login" | "register" | "forgot" | "reset"> = {
+      giris: "login",
+      kayit: "register",
+      "sifremi-unuttum": "forgot",
+      "sifre-yenile": "reset",
+    };
+    if (Object.hasOwn(modes, parts[0]))
+      return { kind: "auth", mode: modes[parts[0]] };
+    if (parts[0] === "hesabim") return { kind: "account" };
+  }
+  if (parts.length === 2 && parts[0] === "auth" && parts[1] === "callback")
+    return { kind: "auth-callback" };
   if (parts.length === 1 && parts[0] === "ozel-ders")
     return { kind: "booking" };
   if (parts[0] === "egitmenler" && parts.length <= 2)

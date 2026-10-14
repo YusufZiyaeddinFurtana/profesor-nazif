@@ -35,7 +35,7 @@
 
 ## Login ve öneriler
 
-Bu teslim, oturum veya öneri endpoint'i tanımlamaz. Ekip bu sözleşmeleri belirleyip `features/auth` ve `features/recommendations` gibi bağımsız özellikler ekleyebilir. Ortak istek davranışı `services/http.ts` üzerinden genişletilebilir. Korumalı endpoint yetkilendirmesi backend'de yapılmalıdır; frontend'de bir düğmeyi gizlemek erişim kontrolü değildir.
+Oturum işlemleri artık Supabase Auth SDK ile gerçekleştirilir; özel `/auth/*` API endpoint'leri uygulanmaz. Bu teslim öneri endpoint'i tanımlamaz. Ekip bu sözleşmeleri belirleyip `features/auth` ve `features/recommendations` gibi bağımsız özellikler ekleyebilir. Ortak istek davranışı `services/http.ts` üzerinden genişletilebilir. Korumalı endpoint yetkilendirmesi backend'de yapılmalıdır; frontend'de bir düğmeyi gizlemek erişim kontrolü değildir.
 
 ## Video
 
