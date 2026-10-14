@@ -36,4 +36,4 @@ Eğitmenler için yalnızca verilen isimler kullanıldı. Prestijli üniversite,
 
 ## Sonraki kullanıcı kararı: Supabase login
 
-Kullanıcı PostgreSQL + Supabase için login mantığını kurmayı istedi. Kayıt/giriş/çıkış, e-posta doğrulama, şifre sıfırlama ve profil migration'ı bağlantıya hazırlandı. Henüz Supabase projesi olmadığı için canlı üyelik kapalıdır. İzleme ilerlemesi ve sertifika işleri beklemeye devam eder. Kurulum: [AUTH.md](AUTH.md).
+Kullanıcı PostgreSQL + Supabase için login mantığını kurmayı istedi. Kayıt/giriş/çıkış, e-posta doğrulama, şifre sıfırlama ve profil migration'ı hazırlandı. Daha sonra kullanıcı Supabase projesini ve bağlantı yetkisini verdi: 14 Ekim 2026'da `ProfNazif-Test` veritabanı ile Vercel yayını bağlandı. Kullanıcı özel e-posta gönderim servisi olmadığını, şimdilik test için kalmasını istedi; özel SMTP bekliyor. İzleme ilerlemesi ve sertifika işleri beklemeye devam eder. Kurulum ve canlı doğrulama notları: [AUTH.md](AUTH.md).

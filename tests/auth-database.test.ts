@@ -18,7 +18,7 @@ test("profile migration creates profiles and enforces user isolation and column 
     await db.exec(
       await readFile(
         new URL(
-          "../supabase/migrations/202610140001_profiles.sql",
+          "../supabase/migrations/20261014173655_profiles.sql",
           import.meta.url,
         ),
         "utf8",

@@ -2,7 +2,19 @@
 
 ## Kapsam
 
-Kayıt, e-posta doğrulama, giriş, çıkış, şifre sıfırlama ve oturum kalıcılığı uygulanmıştır. Canlı Supabase projesi henüz oluşturulmadığı için mevcut yayında üyelik kapalı görünür. Uygulama örnek hesap veya sahte oturum oluşturmaz.
+Kayıt, e-posta doğrulama, giriş, çıkış, şifre sıfırlama ve oturum kalıcılığı uygulanmıştır. Uygulama örnek hesap veya sahte oturum oluşturmaz.
+
+## Mevcut bağlantı — 14 Ekim 2026
+
+- Supabase projesi: `ProfNazif-Test` (`dsojqqywohmmuhfmhnmz`).
+- Yayın: https://profesor-nazif.vercel.app — Vercel bağlantı değişkenleri production, preview ve development ortamlarına eklendi; yayın yenilendi.
+- `20261014173655_profiles.sql` migration'ı uygulandı. Dosyanın sürümü canlı migration geçmişiyle aynıdır; bu projede tekrar çalıştırmayın.
+- E-posta ile giriş ve kayıt açık, e-posta doğrulama zorunlu, minimum şifre 8 karakter. Anonim hesap açma kapalıdır.
+- Site URL ve yalnızca `/auth/callback` yolu için yayın/yerel dönüş izinleri kaydedildi. Rastgele Vercel preview alan adlarına dönüş izni verilmedi.
+- Yerel bağlantı `.env.local` içindedir ve Git tarafından yok sayılır. Yeni ekip üyeleri kendi yerel dosyalarını aşağıdaki adımlarla oluşturabilir.
+- Kullanıcı kararıyla **e-posta gönderimi test aşamasında** bırakıldı. Özel SMTP bağlı değildir. Varsayılan gönderici yalnızca Supabase organizasyonu ekibindeki adreslere doğrulama/yenileme e-postası gönderebilir; genel kullanıma açmadan önce SMTP gerekir.
+
+Canlı kontrol: Auth ayarları HTTP 200 döndü, geçersiz giriş doğru biçimde reddedildi, anonim profil okuma engellendi. İşlem sonunda geri alınan iki geçici kayıtla profil trigger'ı, yalnızca kendi profilini görme/değiştirme ve başka kullanıcının profilini değiştirememe canlı PostgreSQL üzerinde doğrulandı; test hesabı kalmadı. Güvenlik advisor'ı uyarı vermedi. Gerçek e-posta teslimi ve e-postadan başlayan doğrulama/şifre yenileme henüz uçtan uca test edilmedi.
 
 İzleme ilerlemesi, sertifika bildirimi, öneriler, Google ile giriş ve video erişim entegrasyonu bu değişikliğin kapsamında değildir. Yalnızca sayfa saklamak veya bir oynatıcıyı frontend'de gizlemek sunucu yetkilendirmesi yerine geçmez.
 
@@ -10,7 +22,7 @@ Kayıt, e-posta doğrulama, giriş, çıkış, şifre sıfırlama ve oturum kal�
 
 Supabase Dashboard'da proje açın. Veritabanı şifresini güvenli tutun; frontend'e eklemeyin.
 
-SQL Editor'da `supabase/migrations/202610140001_profiles.sql` dosyasını bir kez çalıştırın. Daha sonra migration dosyalarını sırayla versiyonlayın; aynı migration'ı tekrar çalıştırmayın.
+Yeni bir Supabase projesi için SQL Editor'da `supabase/migrations/20261014173655_profiles.sql` dosyasını bir kez çalıştırın. Daha sonra migration dosyalarını sırayla versiyonlayın; aynı migration'ı tekrar çalıştırmayın. Yukarıda belirtilen mevcut projede bu adım tamamlanmıştır.
 
 Migration:
 
@@ -81,7 +93,7 @@ Kullanıcıya ait görünen ad Supabase Auth metadata'sından okunur. Profil tab
 
 `npm test` yapılandırmayı, güvenli yönlendirmeleri ve migration'ın PostgreSQL motorunda (PGlite) profil izolasyonunu kontrol eder. PGlite yalnızca geliştirme/test bağımlılığıdır; uygulamaya veya üretim veritabanına eklenmez.
 
-Canlı proje bağlandıktan sonra ayrıca gerçek bir test e-postasıyla kayıt → doğrulama → giriş → yenilemede oturum → şifre sıfırlama → çıkış akışını kontrol edin. Başka bir kullanıcıyla profil okuma/yazma girişimlerinin engellendiğini doğrulayın. Yerel tarayıcı testlerinde Supabase HTTP cevapları taklit edildi; bu canlı e-posta teslimini veya henüz oluşturulmamış projenin ayarlarını doğrulamaz.
+Gerçek bir test e-postasıyla kayıt → doğrulama → giriş → yenilemede oturum → şifre sıfırlama → çıkış akışını ayrıca kontrol edin. Genel kullanıma geçerken SMTP'yi bağlayın ve takım dışındaki bir test adresiyle de deneyin. Önceki yerel tarayıcı testlerinde Supabase HTTP cevapları taklit edildi; bunlar canlı e-posta teslimini doğrulamaz. Bu projedeki canlı kontroller yukarıda ayrı listelenmiştir.
 
 ## Kaynaklar
 
