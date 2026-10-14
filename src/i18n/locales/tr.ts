@@ -192,4 +192,47 @@ export const messages = {
   authStudent: "Öğrenci",
   authSignInRequired: "Bu alan için giriş yap.",
   authSessionError: "Oturum kontrol edilemedi.",
+  registrationProgress: "Hesap oluşturma adımları",
+  interestsStepProgram: "Program",
+  interestsStepFocus: "İlgi alanı",
+  interestsStepAccount: "Hesap",
+  interestsWelcomeTitle: "Sana göre bir başlangıç.",
+  interestsWelcomeDescription:
+    "Neye merak duyduğunu söyle; ders önerilerini buna göre hazırlayalım. Tercihlerini istediğin zaman değiştirebilirsin.",
+  interestsProgramsQuestion: "Hangi programlar ilgini çekiyor?",
+  interestsFocusQuestion: "Hangi alandan başlamak istersin?",
+  interestsMultiple:
+    "Birden fazla seçenek seçebilirsin. Henüz karar vermediysen seçim yapmadan devam et.",
+  interestsEngineering: "Mühendislik",
+  interestsBusiness: "Business Management",
+  interestsEngineeringDescription:
+    "Robot tasarımı, mekanik, elektronik ve yazılım. Fikrini çalışan bir robota dönüştür.",
+  interestsBusinessDescription:
+    "Takım yönetimi, sponsorluk, iletişim ve proje sunumu. Takımın çalışmalarını birlikte geliştir.",
+  interestsSkip: "Tercihlerimi sonra tamamlarım",
+  interestsExploreAll: "Şimdilik tüm alanları keşfet",
+  interestsEdit: "Tercihlerimi düzenle",
+  interestsSet: "İlgi alanlarımı seç",
+  interestsEditDescription:
+    "Önerilerini güncellemek için program ve alanlarını seç. Seçimleri kaldırırsan tüm alanlardan başlangıç dersleri görürsün.",
+  interestsSave: "Kaydet ve önerileri gör",
+  interestsCancel: "Kaydetmeden hesabıma dön",
+  interestsBackAccount: "Hesabıma dön",
+  interestsLoading: "Tercihlerin yükleniyor…",
+  interestsLoadError:
+    "Tercihlerin yüklenemedi. Yeniden deneyebilir veya tüm eğitimleri keşfedebilirsin.",
+  interestsSaveError:
+    "Tercihlerin kaydedilemedi. Seçimlerin bu sayfada duruyor; yeniden dene.",
+  interestsBrowseAll: "Tüm eğitim alanlarını keşfet",
+  recommendationsTitle: "Senin için başlangıç dersleri.",
+  recommendationsDescription:
+    "Seçimlerine uyan derslerden başla. Önerilerin, ilgi alanların ve mevcut derslere göre hazırlanır.",
+  recommendationsDiscoverTitle: "Bir başlangıç seç.",
+  recommendationsDiscoverDescription:
+    "Farklı alanlardan derslere göz at. İlgi alanlarını kaydedersen sana uygun dersleri burada öne çıkarırız.",
+  recommendationsEmptyTitle: "Bu seçimler için dersler hazırlanıyor.",
+  recommendationsEmptyDescription:
+    "İlgi alanlarına uyan dersler eklendiğinde burada görünecek. Bu sırada programın eğitim alanlarını inceleyebilir veya tercihlerini değiştirebilirsin.",
+  recommendationsPendingPrograms:
+    "{programs} için seçimlerine uyan dersler henüz eklenmedi.",
 };

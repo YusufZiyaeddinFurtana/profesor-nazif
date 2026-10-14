@@ -200,4 +200,48 @@ export const messages: Messages = {
   authStudent: "Estudyante",
   authSignInRequired: "Magsulod agod magpadayon.",
   authSessionError: "Wala mausisa ang imo sesyon.",
+  registrationProgress: "Mga tikang sa paghimo sang account",
+  interestsStepProgram: "Programa",
+  interestsStepFocus: "Interes",
+  interestsStepAccount: "Account",
+  interestsWelcomeTitle: "Pili sang imo pagsugod.",
+  interestsWelcomeDescription:
+    "Isugid kon ano ang imo ginakainteres agod makasugyot kami sang nagakaigo nga mga leksyon. Mahimo mo ini bag-uhon bisan san-o.",
+  interestsProgramsQuestion: "Ano nga mga programa ang imo ginakainteres?",
+  interestsFocusQuestion: "Sa diin mo gusto magsugod?",
+  interestsMultiple:
+    "Mahimo magpili sang sobra sa isa. Kon wala ka pa nakadesisyon, magpadayon nga wala anay sing pili.",
+  interestsEngineering: "Inhenyeriya",
+  interestsBusiness: "Business Management",
+  interestsEngineeringDescription:
+    "Disenyo sang robot, mekanika, elektronika kag programming. Himuon ang ideya nga nagapanghikot nga robot.",
+  interestsBusinessDescription:
+    "Pagdumala sang team, sponsorship, komunikasyon kag presentasyon sang proyekto. Magbuligay sa pagpauswag sang team.",
+  interestsSkip: "Sa ulihi ko na pilion ang akon interes",
+  interestsExploreAll: "Usisaon anay ang tanan nga larangan",
+  interestsEdit: "Bag-uhon ang akon mga pili",
+  interestsSet: "Pili sang akon mga interes",
+  interestsEditDescription:
+    "Pili sang programa kag larangan agod mabag-o ang mga suhestyon. Kon kuhaon ang tanan nga pili, makita mo ang mga panugod nga leksyon sa tanan nga larangan.",
+  interestsSave: "I-save kag tan-awon ang mga suhestyon",
+  interestsCancel: "Balik sa akon account nga wala gin-save",
+  interestsBackAccount: "Balik sa akon account",
+  interestsLoading: "Ginakuha ang imo mga pili…",
+  interestsLoadError:
+    "Wala makuha ang imo mga pili. Tilawi liwat ukon usisaa ang tanan nga kurso.",
+  interestsSaveError:
+    "Wala ma-save ang imo mga pili. Ari pa ang imo mga pili sa sini nga pahina; tilawi liwat.",
+  interestsBrowseAll: "Usisaa ang tanan nga larangan",
+  recommendationsTitle: "Mga panugod nga leksyon para sa imo.",
+  recommendationsDescription:
+    "Magsugod sa mga leksyon nga nagakaigo sa imo mga pili. Ang mga suhestyon base sa imo interes kag sa mga leksyon nga ara na.",
+  recommendationsDiscoverTitle: "Pili sang pagsugod.",
+  recommendationsDiscoverDescription:
+    "Tan-awa ang mga leksyon sa nagkalain-lain nga larangan. I-save ang imo interes agod mauna diri ang nagakaigo nga mga leksyon.",
+  recommendationsEmptyTitle:
+    "Ginapreparar pa ang mga leksyon para sa sini nga mga interes.",
+  recommendationsEmptyDescription:
+    "Makita diri ang nagakaigo nga mga leksyon kon madugang na. Sa karon, usisaa ang mga larangan sang programa ukon bag-uha ang imo mga pili.",
+  recommendationsPendingPrograms:
+    "Wala pa nadugang ang nagakaigo nga mga leksyon para sa {programs}.",
 };

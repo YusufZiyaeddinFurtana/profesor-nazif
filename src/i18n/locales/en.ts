@@ -194,4 +194,47 @@ export const messages: Messages = {
   authStudent: "Student",
   authSignInRequired: "Sign in to continue.",
   authSessionError: "We couldn’t check your session.",
+  registrationProgress: "Account setup steps",
+  interestsStepProgram: "Program",
+  interestsStepFocus: "Interests",
+  interestsStepAccount: "Account",
+  interestsWelcomeTitle: "A place to start, chosen by you.",
+  interestsWelcomeDescription:
+    "Tell us what you’re curious about and we’ll suggest lessons to match. You can change your preferences anytime.",
+  interestsProgramsQuestion: "Which programs interest you?",
+  interestsFocusQuestion: "Where would you like to start?",
+  interestsMultiple:
+    "Choose more than one if you like. Still exploring? Continue without selecting anything.",
+  interestsEngineering: "Engineering",
+  interestsBusiness: "Business Management",
+  interestsEngineeringDescription:
+    "Robot design, mechanics, electronics and programming. Turn an idea into a working robot.",
+  interestsBusinessDescription:
+    "Team management, sponsorship, communication and project presentations. Help your team grow together.",
+  interestsSkip: "I’ll choose my interests later",
+  interestsExploreAll: "Explore all areas for now",
+  interestsEdit: "Edit my preferences",
+  interestsSet: "Choose my interests",
+  interestsEditDescription:
+    "Choose programs and areas to update your suggestions. Clear your choices to see starting lessons from all areas.",
+  interestsSave: "Save and see suggestions",
+  interestsCancel: "Return to my account without saving",
+  interestsBackAccount: "Back to my account",
+  interestsLoading: "Loading your preferences…",
+  interestsLoadError:
+    "Your preferences couldn’t be loaded. Try again or explore all courses.",
+  interestsSaveError:
+    "Your preferences couldn’t be saved. Your choices are still here; try again.",
+  interestsBrowseAll: "Explore all learning areas",
+  recommendationsTitle: "Starting lessons for you.",
+  recommendationsDescription:
+    "Start with lessons that match your choices. Suggestions use your interests and the available catalog.",
+  recommendationsDiscoverTitle: "Choose a place to start.",
+  recommendationsDiscoverDescription:
+    "Explore lessons from different areas. Save your interests and we’ll highlight matching lessons here.",
+  recommendationsEmptyTitle: "Lessons for these interests are being prepared.",
+  recommendationsEmptyDescription:
+    "Matching lessons will appear here as they’re added. For now, explore your program’s learning areas or change your preferences.",
+  recommendationsPendingPrograms:
+    "Matching lessons for {programs} haven’t been added yet.",
 };

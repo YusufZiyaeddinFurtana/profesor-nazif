@@ -78,3 +78,6 @@ PR veya push öncesi `npm test` ve `npm run build` çalıştırın. Testler kate
 ## Supabase üyelik
 
 `features/auth/` kayıt, giriş, doğrulama ve şifre yenileme akışlarını taşır. `AuthProvider` navigasyonun içinde, katalog sağlayıcısının dışında bağlıdır. Sayfa bileşenleri `authService.ts` aracılığıyla resmi SDK'yı kullanır. Veritabanı profil izolasyonu `supabase/migrations/` içindeki RLS kurallarıyla sağlanır. [Kurulum rehberi](AUTH.md).
+## İlgi alanları ve öneriler
+
+`PreferencesProvider`, Auth oturumunun kullanıcı kimliğiyle profil tercihlerini yükler. `features/interests` veri erişimi ve seçim arayüzünü; `features/recommendations` katalogdan ders seçme kuralını ve öneri görünümünü içerir. Kayıt metadata'sı trigger ile PostgreSQL'e aktarılır; sonraki güncellemeler RLS altında `profiles` tablosuna yazılır. Detaylar: [RECOMMENDATIONS.md](RECOMMENDATIONS.md).

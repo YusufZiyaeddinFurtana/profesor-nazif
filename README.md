@@ -74,7 +74,9 @@ VITE_API_BASE_URL=https://api.example.com
 
 Adres boşsa örnek dersler kullanılır. Tanımlıysa frontend `GET /lessons` çağırır. Yerelde sunucuyu yeniden başlatın; Vercel'de değişken değiştiğinde yeniden deploy edin. API'nin veri biçimi: [API sözleşmesi](docs/API_CONTRACT.md).
 
-Supabase ile kayıt, giriş, e-posta doğrulama, şifre sıfırlama ve oturum mantığı hazırdır; `ProfNazif-Test` projesi ve Vercel yayını bağlandı. E-posta gönderimi kullanıcı kararıyla test aşamasındadır; genel kullanıma açılmadan önce özel SMTP bağlanmalıdır. Öneriler, kullanıcı ilerlemesi ve yönetim paneli henüz uygulanmadı. Bu özellikler kendi feature klasörlerinde geliştirilebilir. Gizli anahtarları `VITE_` değişkenlerine koymayın; bu değişkenler tarayıcıya gönderilir.
+Supabase ile kayıt, giriş, e-posta doğrulama, şifre sıfırlama ve oturum mantığı hazırdır; `ProfNazif-Test` projesi ve Vercel yayını bağlandı. E-posta gönderimi kullanıcı kararıyla test aşamasındadır; genel kullanıma açılmadan önce özel SMTP bağlanmalıdır. Kayıtta program/ilgi alanı seçimi ve kaydedilen tercihlere göre ders önerileri uygulanmıştır. Kullanıcı ilerlemesi ve yönetim paneli henüz uygulanmadı. Bu özellikler kendi feature klasörlerinde geliştirilebilir. Gizli anahtarları `VITE_` değişkenlerine koymayın; bu değişkenler tarayıcıya gönderilir.
+
+Üç adımlı kayıt, tercih düzenleme, öneri kuralları ve ilgili dosyalar: [İlgi alanları ve öneriler](docs/RECOMMENDATIONS.md).
 
 ## Video alanı
 

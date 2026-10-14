@@ -9,6 +9,7 @@ import { AuthAvailability } from "../components/AuthAvailability";
 import { programs } from "../../catalog/types";
 import { educationPath } from "../../../app/routes";
 import { Arrow } from "../../../components/ui/Arrow";
+import { RecommendationsSection } from "../../recommendations/components/RecommendationsSection";
 export function AccountPage() {
   const { t } = useLocale();
   const { session, status } = useAuth();
@@ -54,6 +55,8 @@ export function AccountPage() {
                 <dd>{session.user.email}</dd>
               </div>
             </dl>
+            <RecommendationsSection />
+            <h2 className="account-browse-title">{t("interestsBrowseAll")}</h2>
             <div className="account-programs">
               {programs.map((program) => (
                 <a key={program} href={educationPath(program)}>

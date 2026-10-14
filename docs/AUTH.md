@@ -9,6 +9,7 @@ Kayıt, e-posta doğrulama, giriş, çıkış, şifre sıfırlama ve oturum kal�
 - Supabase projesi: `ProfNazif-Test` (`dsojqqywohmmuhfmhnmz`).
 - Yayın: https://profesor-nazif.vercel.app — Vercel bağlantı değişkenleri production, preview ve development ortamlarına eklendi; yayın yenilendi.
 - `20261014173655_profiles.sql` migration'ı uygulandı. Dosyanın sürümü canlı migration geçmişiyle aynıdır; bu projede tekrar çalıştırmayın.
+- `20261014190439_learning_preferences.sql` migration'ı ilgi alanı seçimi ve ders önerileri için uygulandı. Mevcut RLS kuralları korunur; yalnızca hesap sahibi kendi tercihlerini düzenler.
 - E-posta ile giriş ve kayıt açık, e-posta doğrulama zorunlu, minimum şifre 8 karakter. Anonim hesap açma kapalıdır.
 - Site URL ve yalnızca `/auth/callback` yolu için yayın/yerel dönüş izinleri kaydedildi. Rastgele Vercel preview alan adlarına dönüş izni verilmedi.
 - Yerel bağlantı `.env.local` içindedir ve Git tarafından yok sayılır. Yeni ekip üyeleri kendi yerel dosyalarını aşağıdaki adımlarla oluşturabilir.
@@ -16,13 +17,13 @@ Kayıt, e-posta doğrulama, giriş, çıkış, şifre sıfırlama ve oturum kal�
 
 Canlı kontrol: Auth ayarları HTTP 200 döndü, geçersiz giriş doğru biçimde reddedildi, anonim profil okuma engellendi. İşlem sonunda geri alınan iki geçici kayıtla profil trigger'ı, yalnızca kendi profilini görme/değiştirme ve başka kullanıcının profilini değiştirememe canlı PostgreSQL üzerinde doğrulandı; test hesabı kalmadı. Güvenlik advisor'ı uyarı vermedi. Gerçek e-posta teslimi ve e-postadan başlayan doğrulama/şifre yenileme henüz uçtan uca test edilmedi.
 
-İzleme ilerlemesi, sertifika bildirimi, öneriler, Google ile giriş ve video erişim entegrasyonu bu değişikliğin kapsamında değildir. Yalnızca sayfa saklamak veya bir oynatıcıyı frontend'de gizlemek sunucu yetkilendirmesi yerine geçmez.
+İlgi alanı seçimi ve kişisel ders önerileri sonraki kullanıcı isteğiyle eklendi: [RECOMMENDATIONS.md](RECOMMENDATIONS.md). İzleme ilerlemesi, sertifika bildirimi, Google ile giriş ve video erişim entegrasyonu henüz uygulanmadı. Yalnızca sayfa saklamak veya bir oynatıcıyı frontend'de gizlemek sunucu yetkilendirmesi yerine geçmez.
 
 ## 1. Projeyi oluşturun
 
 Supabase Dashboard'da proje açın. Veritabanı şifresini güvenli tutun; frontend'e eklemeyin.
 
-Yeni bir Supabase projesi için SQL Editor'da `supabase/migrations/20261014173655_profiles.sql` dosyasını bir kez çalıştırın. Daha sonra migration dosyalarını sırayla versiyonlayın; aynı migration'ı tekrar çalıştırmayın. Yukarıda belirtilen mevcut projede bu adım tamamlanmıştır.
+Yeni bir Supabase projesi için `supabase/migrations/` altındaki SQL dosyalarını dosya adındaki tarih sırasıyla birer kez çalıştırın: önce `profiles`, sonra `learning_preferences`. Aynı migration'ı tekrar çalıştırmayın. Yukarıda belirtilen mevcut projede bu adımlar tamamlanmıştır.
 
 Migration:
 

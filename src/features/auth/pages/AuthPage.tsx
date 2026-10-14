@@ -5,7 +5,6 @@ import { useNavigation } from "../../../app/Navigation";
 import { useAuth } from "../AuthProvider";
 import { authErrorKey, safeReturnPath } from "../authHelpers";
 import {
-  register,
   signIn,
   requestPasswordReset,
   updatePassword,
@@ -14,54 +13,41 @@ import {
 import { AuthShell } from "../components/AuthShell";
 import { AuthAvailability } from "../components/AuthAvailability";
 import { PasswordField } from "../components/PasswordField";
+import { RegisterPage } from "./RegisterPage";
 export type AuthMode = "login" | "register" | "forgot" | "reset";
 export function AuthPage({ mode }: { mode: AuthMode }) {
+  return mode === "register" ? <RegisterPage /> : <AuthFormPage mode={mode} />;
+}
+function AuthFormPage({ mode }: { mode: Exclude<AuthMode, "register"> }) {
   const { t } = useLocale();
   const { session, status } = useAuth();
   const { location, navigate } = useNavigation();
   const next = safeReturnPath(new URLSearchParams(location.search).get("next"));
   const [email, setEmail] = useState("");
-  const [fullName, setFullName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmation, setConfirmation] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<MessageKey | null>(null);
   const [success, setSuccess] = useState<MessageKey | null>(null);
-  const [awaitingVerification, setAwaitingVerification] = useState(false);
   const titleKey =
     mode === "login"
       ? "authLoginTitle"
-      : mode === "register"
-        ? "authRegisterTitle"
-        : mode === "forgot"
-          ? "authResetTitle"
-          : "authNewPasswordTitle";
-  const descriptionKey =
-    mode === "register"
-      ? "authRegisterIntro"
       : mode === "forgot"
-        ? "authResetIntro"
-        : "authIntro";
+        ? "authResetTitle"
+        : "authNewPasswordTitle";
+  const descriptionKey = mode === "forgot" ? "authResetIntro" : "authIntro";
   useEffect(() => {
     document.title = `${t(titleKey)} — Profesör Nazif`;
   }, [t, titleKey]);
   useEffect(() => {
-    if (
-      status === "ready" &&
-      session &&
-      (mode === "login" || mode === "register")
-    )
-      navigate(next, true);
+    if (status === "ready" && session && mode === "login") navigate(next, true);
   }, [status, session, mode, next, navigate]);
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (busy) return;
     setError(null);
     setSuccess(null);
-    if (
-      (mode === "register" || mode === "reset") &&
-      password !== confirmation
-    ) {
+    if (mode === "reset" && password !== confirmation) {
       setError("authPasswordMismatch");
       return;
     }
@@ -70,13 +56,6 @@ export function AuthPage({ mode }: { mode: AuthMode }) {
       if (mode === "login") {
         await signIn(email, password);
         navigate(next, true);
-      } else if (mode === "register") {
-        const data = await register(fullName, email, password, next);
-        if (data.session) navigate(next, true);
-        else {
-          setAwaitingVerification(true);
-          setSuccess("authVerificationDescription");
-        }
       } else if (mode === "forgot") {
         await requestPasswordReset(email);
         setSuccess("authResetSent");
@@ -108,16 +87,11 @@ export function AuthPage({ mode }: { mode: AuthMode }) {
   const action =
     mode === "login"
       ? "authLogin"
-      : mode === "register"
-        ? "authRegister"
-        : mode === "forgot"
-          ? "authSendReset"
-          : "authSavePassword";
+      : mode === "forgot"
+        ? "authSendReset"
+        : "authSavePassword";
   return (
-    <AuthShell
-      title={t(awaitingVerification ? "authVerificationTitle" : titleKey)}
-      description={awaitingVerification ? undefined : t(descriptionKey)}
-    >
+    <AuthShell title={t(titleKey)} description={t(descriptionKey)}>
       <AuthAvailability>
         {mode === "reset" && !session ? (
           <div className="auth-notice">
@@ -148,45 +122,12 @@ export function AuthPage({ mode }: { mode: AuthMode }) {
                 {t(success)}
               </p>
             )}
-            {awaitingVerification ? (
-              <div className="auth-verification">
-                <p>{email}</p>
-                <button
-                  className="secondary-button"
-                  type="button"
-                  disabled={busy}
-                  onClick={resend}
-                >
-                  {t(busy ? "authBusy" : "authResend")}
-                </button>
-                <a
-                  className="text-action"
-                  href={`/giris?next=${encodeURIComponent(next)}`}
-                >
-                  {t("authLogin")}
-                </a>
-              </div>
-            ) : success && mode === "reset" ? (
+            {success && mode === "reset" ? (
               <a className="primary-button" href="/hesabim">
                 {t("authAccount")}
               </a>
             ) : (
               <form onSubmit={submit} className="auth-form" aria-busy={busy}>
-                {mode === "register" && (
-                  <label className="auth-field">
-                    {t("fullName")}
-                    <input
-                      name="fullName"
-                      autoComplete="name"
-                      required
-                      pattern=".*\S.*"
-                      maxLength={120}
-                      value={fullName}
-                      disabled={busy}
-                      onChange={(e) => setFullName(e.target.value)}
-                    />
-                  </label>
-                )}
                 {mode !== "reset" && (
                   <label className="auth-field">
                     {t("email")}
@@ -210,7 +151,7 @@ export function AuthPage({ mode }: { mode: AuthMode }) {
                     disabled={busy}
                   />
                 )}
-                {(mode === "register" || mode === "reset") && (
+                {mode === "reset" && (
                   <>
                     <PasswordField
                       value={confirmation}
@@ -239,14 +180,6 @@ export function AuthPage({ mode }: { mode: AuthMode }) {
                     {t("authNoAccount")}{" "}
                     <a href={`/kayit?next=${encodeURIComponent(next)}`}>
                       {t("authRegister")}
-                    </a>
-                  </p>
-                )}
-                {mode === "register" && (
-                  <p className="auth-alternative">
-                    {t("authHasAccount")}{" "}
-                    <a href={`/giris?next=${encodeURIComponent(next)}`}>
-                      {t("authLogin")}
                     </a>
                   </p>
                 )}

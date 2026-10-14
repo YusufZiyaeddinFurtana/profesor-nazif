@@ -1,5 +1,6 @@
 import { AuthPage } from "../features/auth/pages/AuthPage";
 import { AccountPage } from "../features/auth/pages/AccountPage";
+import { InterestsPage } from "../features/interests/pages/InterestsPage";
 import { AuthCallbackPage } from "../features/auth/pages/AuthCallbackPage";
 import { InstructorsPage } from "../features/instructors/pages/InstructorsPage";
 import { BookingPage } from "../features/booking/pages/BookingPage";
@@ -38,6 +39,8 @@ export default function App() {
           <AuthCallbackPage />
         ) : route.kind === "account" ? (
           <AccountPage />
+        ) : route.kind === "interests" ? (
+          <InterestsPage />
         ) : route.kind === "instructors" ? (
           <InstructorsPage instructorId={route.instructorId} />
         ) : route.kind === "booking" ? (

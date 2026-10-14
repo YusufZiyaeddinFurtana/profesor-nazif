@@ -177,4 +177,43 @@ export const messages: Messages = {
   authStudent: "学生",
   authSignInRequired: "请登录后继续。",
   authSessionError: "无法检查登录状态。",
+  registrationProgress: "创建账户步骤",
+  interestsStepProgram: "项目",
+  interestsStepFocus: "兴趣",
+  interestsStepAccount: "账户",
+  interestsWelcomeTitle: "找到适合你的起点。",
+  interestsWelcomeDescription:
+    "告诉我们你对什么感兴趣，我们会推荐相应课程。你可以随时修改偏好。",
+  interestsProgramsQuestion: "你对哪些项目感兴趣？",
+  interestsFocusQuestion: "你想从哪个方向开始？",
+  interestsMultiple: "可以多选。如果还没决定，也可以不选直接继续。",
+  interestsEngineering: "工程技术",
+  interestsBusiness: "团队与商业管理",
+  interestsEngineeringDescription:
+    "机器人设计、机械、电子与编程。把创意变成能运行的机器人。",
+  interestsBusinessDescription:
+    "团队管理、赞助、沟通与项目展示。一起推动团队成长。",
+  interestsSkip: "稍后再选择兴趣",
+  interestsExploreAll: "暂时探索所有方向",
+  interestsEdit: "修改偏好",
+  interestsSet: "选择我的兴趣",
+  interestsEditDescription:
+    "选择项目和方向以更新推荐。清除选择后，将显示各个方向的入门课程。",
+  interestsSave: "保存并查看推荐",
+  interestsCancel: "不保存，返回我的账户",
+  interestsBackAccount: "返回我的账户",
+  interestsLoading: "正在加载你的偏好…",
+  interestsLoadError: "无法加载你的偏好。请重试，或探索全部课程。",
+  interestsSaveError: "无法保存偏好。你的选择仍保留在此页面，请重试。",
+  interestsBrowseAll: "探索所有学习方向",
+  recommendationsTitle: "适合你的入门课程。",
+  recommendationsDescription:
+    "从符合你选择的课程开始。推荐依据是你的兴趣和现有课程。",
+  recommendationsDiscoverTitle: "选择一个起点。",
+  recommendationsDiscoverDescription:
+    "先看看不同方向的课程。保存兴趣后，我们将在这里优先展示相关课程。",
+  recommendationsEmptyTitle: "这些方向的课程正在准备中。",
+  recommendationsEmptyDescription:
+    "相关课程添加后会显示在这里。现在可以浏览项目的学习方向，或修改偏好。",
+  recommendationsPendingPrograms: "尚未添加符合你兴趣的 {programs} 课程。",
 };

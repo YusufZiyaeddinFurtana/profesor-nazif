@@ -1,4 +1,8 @@
 import { supabase } from "../../lib/supabase";
+import {
+  normalizePreferences,
+  type LearningPreferences,
+} from "../interests/types";
 function client() {
   if (!supabase) throw new Error("Auth is not configured.");
   return supabase;
@@ -21,12 +25,18 @@ export async function register(
   email: string,
   password: string,
   next: string,
+  preferences?: LearningPreferences,
 ) {
+  const interests = normalizePreferences(preferences);
   const { data, error } = await client().auth.signUp({
     email: email.trim(),
     password,
     options: {
-      data: { full_name: fullName.trim() },
+      data: {
+        full_name: fullName.trim(),
+        interest_programs: interests.programs,
+        focus_areas: interests.focusAreas,
+      },
       emailRedirectTo: callbackUrl(next),
     },
   });
