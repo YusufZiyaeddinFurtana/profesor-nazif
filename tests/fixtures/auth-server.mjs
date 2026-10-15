@@ -7,6 +7,23 @@ let metadata = { full_name: "Test Student" };
 let profile = { interest_programs: [], focus_areas: [] };
 let saveFails = false;
 let lastSignup;
+let learningProgress = [
+  {
+    lesson_id: "wpilib-java",
+    watched_seconds: 65,
+    video_completed_at: null,
+    exercise_completed_at: null,
+  },
+];
+let completion = [];
+const materials = [
+  {
+    lesson_id: "wpilib-java",
+    youtube_video_id: "M7lc1UVf-VE",
+    video_duration_seconds: 100,
+    exercise_path: "wpilib-java.pdf",
+  },
+]; // Official YouTube demo, local fixture only.
 const user = () => ({
   id: userId,
   aud: "authenticated",
@@ -52,7 +69,13 @@ const server = createServer(async (req, res) => {
     return reply(400, {});
   }
   const url = new URL(req.url, "http://127.0.0.1");
-  if (url.pathname === "/__state") return reply(200, { profile, lastSignup });
+  if (url.pathname === "/__state")
+    return reply(200, { profile, lastSignup, learningProgress, completion });
+  if (url.pathname === "/__learning" && req.method === "POST") {
+    if (body.progress) learningProgress = body.progress;
+    if (body.completion) completion = body.completion;
+    return reply(200, {});
+  }
   if (url.pathname === "/__save_failure" && req.method === "POST") {
     saveFails = !!body.enabled;
     return reply(200, {});
@@ -69,6 +92,36 @@ const server = createServer(async (req, res) => {
   if (url.pathname === "/auth/v1/token") return reply(200, session());
   if (url.pathname === "/auth/v1/user") return reply(200, user());
   if (url.pathname === "/auth/v1/logout") return reply(200, {});
+  if (url.pathname === "/rest/v1/lesson_materials")
+    return reply(200, materials);
+  if (url.pathname === "/rest/v1/course_lessons")
+    return reply(200, [
+      { course_id: "frc/programming", lesson_id: "wpilib-java" },
+    ]);
+  if (url.pathname === "/rest/v1/lesson_progress")
+    return reply(200, learningProgress);
+  if (url.pathname === "/rest/v1/course_completions")
+    return reply(200, completion);
+  if (url.pathname === "/rest/v1/rpc/complete_lesson_exercise") {
+    if (saveFails) return reply(503, { message: "Fixture save failure" });
+    const progress = learningProgress.find(
+      (p) => p.lesson_id === body.p_lesson_id,
+    );
+    if (!progress) return reply(400, {});
+    progress.exercise_completed_at = new Date().toISOString();
+    if (progress.video_completed_at)
+      completion = [
+        {
+          course_id: "frc/programming",
+          completed_at: new Date().toISOString(),
+        },
+      ];
+    return reply(200, progress);
+  }
+  if (url.pathname === "/rest/v1/rpc/record_lesson_watch") {
+    if (saveFails) return reply(503, { message: "Fixture save failure" });
+    return reply(200, learningProgress[0]);
+  }
   if (url.pathname === "/rest/v1/profiles") {
     if (req.method === "PATCH") {
       if (saveFails)

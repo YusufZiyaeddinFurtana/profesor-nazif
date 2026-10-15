@@ -10,15 +10,24 @@ import { PreferenceSummary } from "../../interests/components/InterestChoices";
 import { educationPath } from "../../../app/routes";
 import { Arrow } from "../../../components/ui/Arrow";
 import { programsAwaitingLessons, recommendLessons } from "../recommendLessons";
+import { useLearning } from "../../learning/LearningProvider";
 
 export function RecommendationsSection({ home = false }: { home?: boolean }) {
   const { t, locale } = useLocale();
   const { session } = useAuth();
   const { preferences, status, retry } = usePreferences();
   const { lessons, status: catalogStatus, retry: retryCatalog } = useCatalog();
+  const { materials } = useLearning();
   if (!session) return null;
   const personalized = hasPreferences(preferences);
-  const items = recommendLessons(lessons, preferences);
+  const items = recommendLessons(
+    lessons.map((lesson) => ({
+      ...lesson,
+      youtubeVideoId: materials.find((m) => m.lesson_id === lesson.id)
+        ?.youtube_video_id,
+    })),
+    preferences,
+  );
   const pending = programsAwaitingLessons(lessons, preferences);
   return (
     <section

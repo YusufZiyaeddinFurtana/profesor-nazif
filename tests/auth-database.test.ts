@@ -5,7 +5,11 @@ import { PGlite } from "@electric-sql/pglite";
 test("profile migration creates profiles and enforces user isolation and column grants", async () => {
   const db = new PGlite();
   try {
-    await db.exec(`create role anon; create role authenticated; create schema auth;
+    await db.exec(`create role anon; create role authenticated; create role service_role bypassrls; create schema auth;
+   create schema storage;
+   create table storage.buckets(id text primary key,name text,public boolean,file_size_limit bigint,allowed_mime_types text[]);
+   create table storage.objects(id uuid default gen_random_uuid(),bucket_id text,name text);
+   alter table storage.objects enable row level security;
    create table auth.users(id uuid primary key,raw_user_meta_data jsonb);
    create function auth.uid() returns uuid language sql stable as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;
    grant usage on schema public,auth to authenticated,anon;

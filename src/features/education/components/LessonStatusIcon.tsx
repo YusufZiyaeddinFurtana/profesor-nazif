@@ -1,5 +1,5 @@
 export type LessonState = "not-started" | "in-progress" | "completed";
-/** Pure presentation; authenticated per-user state will be connected after database selection. */
+/** Presentation only; EducationSidebar supplies the student's persisted state. */
 export function LessonStatusIcon({
   state = "not-started",
 }: {

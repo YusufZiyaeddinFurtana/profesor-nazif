@@ -8,6 +8,8 @@ import { educationPath } from "../../../app/routes";
 import type { Lesson, Program } from "../../catalog/types";
 import type { EducationCategory } from "../types";
 import { categories } from "../data/categories";
+import { useLearning } from "../../learning/LearningProvider";
+import { lessonState } from "../../learning/types";
 
 export function EducationSidebar({
   program,
@@ -24,6 +26,7 @@ export function EducationSidebar({
 }) {
   const { locale, t } = useLocale();
   const { navigate } = useNavigation();
+  const learning = useLearning();
   return (
     <aside className="education-sidebar" aria-label={t("educationNav")}>
       <nav className="education-programs" aria-label={t("programSelect")}>
@@ -92,13 +95,44 @@ export function EducationSidebar({
                         {lesson.title}
                         <small>
                           {t(
-                            lesson.youtubeVideoId
+                            learning.materials.some(
+                              (m) => m.lesson_id === lesson.id,
+                            )
                               ? "videoLesson"
                               : "contentPending",
                           )}
                         </small>
                       </span>
-                      <LessonStatusIcon />
+                      <span
+                        className="sidebar-progress-state"
+                        aria-label={t(
+                          learning.status === "loading"
+                            ? "progressLoading"
+                            : learning.status === "error"
+                              ? "progressLoadError"
+                              : lessonState(
+                                    learning.progress.find(
+                                      (p) => p.lesson_id === lesson.id,
+                                    ),
+                                  ) === "completed"
+                                ? "lessonCompleted"
+                                : lessonState(
+                                      learning.progress.find(
+                                        (p) => p.lesson_id === lesson.id,
+                                      ),
+                                    ) === "in-progress"
+                                  ? "lessonInProgress"
+                                  : "lessonNotStarted",
+                        )}
+                      >
+                        <LessonStatusIcon
+                          state={lessonState(
+                            learning.progress.find(
+                              (p) => p.lesson_id === lesson.id,
+                            ),
+                          )}
+                        />
+                      </span>
                     </a>
                   </li>
                 ))}

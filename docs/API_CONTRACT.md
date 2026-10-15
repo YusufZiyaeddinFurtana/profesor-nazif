@@ -35,11 +35,11 @@
 
 ## Login ve öneriler
 
-Oturum işlemleri artık Supabase Auth SDK ile gerçekleştirilir; özel `/auth/*` API endpoint'leri uygulanmaz. Bu teslim öneri endpoint'i tanımlamaz. Ekip bu sözleşmeleri belirleyip `features/auth` ve `features/recommendations` gibi bağımsız özellikler ekleyebilir. Ortak istek davranışı `services/http.ts` üzerinden genişletilebilir. Korumalı endpoint yetkilendirmesi backend'de yapılmalıdır; frontend'de bir düğmeyi gizlemek erişim kontrolü değildir.
+Oturum işlemleri artık Supabase Auth SDK ile gerçekleştirilir; özel `/auth/*` API endpoint'leri uygulanmaz. Öneriler Supabase’de kaydedilen program/ilgi alanlarıyla mevcut katalogdan frontend’de hesaplanır. Ortak istek davranışı `services/http.ts` üzerinden genişletilebilir. Korumalı endpoint yetkilendirmesi backend'de yapılmalıdır; frontend'de bir düğmeyi gizlemek erişim kontrolü değildir.
 
 ## Video
 
-Bu sürümde video embed edilmez. `youtubeVideoId` alanı ileride YouTube oynatıcısına bağlanmak üzere korunur; geçerli bir kimlik döndürülmesi şu an otomatik iframe yüklemez. Oynatıcı entegrasyon noktası `src/features/lessons/components/LessonVideo.tsx` dosyasıdır.
+Oynatıcı giriş yapan öğrenciler için korumalı Supabase `lesson_materials` kaydını kullanır. Katalogdaki `youtubeVideoId` alanı eski API uyumluluğu için doğrulanır; tek başına yayın/izleme yetkisi vermez. Gerçek video kimliklerini public katalog yerine `lesson_materials` içinde tutun. İlerleme, alıştırma ve sertifika veri sözleşmesi: [Ders rehberi](LEARNING.md).
 
 ## İsteğe bağlı ders çevirileri
 

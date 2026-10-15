@@ -40,7 +40,7 @@ Kategori slug'ını değiştirirseniz eski bağlantılar için ayrıca yönlendi
 
 ## Video eklemek
 
-`features/lessons/components/LessonVideo.tsx` şu an statik hazırlık alanıdır. Gerçek YouTube oynatıcısını bu bileşenin içine ekleyin; çerçeve ve eğitim sayfası düzenini koruyun. Veri kaynağı olarak `Lesson.youtubeVideoId` kullanılabilir. Nazif açılışı `LessonIntro.tsx` içinde ayrı tutulur; oynatıcı değişikliği animasyonu etkilemez.
+`features/lessons/components/LessonVideo.tsx`, korumalı Supabase materyali varsa `features/learning/components/TrackedVideo.tsx` oynatıcısını açar; yoksa hazırlık alanı gösterir. `LearningProvider` ilerleme ve alıştırma state’ini oturum sahibine göre yönetir. Nazif açılışı `LessonIntro.tsx` içinde ayrıdır. Tablo/RPC/Storage ve sertifika worker dosyaları: [Ders rehberi](LEARNING.md).
 
 ## Login veya öneri gibi yeni özellikler
 
@@ -73,7 +73,7 @@ PR veya push öncesi `npm test` ve `npm run build` çalıştırın. Testler kate
 
 `features/booking/` dört adımlı özel ders arayüzünü yönetir. Ad ve e-posta yalnızca bileşen state'inde tutulur; backend'e, localStorage'a veya URL'ye gönderilmez. Program değişince eski konu seçimi silinir. `bookingConfig.ts`, program+konu için eğitmen ve Google randevu bağlantısını belirler. `calendar.ts` yalnızca Google randevu sayfalarına izin verir; tam randevu sayfası gömülür, kısa Google bağlantısı yeni sekmede açılır. Saat seçimi, müsaitlik ve son onay Google'da yönetilir. Henüz yapılandırılmış canlı takvim yoktur.
 
-`features/education/data/curricula.ts`, dil bazında kurs kazanımları ve kullanım açıklamasını tutar. Boşken mevcut ders özetleri açıkça taslak olarak gösterilir. Onaylı müfredat eklendiğinde `reviewed: true` yapılır. `LessonStatusIcon` yalnızca üç görsel durumu tanımlar; kullanıcı ilerlemesi tutmaz, backend ile bağlanmadı.
+`features/education/data/curricula.ts`, dil bazında kurs kazanımları ve kullanım açıklamasını tutar. Boşken mevcut ders özetleri açıkça taslak olarak gösterilir. Onaylı müfredat eklendiğinde `reviewed: true` yapılır. `LessonStatusIcon` üç görsel durumu tanımlar; `EducationSidebar` gerçek öğrenci durumunu `LearningProvider` üzerinden verir.
 
 ## Supabase üyelik
 

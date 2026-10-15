@@ -4,6 +4,7 @@ import type { EducationCategory } from "../types";
 import { curricula } from "../data/curricula";
 import { educationPath } from "../../../app/routes";
 import { Arrow } from "../../../components/ui/Arrow";
+import { CourseProgress } from "../../learning/components/CourseProgress";
 export function CategoryOverview({
   category,
   lessons,
@@ -20,6 +21,9 @@ export function CategoryOverview({
     <article className="category-overview">
       <h1>{category.title}</h1>
       <p className="education-lead">{category.description}</p>
+      <CourseProgress
+        courseId={`${category.program.toLowerCase()}/${category.slug}`}
+      />
       <section className="course-outcomes" aria-labelledby="outcomes-title">
         <div className="outcomes-heading">
           <h2 id="outcomes-title">{t("courseOutcomes")}</h2>

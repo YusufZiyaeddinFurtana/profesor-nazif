@@ -244,4 +244,35 @@ export const messages: Messages = {
     "Makita diri ang nagakaigo nga mga leksyon kon madugang na. Sa karon, usisaa ang mga larangan sang programa ukon bag-uha ang imo mga pili.",
   recommendationsPendingPrograms:
     "Wala pa nadugang ang nagakaigo nga mga leksyon para sa {programs}.",
+  studentVideosTitle: "Ang mga video sang leksyon para sa mga estudyante.",
+  studentVideosDescription:
+    "Mag-sign in ukon maghimo sang libre nga account agod makatan-aw, makatipig sang pag-uswag kag makakuha sang mga ehersisyo.",
+  videoLoading: "Ginakarga ang video…",
+  videoLoadError:
+    "Indi makarga ang video. Susiha ang koneksyon kag tilawi liwat.",
+  videoProgress: "{percent}% sang video ang natapos.",
+  progressLoading: "Ginakarga ang imo pag-uswag…",
+  progressLoadError: "Indi makarga ang materyales kag pag-uswag. Tilawi liwat.",
+  progressSaveError:
+    "Wala natipig ang pinakabag-o nga bahin nga gintan-aw mo. Tilawi liwat antes maghalin sa pahina.",
+  courseProgress: "Imo pag-uswag sa pagtan-aw",
+  courseExercises: "{done} sa {total} ka ehersisyo ang natapos.",
+  courseCompleted: "Natapos mo ang kurso!",
+  certificateQueued:
+    "Natipig ang imo pangabay para sa sertipiko. Ang amon grupo magahanda sang imo sertipiko.",
+  exerciseTitle: "Ehersisyo sang leksyon",
+  exerciseDescription:
+    "I-download ang PDF, sabta sa imo kaugalingon nga tion kag markahi kon tapos na. Indi kinahanglan mag-upload.",
+  exercisePending: "Ginapreparar pa ang ehersisyo sang leksyon.",
+  exercisePrepare: "Ihanda ang PDF sang ehersisyo",
+  exerciseDownload: "I-download ang PDF",
+  exerciseMarkComplete: "Natapos ko ang ehersisyo",
+  exerciseCompleted: "Natapos ang ehersisyo",
+  exerciseSaved: "Natipig ang imo pagkompleto.",
+  exerciseError: "Wala natapos ang aksyon. Tilawi liwat.",
+  lessonNotStarted: "Wala pa nasugdan",
+  lessonInProgress: "Nagapadayon",
+  lessonCompleted: "Natapos ang leksyon",
+  courseProgressPending:
+    "Makita diri ang kabug-usan nga pag-uswag kon mapublikar na ang tanan nga leksyon sang kurso.",
 };

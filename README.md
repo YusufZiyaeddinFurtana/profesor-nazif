@@ -42,6 +42,9 @@ src/
     instructors/         Eğitmen listesi, profil bilgileri ve sayfaları
     booking/             Özel ders seçim adımları ve Google randevu eşleştirmeleri
     auth/                Supabase kayıt/giriş, oturum, callback ve hesap sayfaları
+    interests/           Kayıtta ve sonradan ilgi alanı seçimi
+    recommendations/     Program ve ilgi alanına göre ders önerileri
+    learning/            YouTube oynatma, öğrenci ilerlemesi ve alıştırmalar
   lib/                   Supabase istemcisi
   i18n/                  Dört dil, çeviri metinleri, seçici ve dil state’i
   pages/                 Bulunamayan sayfa ve eski URL yönlendirmesi
@@ -74,13 +77,13 @@ VITE_API_BASE_URL=https://api.example.com
 
 Adres boşsa örnek dersler kullanılır. Tanımlıysa frontend `GET /lessons` çağırır. Yerelde sunucuyu yeniden başlatın; Vercel'de değişken değiştiğinde yeniden deploy edin. API'nin veri biçimi: [API sözleşmesi](docs/API_CONTRACT.md).
 
-Supabase ile kayıt, giriş, e-posta doğrulama, şifre sıfırlama ve oturum mantığı hazırdır; `ProfNazif-Test` projesi ve Vercel yayını bağlandı. E-posta gönderimi kullanıcı kararıyla test aşamasındadır; genel kullanıma açılmadan önce özel SMTP bağlanmalıdır. Kayıtta program/ilgi alanı seçimi ve kaydedilen tercihlere göre ders önerileri uygulanmıştır. Kullanıcı ilerlemesi ve yönetim paneli henüz uygulanmadı. Bu özellikler kendi feature klasörlerinde geliştirilebilir. Gizli anahtarları `VITE_` değişkenlerine koymayın; bu değişkenler tarayıcıya gönderilir.
+Supabase ile kayıt, giriş, e-posta doğrulama, şifre sıfırlama ve oturum mantığı hazırdır; `ProfNazif-Test` projesi ve Vercel yayını bağlandı. E-posta gönderimi kullanıcı kararıyla test aşamasındadır; genel kullanıma açılmadan önce özel SMTP bağlanmalıdır. Kayıtta program/ilgi alanı seçimi ve kaydedilen tercihlere göre ders önerileri uygulanmıştır. Öğrenci ilerlemesi, alıştırma tamamlama ve sertifika talep kuyruğu da Supabase’e bağlıdır. Yönetim paneli henüz yoktur. Gizli anahtarları `VITE_` değişkenlerine koymayın; bu değişkenler tarayıcıya gönderilir.
 
 Üç adımlı kayıt, tercih düzenleme, öneri kuralları ve ilgili dosyalar: [İlgi alanları ve öneriler](docs/RECOMMENDATIONS.md).
 
 ## Video alanı
 
-Nazif'in mevcut tebeşir animasyonu korunmuştur. Mavi kapaklı ikinci alan kaldırılmıştır. `LessonVideo.tsx` şimdilik kara tahta çerçevesinde bir hazırlık alanı gösterir; herhangi bir video veya YouTube iframe'i yüklenmez. Gerçek oynatıcı eklenirken bu bileşenin içi değiştirilir. `youtubeVideoId` veri alanı ileride kullanım için korunur; tek başına video oynatmaz.
+Nazif'in mevcut tebeşir animasyonu korunmuştur. Mavi kapaklı ikinci alan kaldırılmıştır. Giriş yapan öğrenci için yayınlanmış `lesson_materials` kaydı varsa YouTube oynatıcı açılır; yoksa hazırlık alanı görünür. Video kimlikleri ve alıştırmalar korumalı Supabase kaynağından alınır. Gerçek materyal ekleme, ilerleme ve sertifika bildirimi: [Ders rehberi](docs/LEARNING.md).
 
 ## Fontlar
 
@@ -104,7 +107,7 @@ Navbar'dan Türkçe, İngilizce, basitleştirilmiş Çince ve Hiligaynon seçile
 
 ## Son revizyon ve bekleyen bağlantılar
 
-PDF revizyonlarının uygulanan ve bekletilen kısımları: [Revizyon notları](docs/REVISIONS.md). Giriş altyapısı sonraki değişiklikte Supabase için hazırlandı. Kullanıcıya özel ilerleme ve sertifika bildirimleri hâlâ bekliyor. Özel ders arayüzü saat uydurmaz veya rezervasyon yapıldığını söylemez: Google randevu bağlantısı yoksa takvimin kapalı olduğunu gösterir. Mevcut dört dil korunur.
+PDF revizyonlarının uygulanan ve bekletilen kısımları: [Revizyon notları](docs/REVISIONS.md). Kayıt/giriş, ilgi alanları, öğrenci ilerlemesi, alıştırma tamamlama ve sertifika talep kuyruğu bağlıdır. Sertifika e-posta göndericisi ve ekip alıcı adresi bekliyor. Özel ders arayüzü saat uydurmaz veya rezervasyon yapıldığını söylemez: Google randevu bağlantısı yoksa takvimin kapalı olduğunu gösterir. Mevcut dört dil korunur.
 
 ## Üyelik bağlantısını açma
 

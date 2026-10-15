@@ -27,8 +27,8 @@ test("each language covers the UI and preserves interpolation variables", () => 
       const value = dictionaries[locale][key];
       assert.ok(value.trim(), `${locale}/${key} is empty`);
       assert.deepEqual(
-        value.match(/\{\w+\}/g),
-        dictionaries.tr[key].match(/\{\w+\}/g),
+        (value.match(/\{\w+\}/g) ?? []).sort(),
+        (dictionaries.tr[key].match(/\{\w+\}/g) ?? []).sort(),
       );
     }
     assert.ok(

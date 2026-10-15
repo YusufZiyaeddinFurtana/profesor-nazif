@@ -1,5 +1,6 @@
 import { AuthProvider } from "./features/auth/AuthProvider";
 import { PreferencesProvider } from "./features/interests/PreferencesProvider";
+import { LearningProvider } from "./features/learning/LearningProvider";
 import { LocaleProvider } from "./i18n/LocaleProvider";
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -17,7 +18,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <AuthProvider>
             <PreferencesProvider>
               <CatalogProvider>
-                <App />
+                <LearningProvider>
+                  <App />
+                </LearningProvider>
               </CatalogProvider>
             </PreferencesProvider>
           </AuthProvider>

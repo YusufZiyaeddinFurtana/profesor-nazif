@@ -237,4 +237,35 @@ export const messages: Messages = {
     "Matching lessons will appear here as they’re added. For now, explore your program’s learning areas or change your preferences.",
   recommendationsPendingPrograms:
     "Matching lessons for {programs} haven’t been added yet.",
+  studentVideosTitle: "Lesson videos are for students.",
+  studentVideosDescription:
+    "Sign in or create your free account to watch videos, save progress and access exercises.",
+  videoLoading: "Loading video…",
+  videoLoadError:
+    "The video could not load. Check your connection and try again.",
+  videoProgress: "{percent}% of the video completed.",
+  progressLoading: "Loading your progress…",
+  progressLoadError: "Lesson materials and progress could not load. Try again.",
+  progressSaveError:
+    "Your latest viewing segment could not be saved. Try again before leaving this page.",
+  courseProgress: "Your viewing progress",
+  courseExercises: "{done} of {total} exercises completed.",
+  courseCompleted: "Course completed!",
+  certificateQueued:
+    "Your certificate request is saved. Our team will prepare your certificate.",
+  exerciseTitle: "Lesson exercise",
+  exerciseDescription:
+    "Download the PDF, work at your own pace and mark it complete below. No upload is needed.",
+  exercisePending: "This lesson’s exercise is being prepared.",
+  exercisePrepare: "Prepare exercise PDF",
+  exerciseDownload: "Download PDF",
+  exerciseMarkComplete: "I completed the exercise",
+  exerciseCompleted: "Exercise completed",
+  exerciseSaved: "Your completion has been saved.",
+  exerciseError: "This action could not be completed. Try again.",
+  lessonNotStarted: "Not started",
+  lessonInProgress: "In progress",
+  lessonCompleted: "Lesson completed",
+  courseProgressPending:
+    "Your overall progress will appear here once every lesson in this course is published.",
 };

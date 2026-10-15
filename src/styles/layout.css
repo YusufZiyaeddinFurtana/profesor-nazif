@@ -14,27 +14,26 @@
   align-items: center;
   flex-shrink: 0;
 }
-.brand-mark {
+.brand-lockup {
+  position: relative;
   display: block;
-  width: 76px;
-  height: 76px;
-  border-radius: 50%;
-  background: #0b0f12;
-  overflow: hidden;
+  width: 278px;
+  max-width: 100%;
+  aspect-ratio: 722 / 133;
 }
-.brand-mark img {
+.brand-lockup img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: translate(-6.2%, 5.4%);
+  height: auto;
 }
-.brand-lockup {
-  display: block;
-  width: auto;
-  max-width: 260px;
-  height: 76px;
-  object-fit: contain;
+.brand-lockup-lettering {
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  clip-path: inset(0 0 0 16.5%);
+  pointer-events: none;
 }
 .site-header nav {
   display: flex;
@@ -119,9 +118,8 @@
   justify-content: space-between;
   gap: 30px;
 }
-.footer-identity .brand-mark {
-  width: 68px;
-  height: 68px;
+.footer-identity .brand-lockup-lettering {
+  background: #f4f0e3;
 }
 .footer-motto {
   font:
@@ -218,13 +216,8 @@
   .site-header .brand {
     margin: 0;
   }
-  .brand-mark {
-    width: 64px;
-    height: 64px;
-  }
   .brand-lockup {
-    height: 64px;
-    max-width: 190px;
+    width: 240px;
   }
   .site-header .menu-toggle {
     grid-column: 2;
@@ -244,7 +237,7 @@
   }
   .footer-layout {
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
     padding-block: 30px;
     gap: 24px;
   }
@@ -252,7 +245,7 @@
     font-size: 20px;
   }
   .back-to-top {
-    grid-column: 2;
+    grid-column: 1;
     justify-self: start;
   }
 }

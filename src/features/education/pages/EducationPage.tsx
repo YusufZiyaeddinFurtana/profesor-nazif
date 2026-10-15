@@ -92,7 +92,11 @@ export function EducationPage({
           ) : status !== "ready" ? (
             <CatalogStatus status={status} retry={retry} />
           ) : lesson ? (
-            <LessonContent key={lesson.id} lesson={lesson} />
+            <LessonContent
+              key={lesson.id}
+              lesson={lesson}
+              courseId={`${program.toLowerCase()}/${category.slug}`}
+            />
           ) : (
             <CategoryOverview category={category} lessons={categoryLessons} />
           )}

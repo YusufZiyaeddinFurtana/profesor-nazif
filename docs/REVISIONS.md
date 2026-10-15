@@ -1,39 +1,53 @@
-# 14 Ekim 2026 revizyonları
+# PDF revizyonlarının kontrolü — 16 Ekim 2026
 
-Kaynak: kullanıcının sağladığı “Prof Nazif Website Revizeleri.pdf”. Sonraki kullanıcı yönlendirmeleri PDF'nin önündedir.
+Kaynak: kullanıcının sağladığı “Prof Nazif Website Revizeleri.pdf” (5 sayfa; son sayfa boş). Sonraki kullanıcı kararları PDF'nin önündedir. Bu liste kodla ve ekranlarla karşılaştırılarak güncellendi; hazırlık alanları tamamlanmış içerik sayılmaz.
 
-## Uygulananlar
+## Tamamlanan uygulama
 
-- Ana sayfa FRC, FTC ve FLL'yi içerir. Program sıra etiketleri ve ayrı FRC konu haritası kaldırıldı.
-- Ana menüde ayrı Anasayfa/Eğitimler bağlantıları kaldırıldı; logo ana sayfaya, Eğitmenlerimiz ayrı sayfaya açılır. FRC/FTC/FLL açılır menülerinde tekrarlanan program-genel bağlantıları kaldırıldı.
-- Nazif görseli dil değişiminde aynı kalır. Yazıyla oluşturulmuş navbar/footer marka adı kaldırıldı. Birleşik logo geldiğinde `src/config/site.ts` içindeki `brandAssets.wordmark` güncellenir.
-- Takım adı, logosu ve bağlantıları arayüzden tamamen çıkarıldı. Yalnızca onaylı Profesör Nazif Instagram adresi eklenecek; adres bilinmediğinden sosyal bağlantı şu anda gizlidir.
-- Öğrenme akışı: videoyu izle, ders alıştırmasını tamamla, takımında kullan. “Öğren. Dene. Takımında kullan.” geçici ortak motto olarak kullanılıyor; outreach ekibi nihai metni belirleyince dört dilde aynı mesaj anahtarları güncellenebilir.
-- Eğitmenlerimiz ana sayfada kısa liste, ayrı sayfada tam liste ve her eğitmen için profil sayfası olarak hazırlandı.
-- Kurs ana sayfasındaki tekrar eden açıklama ve ders listesi kaldırıldı; kazanımlar, uygulama açıklaması ve derse başlama bağlantısı eklendi. Sol menü korunuyor; FTC seçeneği eklendi.
-- Özel dersin bilgi → program → konu → takvim arayüzü hazır. Gerçek takvim bağlantısı bulunmadığında açık bir kapalı-takvim durumu gösterilir; saat veya başarılı rezervasyon uydurulmaz.
+| PDF maddesi                        | Durum ve uygulama                                                                                                                                                                                                                                      |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Ortak motto ve tutarlı anlatım     | “Öğren. Dene. Takımında kullan.” ana sayfa, footer, üyelik ve rezervasyonda ortak. Başlangıç HTML başlığı/açıklaması da güncellendi. Outreach nihai mottoyu henüz sağlamadı.                                                                           |
+| FTC eklenmesi                      | Ana sayfa, navbar, sol menü, kategori sayfaları, rezervasyon ve ilgi alanlarında FRC / FTC / FLL mevcut.                                                                                                                                               |
+| Üç Nazif marka kullanımı           | Mevcut portre, sağlanan birleşik logo ve özgün tebeşir animasyonu mevcut.                                                                                                                                                                              |
+| Sol üstte birleşik logo            | 16 Ekim'de sağlanan şeffaf PNG navbar ve footer'a eklendi. Marka yazısı görselin içindedir; ayrı fontla oluşturulmaz. Koyu zeminde yalnızca yazının rengi açılır; Nazif'in renkleri korunur.                                                           |
+| Dil değişiminde logo sabit kalsın  | Dört dilde aynı logo dosyası kullanılır. Ayrı İngilizce logo dosyası sağlanmadı; otomatik çevrilmez.                                                                                                                                                   |
+| Program başlığı ve sıra etiketleri | “Tüm FIRST programları”; 01/02 program etiketleri kaldırılmış durumda.                                                                                                                                                                                 |
+| Ayrı FRC konu haritasını kaldır    | Ana sayfada bu tekrar eden bölüm yok.                                                                                                                                                                                                                  |
+| Öğrenme yöntemi                    | Videoyu izle → ders alıştırması → takımında kullan. Tek başına “Profesör” hitabı yok.                                                                                                                                                                  |
+| Eğitmenlerimiz                     | Ana sayfada özet, ayrı liste ve her isim için profil sayfası mevcut. Üniversite/deneyim hakkında doğrulanmamış iddia eklenmedi.                                                                                                                        |
+| Navbar                             | Logo ana sayfaya açılır. Anasayfa/Eğitimler tekrarları yok; Eğitmenlerimiz ayrı sayfaya açılır. Program menülerinde tekrar eden program-genel bağlantısı yok.                                                                                          |
+| Kurs ana sayfası                   | Solda program/alan/ders menüsü; ana içerikte kazanımlar ve uygulama alanı var. Tekrar eden ders listesi kaldırıldı.                                                                                                                                    |
+| Ders durumları                     | Henüz başlanmadı / devam ediyor / tamamlandı durumları Supabase'deki öğrenci kaydından gelir. Tamamlandı için video ve alıştırmanın ikisi de gerekir.                                                                                                  |
+| Öğrencilere özel video erişimi     | Oturum açmadan video kimliklerine ve alıştırma dosyalarına veritabanı erişimi kapalı. Nazif açılışı ve kurs açıklamaları herkese açık.                                                                                                                 |
+| YouTube oynatıcı                   | Gerçek ders yayınlandığında kara tahta çerçevesi içinde oynar. Mavi kapaklı ikinci alan yok; Nazif açılışı korunur.                                                                                                                                    |
+| İzleme ilerlemesi                  | Gerçek oynatma aralıkları kaydedilir; tekrar izleme iki kez sayılmaz, ileri sarılan boşluk eklenmez. Videonun %95'i izlenince video tamamlanır.                                                                                                        |
+| Ders alıştırması                   | Özel Storage alanından PDF indirme ve “Alıştırmayı tamamladım” işlemi bağlı. Öğrenciden cevap dosyası istenmez; tamamlama öğrenci beyanıdır.                                                                                                           |
+| Kurs ve sertifika talebi           | Yayınlanmış kursun tüm videoları/alıştırmaları tamamlanınca veritabanında bir kez talep oluşur. E-posta servisi bu talepleri ekip bildirimi için işler; gönderici kurulumu bekliyor. Sertifika tasarımı ve öğrenciye gönderim PDF'deki gibi manueldir. |
+| Özel ders akışı                    | Bilgi → program → konu → uygun saatler arayüzü hazır; Google randevu bağlantısı verilince eğitmen takvimi açılır. Bağlantı yokken rezervasyon yapılmış gibi gösterilmez.                                                                               |
+| Footer ve takım reklamları         | Cymurghs adı, logosu ve bağlantıları görünür arayüzden tamamen kaldırıldı; footer Nazif logosunu kullanıyor.                                                                                                                                           |
+| Açık/koyu tema                     | Korundu; logo iki temada da okunur.                                                                                                                                                                                                                    |
+| Diller                             | Kullanıcının sonraki kararı gereği mevcut Türkçe, İngilizce, basitleştirilmiş Çince ve Hiligaynon korundu. Yeni dil eklenmedi.                                                                                                                         |
 
-## Kullanıcının açıkça beklettiği işler
+## Sağlanması gereken gerçek içerik ve bağlantılar
 
-Veritabanı kararı verilene kadar kayıt/giriş, öğrenciye özel video erişimi, izleme ilerlemesi, alıştırma tamamlama state'i ve sertifika/e-posta otomasyonu bekletildi. Bu revizyonda veritabanı, auth sağlayıcısı, kullanıcı hesabı veya e-posta hizmeti kurulmadı. Durum ikonları sunum bileşeni olarak mevcut; kişisel ilerleme kaydı yok.
+| Gereken                                                      | Neden hâlâ açık?                                                                                                    | Ekleneceği yer                                              |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| YouTube ders adresleri ve gerçek süreleri                    | Henüz eğitim videosu verilmedi. Örnek videolar canlı kataloğa eklenmedi.                                            | `lesson_materials`; [Ders rehberi](LEARNING.md)             |
+| Her dersin alıştırma PDF'si                                  | Müfredatın gerçek alıştırmaları ekipten gelmeli.                                                                    | `lesson-exercises` özel Storage alanı                       |
+| Onaylı kazanımlar ve müfredat                                | Mevcut kazanımlar taslak olarak işaretli.                                                                           | `src/features/education/data/curricula.ts`                  |
+| Eğitmen fotoğrafı, üniversite, FIRST deneyimi ve biyografisi | Kullanıcı “hazır değil; mevcut görsellerle devam et” dedi. İsimler mevcut; diğer bilgiler uydurulmadı.              | `src/features/instructors/data/instructors.ts`              |
+| Eğitmen Google randevu bağlantıları                          | Gerçek müsaitlik takvimleri henüz verilmedi.                                                                        | `src/features/booking/bookingConfig.ts`                     |
+| Profesör Nazif Instagram adresi                              | Onaylı adres yok; yanlış hesaba bağlantı verilmez.                                                                  | `src/config/site.ts` → `instagramUrl`                       |
+| Sertifika bildirim göndericisi ve ekip alıcı adresi          | Resend/SMTP henüz kurulmadı. Worker yayınlandı; gönderim ayarları olmadan kuyruk tüketilmez ve e-posta gönderilmez. | Supabase Edge Function secrets; [Ders rehberi](LEARNING.md) |
+| Sertifika şablonu                                            | Medya ekibi hazırlayacak; otomatik sertifika üretimi istenmedi.                                                     | Ekip iş akışı                                               |
 
-Mevcut Türkçe, İngilizce, basitleştirilmiş Çince ve Hiligaynon dil seçenekleri korundu. Yeni dil eklenmedi.
+## Bilinçli olarak korunan kararlar
 
-Kara tahtanın yeni marka renkleriyle değiştirilmesi PDF'de bir ekip kararı olarak bırakılmıştı. Mevcut tahta görünümü, Nazif animasyonu, fontlar ve açık/koyu tema korundu.
+- Kara tahta renkleri PDF'de ekip tartışmasına bırakılmıştı. Kullanıcının beğendiği Nazif animasyonu, fontlar ve tahta kimliği korundu.
+- Birleşik logonun sağlanan Türkçe hali bütün dillerde kullanılır.
+- Hesap sistemi ve ilgi alanlarına göre öneriler Supabase'e bağlıdır. 16 Ekim'deki açık onayla ilerleme/alıştırma/sertifika kuyruğu da bağlandı; bunlar artık “veritabanı kararı bekliyor” değildir.
+- Doğrulama e-postaları hâlâ Supabase'in test göndericisindedir; tüm ziyaretçilere gönderim için özel SMTP gerekir.
 
-## İçerik ekibi sağlayınca tamamlanacaklar
+## Doğrulama
 
-| Eksik içerik | Ekleneceği yer |
-| --- | --- |
-| Onaylı birleşik logo | `src/config/site.ts` → `brandAssets.wordmark` |
-| Eğitmen fotoğrafı, üniversitesi, FIRST deneyimi, biyografisi | `src/features/instructors/data/instructors.ts` |
-| Kesin kurs kazanımları ve kullanım açıklamaları | `src/features/education/data/curricula.ts` |
-| Program/konu/eğitmen bazlı Google randevu bağlantıları | `src/features/booking/bookingConfig.ts` |
-| Profesör Nazif Instagram adresi | `src/config/site.ts` → `instagramUrl` |
-| Ders videoları ve alıştırma PDF'leri | Veritabanı ve erişim kararı sonrasında ders veri sözleşmesi |
-
-Eğitmenler için yalnızca verilen isimler kullanıldı. Prestijli üniversite, mezuniyet veya program deneyimi hakkında doğrulanmamış kişisel iddialar eklenmedi.
-
-## Sonraki kullanıcı kararı: Supabase login
-
-Kullanıcı PostgreSQL + Supabase için login mantığını kurmayı istedi. Kayıt/giriş/çıkış, e-posta doğrulama, şifre sıfırlama ve profil migration'ı hazırlandı. Daha sonra kullanıcı Supabase projesini ve bağlantı yetkisini verdi: 14 Ekim 2026'da `ProfNazif-Test` veritabanı ile Vercel yayını bağlandı. Kullanıcı özel e-posta gönderim servisi olmadığını, şimdilik test için kalmasını istedi; özel SMTP bekliyor. İzleme ilerlemesi ve sertifika işleri beklemeye devam eder. Kurulum ve canlı doğrulama notları: [AUTH.md](AUTH.md).
+29 otomatik test: kullanıcılar arası veri ayrımı, anonim erişim engeli, yayınlanmamış dersler, tekrar izleme, video + alıştırma şartı, tek sertifika talebi, bildirim worker yetkisi/hata davranışı ve dört dil anahtarları. Canlı Supabase'de geri alınan bir işlemle aynı ilerleme/kuyruk/erişim kontrolleri geçti; test hesabı veya yayınlanmış test videosu bırakılmadı. Görsel kontrol masaüstü/mobil ve açık/koyu temada yapıldı.

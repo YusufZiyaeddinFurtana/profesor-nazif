@@ -17,7 +17,7 @@ Kayıt, e-posta doğrulama, giriş, çıkış, şifre sıfırlama ve oturum kal�
 
 Canlı kontrol: Auth ayarları HTTP 200 döndü, geçersiz giriş doğru biçimde reddedildi, anonim profil okuma engellendi. İşlem sonunda geri alınan iki geçici kayıtla profil trigger'ı, yalnızca kendi profilini görme/değiştirme ve başka kullanıcının profilini değiştirememe canlı PostgreSQL üzerinde doğrulandı; test hesabı kalmadı. Güvenlik advisor'ı uyarı vermedi. Gerçek e-posta teslimi ve e-postadan başlayan doğrulama/şifre yenileme henüz uçtan uca test edilmedi.
 
-İlgi alanı seçimi ve kişisel ders önerileri sonraki kullanıcı isteğiyle eklendi: [RECOMMENDATIONS.md](RECOMMENDATIONS.md). İzleme ilerlemesi, sertifika bildirimi, Google ile giriş ve video erişim entegrasyonu henüz uygulanmadı. Yalnızca sayfa saklamak veya bir oynatıcıyı frontend'de gizlemek sunucu yetkilendirmesi yerine geçmez.
+İlgi alanı seçimi ve kişisel ders önerileri sonraki kullanıcı isteğiyle eklendi: [RECOMMENDATIONS.md](RECOMMENDATIONS.md). 16 Ekim'de izleme ilerlemesi, alıştırma tamamlama, korumalı video/PDF erişimi ve sertifika talep kuyruğu da bağlandı: [LEARNING.md](LEARNING.md). Bildirim worker'ı yayınlandı; e-posta göndericisi/alıcı adresi ve zamanlayıcı henüz yapılandırılmadı. Google ile giriş uygulanmadı. Materyal erişimi ve kişisel ilerleme sahiplik kuralları Supabase'de uygulanır.
 
 ## 1. Projeyi oluşturun
 

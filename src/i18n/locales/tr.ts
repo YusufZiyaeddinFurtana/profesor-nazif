@@ -235,4 +235,35 @@ export const messages = {
     "İlgi alanlarına uyan dersler eklendiğinde burada görünecek. Bu sırada programın eğitim alanlarını inceleyebilir veya tercihlerini değiştirebilirsin.",
   recommendationsPendingPrograms:
     "{programs} için seçimlerine uyan dersler henüz eklenmedi.",
+  studentVideosTitle: "Ders videoları öğrencilere özel.",
+  studentVideosDescription:
+    "Videoyu izlemek, ilerlemeni kaydetmek ve alıştırmalara ulaşmak için giriş yap veya ücretsiz hesabını oluştur.",
+  videoLoading: "Video yükleniyor…",
+  videoLoadError: "Video açılamadı. Bağlantını kontrol edip yeniden dene.",
+  videoProgress: "Videonun %{percent} kadarı tamamlandı.",
+  progressLoading: "İlerlemen yükleniyor…",
+  progressLoadError:
+    "Ders materyalleri ve ilerlemen yüklenemedi. Yeniden dene.",
+  progressSaveError:
+    "Son izleme bölümün kaydedilemedi. Sayfayı kapatmadan yeniden dene.",
+  courseProgress: "İzleme ilerlemen",
+  courseExercises: "{total} alıştırmadan {done} tanesi tamamlandı.",
+  courseCompleted: "Kursu tamamladın!",
+  certificateQueued:
+    "Sertifika talebin kaydedildi. Sertifikanı ekibimiz hazırlayacak.",
+  exerciseTitle: "Ders alıştırması",
+  exerciseDescription:
+    "PDF’yi indir, kendi hızında çöz ve tamamladığında aşağıdan işaretle. Dosya yüklemene gerek yok.",
+  exercisePending: "Bu dersin alıştırması hazırlanıyor.",
+  exercisePrepare: "Alıştırma PDF’sini hazırla",
+  exerciseDownload: "PDF’yi indir",
+  exerciseMarkComplete: "Alıştırmayı tamamladım",
+  exerciseCompleted: "Alıştırma tamamlandı",
+  exerciseSaved: "Tamamlama bilgin kaydedildi.",
+  exerciseError: "İşlem tamamlanamadı. Yeniden dene.",
+  lessonNotStarted: "Henüz başlanmadı",
+  lessonInProgress: "Devam ediyor",
+  lessonCompleted: "Ders tamamlandı",
+  courseProgressPending:
+    "Kursun tüm dersleri yayınlandığında toplam ilerlemen burada görünecek.",
 };

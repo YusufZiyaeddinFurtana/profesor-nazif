@@ -268,6 +268,12 @@
 :root[data-theme="dark"] .lesson-state--completed {
   color: #91dba6;
 }
+.sidebar-lessons a[aria-current] .lesson-state--completed {
+  color: #91dba6;
+}
+:root[data-theme="dark"] .sidebar-lessons a[aria-current] .lesson-state--completed {
+  color: #287b45;
+}
 .course-outcomes {
   margin-top: 38px;
   padding-block: 28px;
