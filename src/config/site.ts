@@ -3,5 +3,5 @@ export const brandAssets = {
   portrait: "/nazif-portrait.png",
   wordmark: "/nazif-wordmark.png",
 };
-/** Add only Professor Nazif's confirmed account; no team links or guessed handles. */
-export const instagramUrl: string | undefined = undefined;
+/** Instagram destination explicitly supplied by the project owner. */
+export const instagramUrl = "https://www.instagram.com/cymurghs/";

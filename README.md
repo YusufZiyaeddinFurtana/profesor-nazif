@@ -62,7 +62,7 @@ Yeni özellik ekleme, dosyaların sorumlulukları ve veri akışı: [Mimari rehb
 - Eğitmen isimleri ve profilleri: `src/features/instructors/data/instructors.ts`.
 - Onaylı kurs kazanımları: `src/features/education/data/curricula.ts`.
 - Konu/eğitmen/Google randevu takvimi eşleştirmeleri: `src/features/booking/bookingConfig.ts`.
-- Logo ve Profesör Nazif Instagram adresi: `src/config/site.ts`.
+- Logo ve onaylı Instagram bağlantısı: `src/config/site.ts`.
 - Tema renkleri: `src/styles/tokens.css`.
 
 Kategori adı ile URL kimliği ayrıdır. İsimleri değiştirirken `slug` değerlerini sabit tutun. Dersler `program`, `topic` ve `group` ile kategoriye eşlenir. Eklenen bir ders, ilgili alanın menüsünde otomatik görünür; ders başına yeni sayfa dosyası oluşturulmaz.
