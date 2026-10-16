@@ -1,5 +1,6 @@
 import type { Messages } from "../types";
 export const messages: Messages = {
+  adminTitle: "内容管理",
   brand: "Profesör Nazif",
   homeLabel: "纳齐夫教授首页",
   home: "首页",

@@ -1,5 +1,6 @@
 import type { Messages } from "../types";
 export const messages: Messages = {
+  adminTitle: "Pagdumala sang mga leksyon",
   brand: "Profesör Nazif",
   homeLabel: "Panguna nga pahina ni Propesor Nazif",
   home: "Panguna",

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useAdmin } from "../../admin/AdminProvider";
 import { useAuth } from "../AuthProvider";
 import { useLocale } from "../../../i18n/LocaleProvider";
 import { useNavigation } from "../../../app/Navigation";
@@ -12,6 +13,7 @@ import { Arrow } from "../../../components/ui/Arrow";
 import { RecommendationsSection } from "../../recommendations/components/RecommendationsSection";
 export function AccountPage() {
   const { t } = useLocale();
+  const { isAdmin } = useAdmin();
   const { session, status } = useAuth();
   const { navigate } = useNavigation();
   const [busy, setBusy] = useState(false);
@@ -55,6 +57,11 @@ export function AccountPage() {
                 <dd>{session.user.email}</dd>
               </div>
             </dl>
+            {isAdmin && (
+              <a className="primary-button" href="/admin">
+                {t("adminTitle")}
+              </a>
+            )}
             <RecommendationsSection />
             <h2 className="account-browse-title">{t("interestsBrowseAll")}</h2>
             <div className="account-programs">

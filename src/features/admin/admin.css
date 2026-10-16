@@ -1,0 +1,250 @@
+.admin-page {
+  padding-block: 42px 88px;
+  min-height: 70vh;
+}
+.admin-heading {
+  margin-block: 28px 38px;
+}
+.admin-heading h1 {
+  font-size: 2.5rem;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin: 0 0 14px;
+}
+.admin-heading p {
+  color: var(--muted);
+  max-width: 68ch;
+  line-height: 1.65;
+  margin: 0;
+}
+.admin-workspace {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.7fr) minmax(0, 1.6fr);
+  gap: 48px;
+  align-items: start;
+}
+.admin-library {
+  background: var(--subtle);
+  padding: 24px;
+  min-width: 0;
+}
+.admin-library-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.admin-library-heading h2 {
+  font-size: 1.25rem;
+  margin: 0;
+}
+.admin-library-heading button {
+  font-size: 0.8125rem;
+}
+.admin-new {
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+.admin-lesson-list {
+  padding: 0;
+  margin: 22px 0 0;
+  list-style: none;
+  max-height: 650px;
+  overflow-y: auto;
+  scrollbar-color: var(--line) var(--subtle);
+}
+.admin-lesson-list li + li {
+  border-top: 1px solid var(--line);
+}
+.admin-lesson-list button {
+  display: grid;
+  gap: 6px;
+  padding: 18px 12px;
+  width: 100%;
+  text-align: start;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  border-radius: 4px;
+}
+.admin-lesson-list button:hover {
+  background: var(--hover);
+}
+.admin-lesson-list button[aria-pressed="true"] {
+  background: var(--surface);
+}
+.admin-lesson-list span {
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+.admin-lesson-list strong {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.admin-editor {
+  min-width: 0;
+}
+.admin-editor h2 {
+  margin: 0 0 28px;
+  font-size: 1.75rem;
+  letter-spacing: -0.02em;
+}
+.admin-editor fieldset {
+  display: grid;
+  gap: 22px;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  min-width: 0;
+}
+.admin-field {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+.admin-field :is(input, textarea, select) {
+  font: inherit;
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 12px 14px;
+  width: 100%;
+  min-width: 0;
+  line-height: 1.5;
+  caret-color: var(--link);
+}
+.admin-field textarea {
+  resize: vertical;
+}
+.admin-field :disabled {
+  background: var(--subtle);
+  color: var(--muted);
+  cursor: not-allowed;
+}
+.admin-hint {
+  color: var(--muted);
+  font-size: 0.8125rem;
+  line-height: 1.65;
+  max-width: 72ch;
+  margin: -12px 0 0;
+}
+.admin-materials {
+  display: grid;
+  gap: 22px;
+  padding-top: 30px;
+  border-top: 1px solid var(--line);
+  margin-top: 10px;
+}
+.admin-materials h3 {
+  margin: 0;
+  font-size: 1.125rem;
+}
+.admin-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.admin-file input {
+  padding: 12px;
+}
+.admin-file input::file-selector-button {
+  color: var(--ink);
+  background: var(--subtle);
+  border: 0;
+  border-radius: 4px;
+  padding: 10px 12px;
+  margin-inline-end: 12px;
+  cursor: pointer;
+  font: inherit;
+}
+.admin-file-status {
+  overflow-wrap: anywhere;
+  font-size: 0.875rem;
+  color: var(--link);
+  margin: -8px 0 0;
+}
+.admin-feedback {
+  min-height: 24px;
+}
+.admin-editor .auth-feedback {
+  margin-block: 26px 0;
+}
+.admin-editor .auth-feedback a {
+  margin-top: 12px;
+  display: flex;
+}
+.admin-actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding-top: 26px;
+}
+.admin-actions button {
+  min-height: 48px;
+  justify-content: center;
+}
+.admin-page button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+@media (max-width: 900px) {
+  .admin-workspace {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .admin-lesson-list {
+    max-height: 250px;
+  }
+  .admin-library {
+    padding: 20px;
+  }
+  .admin-heading h1 {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 540px) {
+  .admin-page {
+    padding-block: 28px 60px;
+  }
+  .admin-pair {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .admin-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .admin-editor h2 {
+    font-size: 1.5rem;
+  }
+}
+
+.admin-library-heading button {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--link);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.admin-library-heading button:hover {
+  color: var(--ink);
+}
+.admin-page .primary-button {
+  border: 0;
+  transition: background-color 150ms ease;
+}
+.admin-page .primary-button:hover {
+  transform: none;
+}

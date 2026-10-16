@@ -1,5 +1,24 @@
 // Local browser fixture only. Never deploy this server or import it from src/.
 import { createServer } from "node:http";
+import { lessons } from "../../src/features/catalog/data/mockLessons.ts";
+import { getCategoryForLesson } from "../../src/features/education/data/categories.ts";
+let adminEnabled = true;
+let adminRows = lessons.map((lesson, index) => ({
+  ...lesson,
+  course_id: `${lesson.program.toLowerCase()}/${getCategoryForLesson(lesson).slug}`,
+  lesson_group: lesson.group,
+  long_description: lesson.longDescription,
+  sort_order: index,
+  youtube_video_id: null,
+  video_duration_seconds: null,
+  exercise_path: null,
+  is_published: false,
+  is_listed: true,
+  video_available: false,
+  ever_published: false,
+  updated_at: new Date().toISOString(),
+}));
+const uploadedPdfs = new Set();
 if (process.env.NODE_ENV === "production")
   throw new Error("Test fixture cannot run in production");
 const userId = "11111111-1111-4111-8111-111111111111";
@@ -49,9 +68,12 @@ const server = createServer(async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:4176");
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "authorization, apikey, content-type, x-client-info, x-supabase-api-version, prefer, accept, range, accept-profile, content-profile",
+    "authorization, apikey, content-type, x-client-info, x-supabase-api-version, x-upsert, prefer, accept, range, accept-profile, content-profile",
   );
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, OPTIONS");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PATCH, DELETE, OPTIONS",
+  );
   res.setHeader("Access-Control-Expose-Headers", "X-Supabase-Api-Version");
   res.setHeader("X-Supabase-Api-Version", "2024-01-01");
   res.setHeader("Content-Type", "application/json");
@@ -62,6 +84,18 @@ const server = createServer(async (req, res) => {
   if (req.method === "OPTIONS") return reply(200, {});
   let text = "";
   for await (const part of req) text += part;
+  const requestUrl = new URL(req.url, "http://127.0.0.1");
+  if (
+    requestUrl.pathname.startsWith("/storage/v1/object/lesson-exercises/") &&
+    req.method === "POST"
+  ) {
+    if (!adminEnabled) return reply(403, { message: "Admin required" });
+    const path = decodeURIComponent(
+      requestUrl.pathname.slice("/storage/v1/object/lesson-exercises/".length),
+    );
+    uploadedPdfs.add(path);
+    return reply(200, { Key: `lesson-exercises/${path}`, Id: "local-upload" });
+  }
   let body;
   try {
     body = text ? JSON.parse(text) : {};
@@ -69,8 +103,67 @@ const server = createServer(async (req, res) => {
     return reply(400, {});
   }
   const url = new URL(req.url, "http://127.0.0.1");
+  if (url.pathname === "/__admin" && req.method === "POST") {
+    adminEnabled = body.enabled;
+    return reply(200, {});
+  }
+  if (url.pathname === "/rest/v1/rpc/is_admin") return reply(200, adminEnabled);
+  if (url.pathname === "/rest/v1/rpc/admin_lessons")
+    return adminEnabled ? reply(200, adminRows) : reply(403, { code: "42501" });
+  if (url.pathname === "/rest/v1/rpc/admin_save_lesson") {
+    if (!adminEnabled) return reply(403, { code: "42501" });
+    if (saveFails) return reply(503, { message: "Fixture save failure" });
+    const input = body.p_input,
+      category = getCategoryForLesson(lessons[5]);
+    const old = adminRows.find((row) => row.id === input.id);
+    if (old && input.expectedUpdatedAt !== old.updated_at)
+      return reply(409, { code: "40001" });
+    const row = {
+      ...old,
+      id: input.id,
+      course_id: input.courseId,
+      program: input.courseId.split("/")[0].toUpperCase(),
+      lesson_group: category.group,
+      topic: category.title,
+      title: input.title,
+      summary: input.summary,
+      long_description: input.longDescription,
+      sort_order: input.sortOrder,
+      youtube_video_id: input.videoId,
+      video_duration_seconds: input.duration,
+      exercise_path: input.exercisePath,
+      is_published: input.publish,
+      is_listed: input.publish,
+      video_available: input.publish,
+      ever_published: !!old?.ever_published || input.publish,
+      updated_at: new Date().toISOString(),
+      translations: {},
+    };
+    adminRows = adminRows.filter((r) => r.id !== input.id).concat(row);
+    if (input.publish) {
+      materials.push({
+        lesson_id: row.id,
+        youtube_video_id: row.youtube_video_id,
+        video_duration_seconds: row.video_duration_seconds,
+        exercise_path: row.exercise_path,
+      });
+    }
+    return reply(200, input.id);
+  }
+  if (url.pathname === "/rest/v1/lesson_catalog")
+    return reply(
+      200,
+      adminRows.filter((row) => row.is_listed),
+    );
   if (url.pathname === "/__state")
-    return reply(200, { profile, lastSignup, learningProgress, completion });
+    return reply(200, {
+      profile,
+      lastSignup,
+      learningProgress,
+      completion,
+      adminRows,
+      uploadedPdfs: [...uploadedPdfs],
+    });
   if (url.pathname === "/__learning" && req.method === "POST") {
     if (body.progress) learningProgress = body.progress;
     if (body.completion) completion = body.completion;

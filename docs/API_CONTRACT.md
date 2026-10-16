@@ -2,6 +2,10 @@
 
 ## Ders listesi
 
+Canlı sitede varsayılan kaynak Supabase `lesson_catalog` tablosudur. Servis satırları aşağıdaki `Lesson` biçimine dönüştürür; yalnızca listelenen açıklamalar okunur. `videoAvailable` (isteğe bağlı boolean) gerçek materyalin yayımlanma durumunu bildirir, video kimliği içermez.
+
+Alternatif `VITE_API_BASE_URL` yapılandırıldığında:
+
 `GET /lessons` → `200 application/json`, doğrudan bir ders dizisi:
 
 ```json
@@ -44,3 +48,7 @@ Oynatıcı giriş yapan öğrenciler için korumalı Supabase `lesson_materials`
 ## İsteğe bağlı ders çevirileri
 
 `translations`, `tr`, `en`, `zh-Hans`, `hil` dil kodlarıyla kayıtlar taşıyabilir. Her kayıt üç metin alanını birlikte içermelidir: `title`, `summary`, `longDescription` (string). İstenen dil yoksa dersin özgün metni gösterilir; kimlik ve kategori eşleme alanları çevrilmez. Örnek ve entegrasyon ayrıntıları için [Dil rehberi](I18N.md).
+
+## Admin içerik işlemleri
+
+`is_admin` yalnızca sunucunun atadığı rolü kontrol eder. `admin_lessons` taslaklar dahil düzenleme verisini yalnızca adminlere döndürür. `admin_save_lesson(p_input)` rolü tekrar kontrol edip ders açıklaması, korumalı materyal ve kurs üyeliğini atomik kaydeder. Form ve ilk admin kurulumu: [Admin rehberi](ADMIN.md).

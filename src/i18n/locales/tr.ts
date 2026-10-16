@@ -1,4 +1,5 @@
 export const messages = {
+  adminTitle: "İçerik yönetimi",
   brand: "Profesör Nazif",
   homeLabel: "Profesör Nazif ana sayfa",
   home: "Anasayfa",

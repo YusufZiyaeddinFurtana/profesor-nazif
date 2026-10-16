@@ -95,9 +95,10 @@ export function EducationSidebar({
                         {lesson.title}
                         <small>
                           {t(
-                            learning.materials.some(
-                              (m) => m.lesson_id === lesson.id,
-                            )
+                            lesson.videoAvailable ||
+                              learning.materials.some(
+                                (m) => m.lesson_id === lesson.id,
+                              )
                               ? "videoLesson"
                               : "contentPending",
                           )}

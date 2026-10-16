@@ -75,9 +75,9 @@ Kategori adı ile URL kimliği ayrıdır. İsimleri değiştirirken `slug` değe
 VITE_API_BASE_URL=https://api.example.com
 ```
 
-Adres boşsa örnek dersler kullanılır. Tanımlıysa frontend `GET /lessons` çağırır. Yerelde sunucuyu yeniden başlatın; Vercel'de değişken değiştiğinde yeniden deploy edin. API'nin veri biçimi: [API sözleşmesi](docs/API_CONTRACT.md).
+Adres boşsa Supabase `lesson_catalog` kullanılır; Supabase de yapılandırılmamışsa yerel örnekler açılır. Tanımlıysa frontend `GET /lessons` çağırır. Admin paneliyle eklenen dersler Supabase kataloğuna yazılır; alternatif API seçilirse o API de bu tabloyu okumalıdır. Yerelde sunucuyu yeniden başlatın; Vercel'de değişken değiştiğinde yeniden deploy edin. API'nin veri biçimi: [API sözleşmesi](docs/API_CONTRACT.md).
 
-Supabase ile kayıt, giriş, e-posta doğrulama, şifre sıfırlama ve oturum mantığı hazırdır; `ProfNazif-Test` projesi ve Vercel yayını bağlandı. E-posta gönderimi kullanıcı kararıyla test aşamasındadır; genel kullanıma açılmadan önce özel SMTP bağlanmalıdır. Kayıtta program/ilgi alanı seçimi ve kaydedilen tercihlere göre ders önerileri uygulanmıştır. Öğrenci ilerlemesi, alıştırma tamamlama ve sertifika talep kuyruğu da Supabase’e bağlıdır. Yönetim paneli henüz yoktur. Gizli anahtarları `VITE_` değişkenlerine koymayın; bu değişkenler tarayıcıya gönderilir.
+Supabase ile kayıt, giriş, e-posta doğrulama, şifre sıfırlama ve oturum mantığı hazırdır; `ProfNazif-Test` projesi ve Vercel yayını bağlandı. E-posta gönderimi kullanıcı kararıyla test aşamasındadır; genel kullanıma açılmadan önce özel SMTP bağlanmalıdır. Kayıtta program/ilgi alanı seçimi ve kaydedilen tercihlere göre ders önerileri uygulanmıştır. Öğrenci ilerlemesi, alıştırma tamamlama ve sertifika talep kuyruğu da Supabase’e bağlıdır. Admin rolüyle korunan `/admin` içerik paneli hazırdır. YouTube bağlantısı ve PDF ile ders ekleme, taslak/yayın akışı ve ilk admini atama: [Admin rehberi](docs/ADMIN.md). Gizli anahtarları `VITE_` değişkenlerine koymayın; bu değişkenler tarayıcıya gönderilir.
 
 Üç adımlı kayıt, tercih düzenleme, öneri kuralları ve ilgili dosyalar: [İlgi alanları ve öneriler](docs/RECOMMENDATIONS.md).
 

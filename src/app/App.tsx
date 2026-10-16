@@ -1,3 +1,4 @@
+import { AdminPage } from "../features/admin/AdminPage";
 import { AuthPage } from "../features/auth/pages/AuthPage";
 import { AccountPage } from "../features/auth/pages/AccountPage";
 import { InterestsPage } from "../features/interests/pages/InterestsPage";
@@ -37,6 +38,8 @@ export default function App() {
           <AuthPage key={route.mode} mode={route.mode} />
         ) : route.kind === "auth-callback" ? (
           <AuthCallbackPage />
+        ) : route.kind === "admin" ? (
+          <AdminPage />
         ) : route.kind === "account" ? (
           <AccountPage />
         ) : route.kind === "interests" ? (

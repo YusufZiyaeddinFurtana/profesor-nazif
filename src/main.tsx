@@ -2,6 +2,7 @@ import { AuthProvider } from "./features/auth/AuthProvider";
 import { PreferencesProvider } from "./features/interests/PreferencesProvider";
 import { LearningProvider } from "./features/learning/LearningProvider";
 import { LocaleProvider } from "./i18n/LocaleProvider";
+import { AdminProvider } from "./features/admin/AdminProvider";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./app/App";
@@ -16,13 +17,15 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <ThemeProvider>
         <NavigationProvider>
           <AuthProvider>
-            <PreferencesProvider>
-              <CatalogProvider>
-                <LearningProvider>
-                  <App />
-                </LearningProvider>
-              </CatalogProvider>
-            </PreferencesProvider>
+            <AdminProvider>
+              <PreferencesProvider>
+                <CatalogProvider>
+                  <LearningProvider>
+                    <App />
+                  </LearningProvider>
+                </CatalogProvider>
+              </PreferencesProvider>
+            </AdminProvider>
           </AuthProvider>
         </NavigationProvider>
       </ThemeProvider>

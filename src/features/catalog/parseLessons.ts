@@ -27,6 +27,11 @@ export function parseLessons(value: unknown): Lesson[] {
     if (ids.has(row.id as string))
       throw new Error("Ders kimlikleri benzersiz olmalı.");
     ids.add(row.id as string);
+    if (
+      row.videoAvailable !== undefined &&
+      typeof row.videoAvailable !== "boolean"
+    )
+      throw new Error("Geçersiz video durumu.");
     if (row.coverLabel !== undefined && typeof row.coverLabel !== "string")
       throw new Error("Geçersiz kapak etiketi.");
     if (

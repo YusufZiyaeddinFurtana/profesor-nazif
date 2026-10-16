@@ -5,6 +5,7 @@ type Route =
   | { kind: "auth"; mode: "login" | "register" | "forgot" | "reset" }
   | { kind: "auth-callback" }
   | { kind: "account" }
+  | { kind: "admin" }
   | { kind: "interests" }
   | { kind: "instructors"; instructorId?: string }
   | { kind: "booking" }
@@ -56,6 +57,7 @@ export function resolveRoute(pathname: string): Route {
     };
     if (Object.hasOwn(modes, parts[0]))
       return { kind: "auth", mode: modes[parts[0]] };
+    if (parts[0] === "admin") return { kind: "admin" };
     if (parts[0] === "hesabim") return { kind: "account" };
     if (parts[0] === "ilgi-alanlarim") return { kind: "interests" };
   }

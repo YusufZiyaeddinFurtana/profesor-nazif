@@ -1,5 +1,6 @@
 import type { Messages } from "../types";
 export const messages: Messages = {
+  adminTitle: "Content management",
   brand: "Profesör Nazif",
   homeLabel: "Professor Nazif home",
   home: "Home",

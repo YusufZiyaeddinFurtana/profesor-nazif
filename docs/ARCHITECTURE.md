@@ -8,33 +8,21 @@ Her `features/` klasörü bir kullanıcı işini kapsar. Klasör içinde yalnız
 
 ## Ders verisinin akışı
 
-```text
-.env.local / VITE_API_BASE_URL
-           ↓
-       catalogService
-        ↙        ↘
- mockLessons     HTTP GET /lessons → parseLessons
-        ↘        ↙
-       CatalogProvider
-           ↓
- EducationPage → kategori eşleştirme
-        ↙              ↘
- EducationSidebar     CategoryOverview / LessonContent
-```
+Varsayılan canlı kaynak Supabase `lesson_catalog` tablosudur. Bağlantısız geliştirmede `mockLessons` kullanılır. `VITE_API_BASE_URL` verilirse alternatif `GET /lessons` API'si önceliklidir. Admin panelinin kaydettiği dersleri göstermek için bu API'nin de Supabase kataloğunu okuması gerekir.
+
+Katalog servisi → `parseLessons` → `CatalogProvider` → `EducationPage` → kategori menüsü / ders içeriği. YouTube kimliği ve özel PDF yolu bu herkese açık katalogdan ayrı, giriş gerektiren `lesson_materials` tablosunda tutulur.
 
 Bileşenlerde doğrudan `fetch` veya örnek veri import'u yapılmaz. Provider ortak ders state'ini sağlar. HTTP erişimi servis katmanındadır. API'den gelen veri `parseLessons.ts` ile doğrulanır. Yüklenme, hata, yeniden deneme ve boş kategori durumları kullanıcıya gösterilir.
 
 ## Yeni ders eklemek
 
-1. `features/catalog/data/mockLessons.ts` içine benzersiz `id` ile ders ekleyin veya aynı kaydı API'den döndürün.
-2. `program` değeri `FRC`, `FTC` ya da `FLL` olmalıdır.
-3. FRC alt başlıkları `topic` ile eşleşir: örneğin `Programming`. Business Management sayfası `group` üzerinden ilgili konuları birlikte gösterir.
-4. FLL alanları `group` ile eşleşir: `Robot Yapımı`, `Programlama`, `Özdeğerler`, `Proje`.
-5. Menü, ders içeriği ve paylaşılabilir URL otomatik oluşur.
+Admin yetkili hesapla `/admin` panelini kullanın. Kategori seçimi `program`, `group`, `topic`, kurs üyeliği ve URL eşleşmesini sunucuda birlikte oluşturur. Video kimliği, gerçek süre, PDF ve açıklamalar tek veritabanı işlemiyle kaydedilir. [Admin kurulumu ve kullanımı](ADMIN.md).
+
+`mockLessons.ts` yalnızca Supabase yapılandırılmamış geliştirme ortamının örnek kaynağıdır; canlı siteye ders eklemek için değiştirilmez.
 
 ## Yeni kategori eklemek
 
-`features/education/data/categories.ts` kayıtlarına kararlı bir `slug`, program, başlık, açıklama ve eşleme bilgisi ekleyin. FRC başlıkları için topic kayıtları, FTC ve FLL için courseGroups kayıtları kullanılır. Ana sayfa grubu yeni kategoriye bağlanacaksa `categorySlug` değerini aynı yapın. Yeni sayfa dosyası kopyalamayın; bütün kategoriler `EducationPage` üzerinden render edilir.
+`features/education/data/categories.ts` kayıtlarına kararlı bir `slug`, program, başlık, açıklama ve eşleme bilgisi ekleyin. FRC başlıkları için topic kayıtları, FTC ve FLL için courseGroups kayıtları kullanılır. Ana sayfa grubu yeni kategoriye bağlanacaksa `categorySlug` değerini aynı yapın. Supabase `learning_courses` ve `private.admin_categories` eşlemesine de yeni kategori için migration ekleyin. Yeni sayfa dosyası kopyalamayın; bütün kategoriler `EducationPage` üzerinden render edilir.
 
 Kategori slug'ını değiştirirseniz eski bağlantılar için ayrıca yönlendirme ekleyin. Güncel görünen başlıkları değiştirmek URL'yi değiştirmez.
 
@@ -78,6 +66,7 @@ PR veya push öncesi `npm test` ve `npm run build` çalıştırın. Testler kate
 ## Supabase üyelik
 
 `features/auth/` kayıt, giriş, doğrulama ve şifre yenileme akışlarını taşır. `AuthProvider` navigasyonun içinde, katalog sağlayıcısının dışında bağlıdır. Sayfa bileşenleri `authService.ts` aracılığıyla resmi SDK'yı kullanır. Veritabanı profil izolasyonu `supabase/migrations/` içindeki RLS kurallarıyla sağlanır. [Kurulum rehberi](AUTH.md).
+
 ## İlgi alanları ve öneriler
 
 `PreferencesProvider`, Auth oturumunun kullanıcı kimliğiyle profil tercihlerini yükler. `features/interests` veri erişimi ve seçim arayüzünü; `features/recommendations` katalogdan ders seçme kuralını ve öneri görünümünü içerir. Kayıt metadata'sı trigger ile PostgreSQL'e aktarılır; sonraki güncellemeler RLS altında `profiles` tablosuna yazılır. Detaylar: [RECOMMENDATIONS.md](RECOMMENDATIONS.md).

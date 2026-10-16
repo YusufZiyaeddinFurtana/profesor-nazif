@@ -14,4 +14,5 @@ export type Lesson = {
   coverLabel?: string;
   image?: string;
   youtubeVideoId?: string;
+  videoAvailable?: boolean;
 };

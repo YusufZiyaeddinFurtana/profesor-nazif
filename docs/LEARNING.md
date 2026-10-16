@@ -38,22 +38,9 @@ Anonim kullanıcılar materyal veya ilerleme okuyamaz. Öğrenciler yalnızca ke
 
 İlk kurulum mevcut 9 örnek dersin kimliklerini ve 18 kursun üyeliklerini oluşturur. Hepsi **taslaktır**; gerçek video/PDF olmadan yayınlanmaz.
 
-1. Gerçek başlık/açıklama/çevirileri katalog kaynağında güncelleyin (`mockLessons.ts` veya `GET /lessons`). Yeni dersin `id` değeri aynı zamanda `lesson_materials.lesson_id` olmalıdır.
-2. Alıştırma PDF'sini Supabase Storage → özel `lesson-exercises` bucket'ına yükleyin. Örnek yol: `frc/programming/wpilib-java.pdf`. PDF dosya limiti 10 MB'dir.
-3. Yönetici SQL Editor/Table Editor üzerinden materyali güncelleyin:
+Normal içerik ekleme akışı artık `/admin` panelidir: program/kategori, başlık/açıklama, YouTube bağlantısı, gerçek video süresi ve PDF seçilir; **Yayımla** ile ders görünür hale gelir. SQL Editor veya TS dosyası düzenlemek gerekmez. İlk admin ataması ve adımlar: [Admin rehberi](ADMIN.md).
 
-```sql
--- Yer tutucuları GERÇEK değerlerle değiştirin. Örnek YouTube kimliği yayınlamayın.
-update public.lesson_materials
-set youtube_video_id = '<11_karakter_video_id>',
-    video_duration_seconds = 600,
-    exercise_path = 'frc/programming/wpilib-java.pdf',
-    is_published = true
-where lesson_id = 'wpilib-java';
-```
-
-4. Kursun bütün `course_lessons` satırlarını doğrulayın. Her derste video/süre/PDF hazır olunca ilgili `learning_courses.is_published` değerini açın. Eksik ders içeren kurs sertifika üretemez.
-5. Yeni ders eklerken katalog metadata'sına ek olarak materyal ve kurs üyeliğini de ekleyin; liste sırasını katalogla aynı tutun. Yayınlanmış müfredatı değiştirirken önceki tamamlanmaların korunacağını hesaba katın; farklı müfredat sürümü için yeni kurs kimliği kullanın.
+Yayımlanmamış dersler zorunlu kurs ilerlemesine dahil edilmez. Daha önce kazanılmış tamamlama kayıtları içerik güncellemesiyle silinmez. Bir kere yayımlanmış videonun kimliği/süresi değiştirilmez; farklı içerik için yeni ders oluşturulur.
 
 YouTube kimliğini herkese açık katalog API'sine koymayın; oynatıcı korumalı `lesson_materials` verisini kullanır. Üyelik kontrolü site ve veritabanı erişimini kapsar. YouTube videosunun kendisi DRM ile korunmaz; erişen öğrenci bağlantıyı paylaşabilir. Liste dışı yayın YouTube aramasında görünmeyi azaltır, bağlantı paylaşımını engellemez.
 
